@@ -15,7 +15,39 @@ public class Register implements Servlet {
     }
 
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-       // servletResponse.setContentType("text/html");
+
+        servletResponse.setContentType("text/html");
+        PrintWriter wr = servletResponse.getWriter();
+        wr.print("<html lang=\"en\">");
+        wr.print("<head>");
+        // wr.print("<meta charset="UTF-8">");
+        wr.print("<title>REGISTER HERE</title>");
+        wr.print("</head>");
+        wr.print("<style>");
+        wr.print("h2 {text-align: center;}");
+        wr.print("</style>");
+        wr.print("<body bgcolor=\"Lightskyblue\"> ");
+        wr.print("<center>");
+        wr.print("<form>");
+        wr.print("<h2>REGISTRATION FORM </h2>");
+        wr.print("FirstName :<input type=\"text\" name=\"first\" /><br/><br/>");
+        wr.print("LastName :<input type=\"password\" name=\"last\" /><br/><br/>");
+        wr.print("Username :<input type=\"text\" name=\"user\" /><br/><br/>");
+        wr.print("Email :<input type=\"text\" name=\"email\" /><br/><br/>");
+        wr.print("Phone :<input type=\"phone\" name=\"pass\" /><br/><br/>");
+        wr.print("Password :<input type=\"password\" name=\"pass\" /><br/><br/>");
+        wr.print("Re-Type-Password :<input type=\"password\" name=\"repass\" /><br/><br/>");
+        wr.print("<input type=\"submit\" value=\"REGISTER\" />");
+        wr.print("<br/><br/> ");
+        wr.print("Already registered click to log in:");
+        wr.print("</label>");
+        wr.print("<input type=\"button\" value=\"LOGIN\"/>");
+        wr.print("</form>");
+        wr.print("</center>");
+        wr.print("</body>");
+        wr.print("</html>");
+
+        /*  servletResponse.setContentType("text/html");
         PrintWriter r = servletResponse.getWriter();
         r.print("<html lang=\"en\">");
         r.print("<head>");
@@ -69,6 +101,8 @@ public class Register implements Servlet {
         r.print("</form>");
         r.print("</body>");
         r.print("</html>");
+
+      */
 
 
     }
