@@ -22,9 +22,12 @@ wr.print(this.register(null));
         else if (action != null && action.equalsIgnoreCase("login"))
             wr.print(this.login(null));
 
+        else
+        wr.print(this.LandPage());
     }
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
         PrintWriter wr = res.getWriter();
+
         String action = req.getParameter("action");
         String first = req.getParameter("FirstName");
         String last = req.getParameter("LastName");
@@ -50,26 +53,28 @@ wr.print(this.register(null));
             System.out.println("Password:"+ password);
             System.out.println("ConfirmPassword:" +conPassword);
 
-            if (first.length() < 2 || email.equalsIgnoreCase(""))
+            if (first == null || email.equalsIgnoreCase(""))
                 actionError = "please enter a valid first name<br/>";
-            if (last.length() < 2 || email.equalsIgnoreCase(""))
+            if (last == null || email.equalsIgnoreCase(""))
                 actionError += "please enter a valid last  name<br/>";
-            if (user.length() < 4 || email.equalsIgnoreCase(""))
+            if (user == null|| email.equalsIgnoreCase(""))
                 actionError += "please enter a username<br/>";
             if (gender == null || email.equalsIgnoreCase(""))
                 actionError += "please enter a valid name<br/>";
-            if (email.isEmpty() || email.equalsIgnoreCase(""))
+            if (email == null || email.equalsIgnoreCase(""))
                 actionError = "please enter your email<br/>";
-            if (phone.length() < 10 || email.equalsIgnoreCase(""))
+            if (phone == null || email.equalsIgnoreCase(""))
                 actionError += "please enter mobile number<br/>";
-            if (password.length() < 4 || email.equalsIgnoreCase(""))
+            if (password == null || email.equalsIgnoreCase(""))
                 actionError += "enter valid password<br/>";
-            if (conPassword.length() < 4 || email.equalsIgnoreCase(""))
+            if (conPassword == null || email.equalsIgnoreCase(""))
                 actionError = "please confirm password<br/>";
             if ((password != null && conPassword != null) && !password.equals(conPassword)  )
                 actionError += "password do not match<br/>";
+
        else
            wr.print(this.register(actionError));
+
         }else if (login){
 
             System.out.println("UserName: " + user);
@@ -82,11 +87,11 @@ wr.print(this.register(null));
 
             if (password != null && !password.equals("5055"))
                 actionError += "wrong password";
-            if (actionError.equals(""))
-                System.out.println(user + "successfully logged in ");
-        }
+
+
         else
             wr.print(this.login(actionError));
+        }
 
     }
     public String login(String actionError){
@@ -149,9 +154,15 @@ wr.print(this.register(null));
                 + "width: 100%;"
                 + " }"
                 +"}"
+        +"input:invalid:required {"
+            +"background-image: linear-gradient(to right, pink, lightgreen);"
+        +"}"
+        +"input:valid {"
+            +"border: 2px solid black;"
+        +"}"
                 +"</style>"
                 +"</head>"
-                +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
+                +"<body bgcolor=\"gray\" style=\"margin: auto; width: 220px;\">"
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
                 +"<h2 >Login Form</h2>"
@@ -161,10 +172,10 @@ wr.print(this.register(null));
                  +"<label>Action:</label> <input type=\\\"text\\\" name=\\\"action\\\" value=\\\"login\\\">>"
                 + " <div class=\"container\">"
                 +"<label ><b>Username</b></label>"
-                +"<input type=\"text\" placeholder=\"Enter Username\">"
+                +"<input type=\"text\" required placeholder=\"Enter Username\">"
 
                 +" <label ><b>Password</b></label>"
-                +  "<input type=\"password\" placeholder=\"Enter Password\">"
+                +  "<input type=\"password\" required placeholder=\"Enter Password\">"
 
                 + "<button type=\"submit\">Login</button>"
                 +"</div>"
@@ -250,8 +261,8 @@ wr.print(this.register(null));
                 + "<body>"
                 +"<h1>WELCOME TO BADILI SACCO </h1>"
                  +"<h6> Jipange uzeeni </h6>"
-                + " To Register <a href='./welcome?action=register'>Register</a><br/>"
-                + " To Loging <a href='./welcome?action=login'>Login</a><br/>"
+                + " To Register <a href='./login?action=register'>Register</a><br/>"
+                + " To Loging <a href='./login?action=login'>Login</a><br/>"
                 + "</body>"
                 + "</html>";
     }
