@@ -18,7 +18,8 @@ public class LogIn extends HttpServlet {
         PrintWriter wr = servletResponse.getWriter();
 
         if (action != null && action.equalsIgnoreCase("register"))
-wr.print(this.register(null));
+          wr.print(this.register(null));
+
         else if (action != null && action.equalsIgnoreCase("login"))
             wr.print(this.login(null));
 
@@ -32,7 +33,6 @@ wr.print(this.register(null));
         String first = req.getParameter("FirstName");
         String last = req.getParameter("LastName");
         String user = req.getParameter("UserName");
-        String gender = req.getParameter("Gender");
         String phone = req.getParameter("Phone");
         String email = req.getParameter("Email");
         String password = req.getParameter("Password");
@@ -41,13 +41,14 @@ wr.print(this.register(null));
         boolean register = action != null && action.equalsIgnoreCase("register");
         boolean login = action != null && action.equalsIgnoreCase("login");
 
+
         String actionError = "";
 
         if (register){
             System.out.println("FirstName:" + first);
             System.out.println("LastName:" + last);
             System.out.println("UserName:" + user);
-            System.out.println("Gender:"+ gender);
+
             System.out.println("Email:" + email);
             System.out.println("Phone:"+ phone);
             System.out.println("Password:"+ password);
@@ -59,8 +60,7 @@ wr.print(this.register(null));
                 actionError += "please enter a valid last  name<br/>";
             if (user == null|| email.equalsIgnoreCase(""))
                 actionError += "please enter a username<br/>";
-            if (gender == null || email.equalsIgnoreCase(""))
-                actionError += "please enter a valid name<br/>";
+
             if (email == null || email.equalsIgnoreCase(""))
                 actionError = "please enter your email<br/>";
             if (phone == null || email.equalsIgnoreCase(""))
@@ -82,6 +82,7 @@ wr.print(this.register(null));
 
             if (user == null ||user.equalsIgnoreCase(""))
                 actionError = "username is required <br/>";
+
             if (password == null || password.equalsIgnoreCase(""))
         actionError += " enter password";
 
@@ -155,27 +156,27 @@ wr.print(this.register(null));
                 + " }"
                 +"}"
         +"input:invalid:required {"
-            +"background-image: linear-gradient(to right, pink, lightgreen);"
+            +"background-image: linear-gradient(to right, violet, lightgreen);"
         +"}"
         +"input:valid {"
             +"border: 2px solid black;"
         +"}"
                 +"</style>"
                 +"</head>"
-                +"<body bgcolor=\"gray\" style=\"margin: auto; width: 220px;\">"
+                +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
                 +"<h2 >Login Form</h2>"
 
                 + "<form   action=\"./login\" method=\"post\">"
 
-                 +"<label>Action:</label> <input type=\\\"text\\\" name=\\\"action\\\" value=\\\"login\\\">>"
+                 +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"login\">"
                 + " <div class=\"container\">"
                 +"<label ><b>Username</b></label>"
-                +"<input type=\"text\" required placeholder=\"Enter Username\">"
+                +"<input type=\"text\" name= \"UserName\" required placeholder=\"Enter Username\">"
 
                 +" <label ><b>Password</b></label>"
-                +  "<input type=\"password\" required placeholder=\"Enter Password\">"
+                +  "<input type=\"password\" name= \"Password\" required placeholder=\"Enter Password\">"
 
                 + "<button type=\"submit\">Login</button>"
                 +"</div>"
@@ -199,13 +200,18 @@ wr.print(this.register(null));
         return "<!DOCTYPE html>"
                +" <html>"
               +"<head>"
-              +" <title>"
-               +" Registration Page"
+
                 + "<style>"
                 +" h1 {text-align: center;}"
                 +" h6 {text-align: center;}"
+                +"input:invalid:required {"
+                +"background-image: linear-gradient(to right, orange, lightgreen);"
+                +"}"
+                +"input:valid {"
+                +"border: 2px solid black;"
+                +"}"
                 +"</style>"
-                +"</title>"
+
             +"</head>"
         +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
 
@@ -214,36 +220,30 @@ wr.print(this.register(null));
                 +"<h3 >REGISTRATION</h3>"
 
                +"<form action=\"./login\" method=\"post\">"
-                + "<label> Action:</label>  <input type=\\\"text\\\" name=\\\"action\\\" value=\\\"register\\\">>"
+                +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
             +"  <label> Firstname </label>"
-             +"<input type=\"text\" placeholder=\"First Name\">"
+             +"<input type=\"text\" name= \"FirstName\" required placeholder=\"First Name\">"
                 + "<br>"
              +"<label> Lastname: </label>"
-         +"<input type=\"text\" placeholder=\"Last Name\">"
+         +"<input type=\"text\" name= \"LastName\" required placeholder=\"Last Name\">"
                 + "<br>"
          +"<label> UserName: </label>"
-          +"<input type=\"text\" placeholder=\"Enter Username\">"
+          +"<input type=\"text\" name= \"UserName\"required placeholder=\"Enter Username\">"
     +"<br>"
-    +"<label>"
-      +" Gender :"
-    +"</label><br>"
-    +"<input type=\"radio\" name=\"male\"/> Male <br>"
-    +"<input type=\"radio\" name=\"female\"/> Female <br>"
-    +"<input type=\"radio\" name=\"other\"/> Other"
     +"<br>"
       +" Phone :"
-    +"<input type=\"text\" name=\"phone\" > <br> <br>"
+    +"<input type=\"text\"  name= \"Phone\" required name=\"phone\" > <br> <br>"
     +"Email:"
-    +"<input type=\"email\" id=\"email\" name=\"email\"/> <br>"
+    +"<input type=\"email\" name=\"Email\" required  id=\"email\" name=\"email\"/> <br>"
 
       +" Password:"
-    +"<input type=\"Password\" id=\"pass\" name=\"pass\"> <br>"
+    +"<input type=\"Password\" name=\"Password\" required id=\"pass\" name=\"pass\"> <br>"
 
       +"ConfirmPassword:"
-    +"<input type=\"Password\" id=\"repass\" name=\"repass\"> <br>"
+    +"<input type=\"Password\"  name= \"ConfirmPassword\"  required id=\"repass\" name=\"repass\"> <br>"
     +"<input type=\"button\" value=\"Submit\"/><br>"
     +"<label>"
-      +" Already registerd click to log in:"
+      +" Already registered click to log in:"
     +"</label>"
     +"<input type=\"button\" value=\"LOGIN\"/>"
 +"</form>"
