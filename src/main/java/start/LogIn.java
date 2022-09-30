@@ -53,6 +53,8 @@ public class LogIn extends HttpServlet {
             System.out.println("Phone:"+ phone);
             System.out.println("Password:"+ password);
             System.out.println("ConfirmPassword:" +conPassword);
+            System.out.println("user successfully registered");
+            this.login(actionError);
 
             if (first == null || email.equalsIgnoreCase(""))
                 actionError = "please enter a valid first name<br/>";
@@ -72,6 +74,9 @@ public class LogIn extends HttpServlet {
             if ((password != null && conPassword != null) && !password.equals(conPassword)  )
                 actionError += "password do not match<br/>";
 
+            if (actionError.equals(""))
+                wr.print(this.LandPage());
+
        else
            wr.print(this.register(actionError));
 
@@ -79,6 +84,7 @@ public class LogIn extends HttpServlet {
 
             System.out.println("UserName: " + user);
             System.out.println("Password: " + password);
+            System.out.println("successfully logged in ");
 
             if (user == null ||user.equalsIgnoreCase(""))
                 actionError = "username is required <br/>";
@@ -186,7 +192,118 @@ public class LogIn extends HttpServlet {
                 + " <span class=\"rgs\">Forgot <a href=\"action\">password?</a></span>"
                 + "</div>"
                 + "<div>"
-                + " <span class=\"rgs\">\"Not yet registered click to register: <a href=\"action\">register</a></span>"
+                +  " Not yet registered click to register: <a href='./login?action=register'>Register</a><br/>"
+
+                +"</div>"
+                +"</form>"
+                + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span>"
+                +"</body>"
+                +"</html>";
+
+
+    }
+    public String register(String actionError){
+
+        return "<!DOCTYPE html>"
+                + "<html>"
+                + "<head>"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+                + "<style>"
+                + "body {font-family: Arial, Helvetica, sans-serif;}"
+                + "form {border: 3px solid #f1f1f1;}"
+
+                + "input[type=text], input[type=password] {"
+                + "width: 100%;"
+                + "padding: 12px 20px;"
+                + " margin: 8px 0;"
+                + "display: inline-block;"
+                +" border: 1px solid #ccc;"
+                + "box-sizing: border-box;"
+                + "}"
+
+                +"button {"
+                +  "background-color: #04AA6D;"
+                +" color: white;"
+                +" padding: 14px 20px;"
+                +" margin: 8px 0;"
+                +" border: none;"
+                +" cursor: pointer;"
+                +" width: 100%;"
+                +"}"
+                +"button:hover {"
+                + "opacity: 0.8;"
+                +"}"
+
+                +".cancelbtn {"
+                +  "width: auto;"
+                +"padding: 10px 18px;"
+                + "background-color: #f44336;"
+                +"}"
+
+                +".container {"
+                +"padding: 16px;"
+                +"}"
+
+                +"span.psw {"
+                +"float: right;"
+                +"padding-top: 16px;"
+                +"}"
+                +".span.rgs{"
+                +"float:center;"
+
+                +" }"
+
+                +" @media screen and (max-width: 300px) {"
+                + "span.psw {"
+                + "display: block;"
+                +" float: none;"
+                +" }"
+                + ".cancelbtn {"
+                + "width: 100%;"
+                + " }"
+                +"}"
+                +"input:invalid:required {"
+                +"background-image: linear-gradient(to right, violet, lightgreen);"
+                +"}"
+                +"input:valid {"
+                +"border: 2px solid black;"
+                +"}"
+                +"</style>"
+                +"</head>"
+                +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
+                +"<h2> BADILI SACCO </h2>"
+                +"<h6> Jipange uzeeni </h6>"
+                +"<h2 >Login Form</h2>"
+
+                + "<form   action=\"./login\" method=\"post\">"
+
+                +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
+                + " <div class=\"container\">"
+                +"<label ><b>FirstName</b></label>"
+                +"<input type=\"text\" name= \"FirstName\" required placeholder=\"Enter firstname\">"
+                +"<label ><b>LastName</b></label>"
+                +"<input type=\"text\" name= \"LastName\" required placeholder=\"Enter lastname\">"
+                +"<label ><b>Username</b></label>"
+                +"<input type=\"text\" name= \"UserName\" required placeholder=\"Enter Username\">"
+                +"<label ><b>Email</b></label>"
+                +"<input type=\"text\" name= \"Email\" required placeholder=\"Enter email\">"
+                +"<label ><b>Phone</b></label>"
+                +"<input type=\"text\" name= \"Phone\" required placeholder=\"Enter phone\">"
+
+                +" <label ><b>Password</b></label>"
+                +  "<input type=\"password\" name= \"Password\" required placeholder=\"Enter Password\">"
+                +" <label ><b>ConfirmPassword</b></label>"
+                +  "<input type=\"password\" name= \"ConfirmPassword\" required placeholder=\"Enter Password\">"
+                + "<button type=\"submit\">Register</button>"
+                +"</div>"
+
+                + "<div class=\"container\" style=\"background-color:#f1f1f1\">"
+
+                + " <span class=\"rgs\">Forgot <a href=\"action\">password?</a></span>"
+                + "</div>"
+                + "<div>"
+
+                + " Already registered click to login: <a href='./login?action=login'>Login</a><br/>"
                 +"</div>"
                 +"</form>"
                 + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span>"
@@ -196,76 +313,24 @@ public class LogIn extends HttpServlet {
 
     }
 
-    public String register(String actionError){
-        return "<!DOCTYPE html>"
-               +" <html>"
-              +"<head>"
 
-                + "<style>"
-                +" h1 {text-align: center;}"
-                +" h6 {text-align: center;}"
-                +"input:invalid:required {"
-                +"background-image: linear-gradient(to right, orange, lightgreen);"
-                +"}"
-                +"input:valid {"
-                +"border: 2px solid black;"
-                +"}"
-                +"</style>"
-
-            +"</head>"
-        +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
-
-                +"<h2> BADILI SACCO </h2>"
-                +"<h6> Jipange uzeeni </h6>"
-                +"<h3 >REGISTRATION</h3>"
-
-               +"<form action=\"./login\" method=\"post\">"
-                +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
-            +"  <label> Firstname </label>"
-             +"<input type=\"text\" name= \"FirstName\" required placeholder=\"First Name\">"
-                + "<br>"
-             +"<label> Lastname: </label>"
-         +"<input type=\"text\" name= \"LastName\" required placeholder=\"Last Name\">"
-                + "<br>"
-         +"<label> UserName: </label>"
-          +"<input type=\"text\" name= \"UserName\"required placeholder=\"Enter Username\">"
-    +"<br>"
-    +"<br>"
-      +" Phone :"
-    +"<input type=\"text\"  name= \"Phone\" required name=\"phone\" > <br> <br>"
-    +"Email:"
-    +"<input type=\"email\" name=\"Email\" required  id=\"email\" name=\"email\"/> <br>"
-
-      +" Password:"
-    +"<input type=\"Password\" name=\"Password\" required id=\"pass\" name=\"pass\"> <br>"
-
-      +"ConfirmPassword:"
-    +"<input type=\"Password\"  name= \"ConfirmPassword\"  required id=\"repass\" name=\"repass\"> <br>"
-    +"<input type=\"button\" value=\"Submit\"/><br>"
-    +"<label>"
-      +" Already registered click to log in:"
-    +"</label>"
-    +"<input type=\"button\" value=\"LOGIN\"/>"
-+"</form>"
-                + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span>"
-+"</body>"
-+"</html>";
-    }
     public String LandPage(){
         return "<!DOCTYPE html>"
                 + "<html> "
                + "<style>"
-               +" h1 {text-align: center;}"
+               +" h4 {text-align: center;}"
         + "h6 {text-align: center;}"
              +"</style>"
-                + "<body>"
-                +"<h1>WELCOME TO BADILI SACCO </h1>"
+                + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
+                +"<h4>WELCOME TO BADILI SACCO </h4>"
                  +"<h6> Jipange uzeeni </h6>"
-                + " To Register <a href='./login?action=register'>Register</a><br/>"
-                + " To Loging <a href='./login?action=login'>Login</a><br/>"
+                + "Click to Register <a href='./login?action=register'>Register</a><br/>"
+                + "Click  to Login <a href='./login?action=login'>Login</a><br/>"
                 + "</body>"
                 + "</html>";
     }
+
+
 
 
 }
