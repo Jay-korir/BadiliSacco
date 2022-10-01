@@ -6,8 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Map;
 
 public class LogIn extends HttpServlet {
+
+    ServletConfig config = null;
 
 
 
@@ -15,7 +19,23 @@ public class LogIn extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         String action = servletRequest.getParameter("action");
+
+        String name = servletRequest.getParameter("name");
+        System.out.println("welcome " + name);
+        System.out.println("===========");
+        Enumeration<String> enumHeader = servletRequest.getHeaderNames();
+
+        while (enumHeader.hasMoreElements()){
+            String nameH = (String) enumHeader.nextElement();
+            String valueH = servletRequest.getHeader(nameH);
+
+            System.out.println("Header name is ===" + nameH + " :" +"====header value is ====" + valueH );
+        }
+
+
         PrintWriter wr = servletResponse.getWriter();
+
+
 
         if (action != null && action.equalsIgnoreCase("register"))
           wr.print(this.register(null));
@@ -26,7 +46,25 @@ public class LogIn extends HttpServlet {
         else
         wr.print(this.LandPage());
     }
-    public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
+    public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
+
+        System.out.println("getting the parameters");
+
+        Enumeration<String>  namesForm = req.getParameterNames();
+        while (namesForm.hasMoreElements()){
+            String field = namesForm.nextElement();
+            System.out.println("Field name : ===" + field +" the value is : " + req.getParameterValues(field)[0] );
+
+        }
+        System.out.println("======================");
+        Map<String, String[]> stringMap = req.getParameterMap();
+        for (Map.Entry<String,String[]> map : stringMap.entrySet()){
+            if (map.getValue() != null && map.getValue().length > 0)
+                System.out.println(map.getKey() + "===========" + map.getValue()[0]);
+        }
+
+
+
         PrintWriter wr = res.getWriter();
 
         String action = req.getParameter("action");
@@ -92,8 +130,14 @@ public class LogIn extends HttpServlet {
             if (password == null || password.equalsIgnoreCase(""))
         actionError += " enter password";
 
+            if (password.equals("5055")){
+                RequestDispatcher read = req.getRequestDispatcher("welcome");
+                read.forward(req, res);
+            }
+
             if (password != null && !password.equals("5055"))
-                actionError += "wrong password";
+                actionError += "username or wrong password";
+
 
 
         else
