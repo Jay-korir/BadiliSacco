@@ -6,15 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Map;
+import java.util.*;
+
+
 
 public class LogIn extends HttpServlet {
 
     ServletConfig config = null;
 
 
-
+static  String currentTime;
 
     @Override
     public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
@@ -22,34 +23,69 @@ public class LogIn extends HttpServlet {
 
         String name = servletRequest.getParameter("name");
         System.out.println("welcome " + name);
-        System.out.println("===========");
+        System.out.println("========");
+
         Enumeration<String> enumHeader = servletRequest.getHeaderNames();
 
-        while (enumHeader.hasMoreElements()){
+        while (enumHeader.hasMoreElements()) {
             String nameH = (String) enumHeader.nextElement();
             String valueH = servletRequest.getHeader(nameH);
 
-            System.out.println("Header name is ===" + nameH + " :" +"====header value is ====" + valueH );
+            System.out.println("Header name is ===" + nameH + " :" + "====header value is ====" + valueH);
+        }
+        int status = servletResponse.getStatus();
+        System.out.println("status is ====" + status);
+        System.out.println("==========");
+        System.out.println("the header names of the response");
+
+
+            System.out.println("====================");
+
+            servletResponse.setIntHeader("Refresh", 30);
+
+
+            Calendar calendar = new GregorianCalendar();
+            String am_pm;
+            int hour = calendar.get(Calendar.HOUR);
+            int minute = calendar.get(Calendar.MINUTE);
+            int second = calendar.get(Calendar.SECOND);
+
+            if (calendar.get(Calendar.AM_PM) == 0)
+                am_pm = "AM";
+            else
+                am_pm = "PM";
+
+            currentTime = hour + ":" + minute + ":" + second + " " + am_pm;
+            System.out.println(currentTime);
+            System.out.println("==========================");
+            PrintWriter wr = servletResponse.getWriter();
+
+
+            if (action != null && action.equalsIgnoreCase("register"))
+                wr.print(this.register(null));
+
+            else if (action != null && action.equalsIgnoreCase("login"))
+                wr.print(this.login(null));
+
+            else
+                wr.print(this.LandPage());
+
         }
 
 
-        PrintWriter wr = servletResponse.getWriter();
-
-
-
-        if (action != null && action.equalsIgnoreCase("register"))
-          wr.print(this.register(null));
-
-        else if (action != null && action.equalsIgnoreCase("login"))
-            wr.print(this.login(null));
-
-        else
-        wr.print(this.LandPage());
-    }
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
+
+        System.out.println("servlet response methods");
+
+        System.out.println("character encoding " + res.getCharacterEncoding());
+        System.out.println("content type  " + res.getContentType());
+        System.out.println("BufferSize ==" + res.getBufferSize());
+        System.out.println("committed : " + res.isCommitted());
 
         System.out.println("getting the parameters");
 
+        int status = res.getStatus();
+        System.out.println("status is ====" + status);
         Enumeration<String>  namesForm = req.getParameterNames();
         while (namesForm.hasMoreElements()){
             String field = namesForm.nextElement();
@@ -111,6 +147,9 @@ public class LogIn extends HttpServlet {
                 actionError = "please confirm password<br/>";
             if ((password != null && conPassword != null) && !password.equals(conPassword)  )
                 actionError += "password do not match<br/>";
+               if((password != null && conPassword != null) && password.equals(conPassword))
+                  // res.sendRedirect("http://localhost:8080/BadiliSacco/");
+                   res.sendRedirect("welcome");
 
             if (actionError.equals(""))
                 wr.print(this.LandPage());
@@ -129,6 +168,8 @@ public class LogIn extends HttpServlet {
 
             if (password == null || password.equalsIgnoreCase(""))
         actionError += " enter password";
+
+
 
             if (password.equals("5055")){
                 RequestDispatcher read = req.getRequestDispatcher("welcome");
@@ -217,6 +258,7 @@ public class LogIn extends HttpServlet {
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
                 +"<h2 >Login Form</h2>"
+                     + "<p>Current Time is: " + currentTime + "</p>\n"
 
                 + "<form   action=\"./login\" method=\"post\">"
 

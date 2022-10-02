@@ -13,8 +13,12 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          String show = req.getParameter("action");
 
+
          PrintWriter pw = resp.getWriter();
          pw.print(this.Welcome());
+       // resp.sendRedirect("http://localhost:8080/BadiliSacco/");
+
+
     }
 
     @Override
