@@ -58,6 +58,17 @@ static  String currentTime;
             currentTime = hour + ":" + minute + ":" + second + " " + am_pm;
             System.out.println(currentTime);
             System.out.println("==========================");
+
+        System.out.println("servlet response methods");
+        servletResponse.setContentType("text/html");
+        servletResponse.setCharacterEncoding("UTF-8");
+        System.out.println("character encoding " + servletResponse.getCharacterEncoding());
+        System.out.println("content type  " + servletResponse.getContentType());
+        System.out.println("BufferSize ==" + servletResponse.getBufferSize());
+        System.out.println("committed : " + servletResponse.isCommitted());
+        System.out.println("locale : " + servletResponse.getLocale());
+        System.out.println("outputStream " + servletResponse.getOutputStream());
+
             PrintWriter wr = servletResponse.getWriter();
 
 
@@ -75,12 +86,8 @@ static  String currentTime;
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
 
-        System.out.println("servlet response methods");
 
-        System.out.println("character encoding " + res.getCharacterEncoding());
-        System.out.println("content type  " + res.getContentType());
-        System.out.println("BufferSize ==" + res.getBufferSize());
-        System.out.println("committed : " + res.isCommitted());
+
 
         System.out.println("getting the parameters");
 
