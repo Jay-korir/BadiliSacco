@@ -1,14 +1,22 @@
 package start;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class WelcomeServlet extends HttpServlet {
-
+ServletConfig  config = null;
+    HttpSession httpSession;
+    String activityList;
+    public  void  init(ServletConfig config) throws ServletException{
+        this.config = config;
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          String show = req.getParameter("action");
@@ -31,7 +39,17 @@ public class WelcomeServlet extends HttpServlet {
         write.print("welcome to the number one sacco :" + name);
         System.out.println("welcome to BADILI SACCO " + name);
 
+        httpSession = req.getSession();
+        List<String> activity1 = (List<String>) httpSession.getAttribute("activity");
+        activityList = "<ul>";
+
+        //for (String act : activity1)
+           // activityList += "<li>" + act + "</li>";
+       // activityList += "</ul>";
+
+
     }
+
 
     public String Welcome(){
         return "<!DOCTYPE html>"
@@ -41,12 +59,17 @@ public class WelcomeServlet extends HttpServlet {
                 + "h6 {text-align: center;}"
                 +"</style>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
+
                 +"<h4>WELCOME TO BADILI SACCO </h4>"
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
-                + "<h1> BADILI SACCO  </h1>"
+                + "<h1>" + config.getServletContext().getInitParameter("applicationLabel") + "</h1>"
+              //  + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
+                + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
+                + "<br/>" + activityList
                   +"</form>"
                 + "</body>"
                 + "</html>";
     }
 }
+

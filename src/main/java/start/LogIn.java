@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
@@ -13,6 +14,10 @@ import java.util.*;
 public class LogIn extends HttpServlet {
 
     ServletConfig config = null;
+
+    public void init(ServletConfig config) throws ServletException {
+        this.config = config;
+    }
 
 
 static  String currentTime;
@@ -60,6 +65,7 @@ static  String currentTime;
             System.out.println("==========================");
 
         System.out.println("servlet response methods");
+
         servletResponse.setContentType("text/html");
         servletResponse.setCharacterEncoding("UTF-8");
         System.out.println("character encoding " + servletResponse.getCharacterEncoding());
@@ -67,10 +73,10 @@ static  String currentTime;
         System.out.println("BufferSize ==" + servletResponse.getBufferSize());
         System.out.println("committed : " + servletResponse.isCommitted());
         System.out.println("locale : " + servletResponse.getLocale());
-        System.out.println("outputStream " + servletResponse.getOutputStream());
 
             PrintWriter wr = servletResponse.getWriter();
-
+            wr.print(this.login(null));
+/*
 
             if (action != null && action.equalsIgnoreCase("register"))
                 wr.print(this.register(null));
@@ -84,33 +90,33 @@ static  String currentTime;
         }
 
 
+ */
+    }
+
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
-
-
 
 
         System.out.println("getting the parameters");
 
         int status = res.getStatus();
         System.out.println("status is ====" + status);
-        Enumeration<String>  namesForm = req.getParameterNames();
-        while (namesForm.hasMoreElements()){
+        Enumeration<String> namesForm = req.getParameterNames();
+        while (namesForm.hasMoreElements()) {
             String field = namesForm.nextElement();
-            System.out.println("Field name : ===" + field +" the value is : " + req.getParameterValues(field)[0] );
+            System.out.println("Field name : ===" + field + " the value is : " + req.getParameterValues(field)[0]);
 
         }
         System.out.println("======================");
         Map<String, String[]> stringMap = req.getParameterMap();
-        for (Map.Entry<String,String[]> map : stringMap.entrySet()){
+        for (Map.Entry<String, String[]> map : stringMap.entrySet()) {
             if (map.getValue() != null && map.getValue().length > 0)
                 System.out.println(map.getKey() + "===========" + map.getValue()[0]);
         }
 
 
 
-        PrintWriter wr = res.getWriter();
 
-        String action = req.getParameter("action");
+      /*  String action = req.getParameter("action");
         String first = req.getParameter("FirstName");
         String last = req.getParameter("LastName");
         String user = req.getParameter("UserName");
@@ -166,16 +172,31 @@ static  String currentTime;
 
         }else if (login){
 
-            System.out.println("UserName: " + user);
-            System.out.println("Password: " + password);
-            System.out.println("successfully logged in ");
 
-            if (user == null ||user.equalsIgnoreCase(""))
-                actionError = "username is required <br/>";
+       */
+        PrintWriter wr = res.getWriter();
+        String user = req.getParameter("UserName");
+        String password = req.getParameter("Password");
+        String actionError = "";
+        System.out.println("UserName: " + user);
+        System.out.println("Password: " + password);
+        System.out.println("successfully logged in ");
 
-            if (password == null || password.equalsIgnoreCase(""))
-        actionError += " enter password";
+        if (user == null || user.equalsIgnoreCase("")){
+             actionError = "username is required <br/>";
+            wr.print(this.login("username  is required<br/>"));
+        return;
+    }
+            if (password == null || password.equalsIgnoreCase("")) {
+                actionError += " enter password";
+                wr.print(this.login("password is required"));
+            return;
+            }
 
+       // if (!user.equals(config.getInitParameter("username")) && !password.equals(config.getInitParameter("password"))) {
+        //    wr.print(this.login("Invalid username & password combination<br/>"));
+         //   return;
+        //}
 
 
             if (password.equals("5055")){
@@ -183,14 +204,24 @@ static  String currentTime;
                 read.forward(req, res);
             }
 
-            if (password != null && !password.equals("5055"))
+            if (password != null && !password.equals("5055")) {
                 actionError += "username or wrong password";
+                wr.print(this.login("username or wrong password<br/>"));
+           return;
+            }
+        HttpSession session = req.getSession(true);
+        session.setAttribute("loggedInTime","time logged in time :" + new Date());
+
+        List<String>  activities = new ArrayList<>();
+        activities.add("Contribution");
+        activities.add("savings");
+        activities.add("loans");
+        activities.add("Expenses");
+        activities.add("reports");
+
+        session.setAttribute("activity", activities);
 
 
-
-        else
-            wr.print(this.login(actionError));
-        }
 
     }
     public String login(String actionError){
@@ -262,10 +293,11 @@ static  String currentTime;
                 +"</style>"
                 +"</head>"
                 +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
+               + "<h1>" + config.getServletContext().getInitParameter("applicationLabel") + "</h1>"
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
                 +"<h2 >Login Form</h2>"
-                     + "<p>Current Time is: " + currentTime + "</p>\n"
+
 
                 + "<form   action=\"./login\" method=\"post\">"
 
@@ -295,6 +327,8 @@ static  String currentTime;
 
 
     }
+}
+    /*
     public String register(String actionError){
 
         return "<!DOCTYPE html>"
@@ -427,3 +461,5 @@ static  String currentTime;
 
 
 }
+
+     */
