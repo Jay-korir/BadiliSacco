@@ -43,13 +43,12 @@ ServletConfig  config = null;
         List<String> activity = (List<String>) httpSession.getAttribute("activity");
         System.out.println(activity);
         activityList = "<ul>";
-         //   for (String act : activity1) {
-          // activityList += "<li>" + act + "</li>";
-       //activityList += "</ul>";
-
-
+        for (String act : activity) {
+            activityList += "<li>" + act + "</li>";
+            activityList += "</ul>";
+        }
+        System.out.println(activityList);
     }
-
 
     public String Welcome(){
         return "<!DOCTYPE html>"
@@ -64,7 +63,7 @@ ServletConfig  config = null;
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
                 + "<h1>" + config.getServletContext().getInitParameter("applicationLabel") + "</h1>"
-              //  + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
+              // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
                 + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
                 + "<br/>" + activityList
                   +"</form>"

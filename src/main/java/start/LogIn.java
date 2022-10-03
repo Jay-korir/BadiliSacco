@@ -199,10 +199,10 @@ static  String currentTime;
         //}
 
 
-            if (password.equals("5055")){
-                RequestDispatcher read = req.getRequestDispatcher("welcome");
-                read.forward(req, res);
-            }
+           // if (password.equals("5055")){
+               // RequestDispatcher read = req.getRequestDispatcher("welcome");
+               // read.forward(req, res);
+           // }
 
             if (password != null && !password.equals("5055")) {
                 actionError += "username or wrong password";
@@ -224,6 +224,9 @@ static  String currentTime;
         System.out.println(session.getId());
         System.out.println(session.getCreationTime());
         System.out.println(session.getLastAccessedTime());
+
+        RequestDispatcher read = req.getRequestDispatcher("welcome");
+        read.forward(req, res);
 
     }
     public String login(String actionError){
