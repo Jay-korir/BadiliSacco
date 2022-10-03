@@ -221,7 +221,9 @@ static  String currentTime;
 
         session.setAttribute("activity", activities);
 
-
+        System.out.println(session.getId());
+        System.out.println(session.getCreationTime());
+        System.out.println(session.getLastAccessedTime());
 
     }
     public String login(String actionError){

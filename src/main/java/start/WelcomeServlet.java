@@ -40,12 +40,12 @@ ServletConfig  config = null;
         System.out.println("welcome to BADILI SACCO " + name);
 
         httpSession = req.getSession();
-        List<String> activity1 = (List<String>) httpSession.getAttribute("activity");
+        List<String> activity = (List<String>) httpSession.getAttribute("activity");
+        System.out.println(activity);
         activityList = "<ul>";
-
-        //for (String act : activity1)
-           // activityList += "<li>" + act + "</li>";
-       // activityList += "</ul>";
+         //   for (String act : activity1) {
+          // activityList += "<li>" + act + "</li>";
+       //activityList += "</ul>";
 
 
     }
