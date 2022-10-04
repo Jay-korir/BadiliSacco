@@ -36,7 +36,7 @@
 </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LandPage</servlet-name>
-        <url-pattern>/sacco</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Welcome</servlet-name>

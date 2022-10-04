@@ -322,7 +322,8 @@ static  String currentTime;
                 + " <span class=\"rgs\">Forgot <a href=\"action\">password?</a></span>"
                 + "</div>"
                 + "<div>"
-                +  " Not yet registered click to register: <a href='./login?action=register'>Register</a><br/>"
+                +  " Not yet registered click to register: <a href='./register'>Register</a><br/>"
+                //+ "Click to Register <a href='./register'>Register</a><br/>"
 
                 +"</div>"
                 +"</form>"

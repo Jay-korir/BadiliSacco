@@ -48,6 +48,7 @@ ServletConfig  config = null;
             activityList += "</ul>";
         }
         System.out.println(activityList);
+        write.print(activityList);
     }
 
     public String Welcome(){
@@ -63,9 +64,10 @@ ServletConfig  config = null;
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
                 + "<h1>" + config.getServletContext().getInitParameter("applicationLabel") + "</h1>"
-              // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
+               // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
                 + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
-                + "<br/>" + activityList
+                + "<br/>"
+                + "<a href='./login?action=login'>Logout</a><br/>"
                   +"</form>"
                 + "</body>"
                 + "</html>";

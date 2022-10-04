@@ -176,7 +176,8 @@ public class Register extends HttpServlet {
                 + "</div>"
                 + "<div>"
 
-                + " Already registered click to login: <a href='./login?action=login'>Login</a><br/>"
+                + " Already registered click to login: <a href='./login'>Login</a><br/>"
+              //  + "Click  to Login <a href='./login'>Login</a><br/>"
                 +"</div>"
                 +"</form>"
                 + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span>"
