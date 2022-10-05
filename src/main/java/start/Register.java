@@ -142,7 +142,7 @@ public class Register extends HttpServlet {
                 +"border: 2px solid black;"
                 +"}"
                 +"</style>"
-                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"</head>"
                 +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
                 +"<h2> BADILI SACCO </h2>"

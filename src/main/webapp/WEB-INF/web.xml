@@ -32,7 +32,10 @@
         <servlet-name>Welcome</servlet-name>
         <servlet-class>start.WelcomeServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>start.LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LandPage</servlet-name>
         <url-pattern>/</url-pattern>
@@ -49,10 +52,23 @@
         <servlet-name>Welcome</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>filter.SessionFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <listener>
-        <listener-class>EventListeners.AppServletContextListener</listener-class>
+        <listener-class>eventListeners.AppServletContextListener</listener-class>
     </listener>
     <listener>
-        <listener-class>EventListeners.RequestListener</listener-class>
+        <listener-class>eventListeners.RequestListener</listener-class>
     </listener>
 </web-app>

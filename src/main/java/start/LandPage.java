@@ -25,7 +25,7 @@ public class LandPage  extends HttpServlet {
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
                 +"<h4>WELCOME TO BADILI SACCO </h4>"
                 +"<h6> Jipange uzeeni </h6>"
-                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 + "Click to Register <a href='./register'>Register</a><br/>"
                 + "Click  to Login <a href='./login'>Login</a><br/>"
                 + "</body>"

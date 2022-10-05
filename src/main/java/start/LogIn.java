@@ -45,10 +45,15 @@ static  String currentTime;
             }
 
 
-            if (!user.equals(getServletConfig().getInitParameter("user")) && !password.equals(getServletConfig().getInitParameter("password"))) {
-                wr.print(this.login("Invalid username & password combination<br/>"));
-                return;
-            }
+          //  if (!user.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
+              //  wr.print(this.login("Invalid username & password combination<br/>"));
+               // return;
+           // }
+        if (!user.equals("jenelle") &&(( password.length() < 4) && !password.equals(5055))) {
+          wr.print(this.login("Invalid username & password combination<br/>"));
+           return;
+       }
+        System.out.println("username " + getServletConfig().getInitParameter("username"));
 
         HttpSession session = req.getSession(true);
         session.setAttribute("loggedInTime"," logged in time :" + new Date());
@@ -142,7 +147,7 @@ static  String currentTime;
                 +"</head>"
                 +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
               // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
-                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
                 +"<h2 >Login Form</h2>"

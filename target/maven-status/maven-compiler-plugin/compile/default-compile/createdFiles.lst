@@ -1,6 +1,8 @@
-EventListeners\AppServletContextListener.class
-EventListeners\RequestListener.class
-start\LogIn.class
-start\LandPage.class
-start\Register.class
+eventListeners\RequestListener.class
 start\WelcomeServlet.class
+eventListeners\AppServletContextListener.class
+start\LogIn.class
+filter\SessionFilter.class
+start\LandPage.class
+start\LogOut.class
+start\Register.class

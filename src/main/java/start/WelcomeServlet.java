@@ -69,17 +69,18 @@ ServletConfig  config = null;
                 + "h6 {text-align: center;}"
                 +"</style>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
-                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"<h4>WELCOME TO BADILI SACCO </h4>"
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
-               + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
+              // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
                 //+ "<h2> Welcome: " + req.getParameter("username")"
               // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
                 + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
-                + "<br/>" + activityList
+               // + "<br/>" + activityList
                 + "<br/>"
-                +" <a href='./login'>Logout</a><br/>"
+                + "<br/>Logout <a href='./logout'>Logout</a><br/>"
+              //  +" <a href='./logiogout</a><br/>n'>L"
                   +"</form>"
                 + "</body>"
                 + "</html>";
