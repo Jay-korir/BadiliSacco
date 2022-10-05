@@ -4,43 +4,55 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-
     <context-param>
         <param-name>applicationLabel</param-name>
         <param-value>BSACCO</param-value>
     </context-param>
-<servlet>
-  <servlet-name>Login</servlet-name>
-  <servlet-class>start.LogIn</servlet-class>
-</servlet>
+    <servlet>
+        <servlet-name>LandPage</servlet-name>
+        <servlet-class>start.LandPage</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>start.Register</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>start.LogIn</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>jenelle</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>5055</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
         <servlet-name>Welcome</servlet-name>
         <servlet-class>start.WelcomeServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>LandPage</servlet-name>
-        <servlet-class>start.LandPage</servlet-class>
-    </servlet>
 
- <servlet-mapping>
-   <servlet-name>Login</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>Register</servlet-name>
-    <url-pattern>/register</url-pattern>
-</servlet-mapping>
     <servlet-mapping>
         <servlet-name>LandPage</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+ <servlet-mapping>
+   <servlet-name>Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>Welcome</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
-
+    <listener>
+        <listener-class>EventListeners.AppServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>EventListeners.RequestListener</listener-class>
+    </listener>
 </web-app>

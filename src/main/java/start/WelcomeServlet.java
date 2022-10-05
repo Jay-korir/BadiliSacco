@@ -14,13 +14,20 @@ public class WelcomeServlet extends HttpServlet {
 ServletConfig  config = null;
     HttpSession httpSession;
     String activityList;
-    public  void  init(ServletConfig config) throws ServletException{
-        this.config = config;
-    }
+  //  public  void  init(ServletConfig config) throws ServletException{
+   ///     this.config = config;
+   // }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          String show = req.getParameter("action");
-
+        httpSession = req.getSession();
+        List<String> activity = (List<String>) httpSession.getAttribute("activity");
+        System.out.println(activity);
+        activityList = "<ul>";
+        for (String act : activity) {
+            activityList += "<li>" + act + "</li>";
+            activityList += "</ul>";
+        }
 
          PrintWriter pw = resp.getWriter();
          pw.print(this.Welcome());
@@ -50,6 +57,9 @@ ServletConfig  config = null;
         System.out.println(activityList);
         write.print(activityList);
     }
+    public  void destroy(){
+
+    }
 
     public String Welcome(){
         return "<!DOCTYPE html>"
@@ -59,15 +69,17 @@ ServletConfig  config = null;
                 + "h6 {text-align: center;}"
                 +"</style>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
-
+                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"<h4>WELCOME TO BADILI SACCO </h4>"
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
-                + "<h1>" + config.getServletContext().getInitParameter("applicationLabel") + "</h1>"
-               // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
+               + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
+                //+ "<h2> Welcome: " + req.getParameter("username")"
+              // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
                 + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
+                + "<br/>" + activityList
                 + "<br/>"
-                + "<a href='./login?action=login'>Logout</a><br/>"
+                +" <a href='./login'>Logout</a><br/>"
                   +"</form>"
                 + "</body>"
                 + "</html>";

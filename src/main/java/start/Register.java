@@ -142,11 +142,12 @@ public class Register extends HttpServlet {
                 +"border: 2px solid black;"
                 +"}"
                 +"</style>"
+                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"</head>"
                 +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
                 +"<h2> BADILI SACCO </h2>"
                 +"<h6> Jipange uzeeni </h6>"
-                +"<h2 >Login Form</h2>"
+                +"<h2 >User registration</h2>"
 
                 + "<form   action=\"./login\" method=\"post\">"
 
