@@ -66,6 +66,7 @@ public class SaccoMember extends HttpServlet {
         members = new ArrayList<>();
 
         members.add(member);
+        session.setAttribute("one",member);
     session.setAttribute("members",members);
 
     RequestDispatcher dispatcher = req.getRequestDispatcher("welcome");
