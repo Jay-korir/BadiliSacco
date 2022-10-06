@@ -71,4 +71,10 @@
     <listener>
         <listener-class>eventListeners.RequestListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>eventListeners.AppContextAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>eventListeners.SessionListener</listener-class>
+    </listener>
 </web-app>

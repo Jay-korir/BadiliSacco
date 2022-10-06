@@ -1,4 +1,5 @@
 eventListeners\RequestListener.class
+eventListeners\SessionListener.class
 start\WelcomeServlet.class
 eventListeners\AppServletContextListener.class
 start\LogIn.class
@@ -6,3 +7,4 @@ filter\SessionFilter.class
 start\LandPage.class
 start\LogOut.class
 start\Register.class
+eventListeners\AppContextAttributeListener.class
