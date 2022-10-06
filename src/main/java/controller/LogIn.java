@@ -1,6 +1,10 @@
-package start;
+package controller;
+
+import model.Members;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,63 +14,45 @@ import java.io.PrintWriter;
 import java.util.*;
 
 
-
+@WebServlet(urlPatterns = "/login", initParams = {
+        @WebInitParam(name = "username",value = "jenelle"),
+        @WebInitParam(name = "password",value = "5055")
+})
 public class LogIn extends HttpServlet {
-
-
-
-static  String currentTime;
 
     @Override
     public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-            System.out.println("====================");
-            servletResponse.setIntHeader("Refresh", 30);
             PrintWriter wr = servletResponse.getWriter();
             wr.print(this.login(null));
 
     }
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
-  System.out.println("===========================");
         PrintWriter wr = res.getWriter();
         String user = req.getParameter("UserName");
         String password = req.getParameter("Password");
-        System.out.println("UserName: " + user);
-        System.out.println("Password: " + password);
-        System.out.println("successfully logged in ");
+
 
         if (user == null || user.equalsIgnoreCase("")){
             wr.print(this.login("username  is required<br/>"));
         return;
     }
-            if (password == null || password.equalsIgnoreCase("")) {
-                wr.print(this.login("password is required"));
+        if (password == null || password.equalsIgnoreCase("")) {
+            wr.print(this.login("password is required"));
             return;
+            }
+          if (!user.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
+                wr.print(this.login("Invalid username & password combination<br/>"));
+               return;
             }
 
 
-          //  if (!user.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
-              //  wr.print(this.login("Invalid username & password combination<br/>"));
-               // return;
-           // }
-        if (!user.equals("jenelle") &&(( password.length() < 4) && !password.equals(5055))) {
-          wr.print(this.login("Invalid username & password combination<br/>"));
-           return;
-       }
-        System.out.println("username " + getServletConfig().getInitParameter("username"));
-
         HttpSession session = req.getSession(true);
+          session.setAttribute("username",user);
         session.setAttribute("loggedInTime"," logged in time :" + new Date());
 
-        List<String>  activities = new ArrayList<>();
-        activities.add("Contribution");
-        activities.add("savings");
-        activities.add("loans");
-        activities.add("Expenses");
-        activities.add("reports");
-
-        session.setAttribute("activity", activities);
-
+        List<Members>  members = new ArrayList<Members>();
+        session.setAttribute("members", members);
 
         System.out.println(session.getId());
         System.out.println(session.getCreationTime());

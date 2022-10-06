@@ -2,7 +2,9 @@ package eventListeners;
 
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
+import javax.servlet.annotation.WebListener;
 
+@WebListener
 public class AppContextAttributeListener implements ServletContextAttributeListener {
 
     public void attributeAdded(ServletContextAttributeEvent servletContextAttributeEvent) {

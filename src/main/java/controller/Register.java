@@ -1,18 +1,18 @@
-package start;
+package controller;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@WebServlet("/register")
 public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().print(this.register(null));
-
     }
 
     @Override
@@ -30,38 +30,25 @@ public class Register extends HttpServlet {
         String conPassword = req.getParameter("ConfirmPassword");
 
         String actionError = "";
-
-
-            System.out.println("FirstName:" + first);
-            System.out.println("LastName:" + last);
-            System.out.println("UserName:" + user);
-
-            System.out.println("Email:" + email);
-            System.out.println("Phone:"+ phone);
-            System.out.println("Password:"+ password);
-            System.out.println("ConfirmPassword:" +conPassword);
-            System.out.println("user successfully registered");
-
-
-            if (first == null || email.equalsIgnoreCase(""))
+                    if (first == null || first.equalsIgnoreCase(""))
                 actionError = "please enter a valid first name<br/>";
 
-            if (last == null || email.equalsIgnoreCase(""))
+            if (last == null || last.equalsIgnoreCase(""))
                 actionError += "please enter a valid last  name<br/>";
 
-            if (user == null|| email.equalsIgnoreCase(""))
+            if (user == null|| user.equalsIgnoreCase(""))
                 actionError += "please enter a username<br/>";
 
             if (email == null || email.equalsIgnoreCase(""))
                 actionError = "please enter your email<br/>";
 
-            if (phone == null || email.equalsIgnoreCase(""))
+            if (phone == null || phone.equalsIgnoreCase(""))
                 actionError += "please enter mobile number<br/>";
 
-            if (password == null || email.equalsIgnoreCase(""))
+            if (password == null || phone.equalsIgnoreCase(""))
                 actionError += "enter valid password<br/>";
 
-            if (conPassword == null || email.equalsIgnoreCase(""))
+            if (conPassword == null || phone.equalsIgnoreCase(""))
                 actionError = "please confirm password<br/>";
 
             if ((password != null && conPassword != null) && !password.equals(conPassword)  )
