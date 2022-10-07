@@ -17,7 +17,7 @@ import java.util.List;
 public class WelcomeServlet extends HttpServlet {
     HttpSession httpSession;
 
-
+public static List<Members> members;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

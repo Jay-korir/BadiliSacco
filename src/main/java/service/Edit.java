@@ -1,5 +1,6 @@
 package service;
 
+import controller.WelcomeServlet;
 import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -16,15 +17,19 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(value = "/edit")
+import static controller.WelcomeServlet.members;
+
+
+@WebServlet("/edit")
 public class Edit extends HttpServlet {
 
     @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        PrintWriter printWriter = resp.getWriter();
         HttpSession session = req.getSession();
-        List<Members> members = (List<Members>) session.getAttribute("members");
+        members = (List<Members>) session.getAttribute("members");
         int  memberId = Integer.parseInt((req.getParameter("id")));
         System.out.println("member id : " + memberId);
         for (Members member : members){
@@ -37,53 +42,30 @@ public class Edit extends HttpServlet {
     }
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter wr = resp.getWriter();
+         String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String userName = req.getParameter("userName");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
 
-       //  req.getParameter()
-        Members member = new Members();
+        String id = req.getParameter("id");
 
-        try {
-            BeanUtils.populate(member, req.getParameterMap());
-        } catch (Exception ex) {
-            System.out.println("bean util error " + ex.getMessage());
-        }
-        if (StringUtils.isBlank(member.getFirstName())) {
-            wr.print(this.editMember(" First Name is required<br/>",member));
-            return;
-        }
-        if (StringUtils.isBlank(member.getLastName())){
-            wr.print(this.editMember("lastName is required",member));
-            return;
-        }
-        if (StringUtils.isBlank(member.getUserName())){
-            wr.print(this.editMember("username is required",member));
-            return;
-        }
-        if (StringUtils.isBlank(member.getEmail())){
-            wr.print(this.editMember("email is required",member));
-            return;
-        }
-        if (StringUtils.isBlank(member.getPhone())){
-            wr.print(this.editMember("Phone number  is required",member));
-            return;
-        }
 
         HttpSession session = req.getSession();
-        List<Members> members = (List<Members>) session.getAttribute("members");
-        if(members == null)
-            members = new ArrayList<>();
+        members = (List<Members>) session.getAttribute("members");
 
-        members.add(member);
-        session.setAttribute("members",members);
-        session.removeAttribute(member.getEmail());
+        for (Members member : members) {
+            if (member.getId() == Integer.parseInt(id)) {
+                member.setFirstName(firstName);
+                member.setLastName(lastName);
+                member.setUserName(userName);
+                member.setEmail(email);
+                member.setPhone(phone);
+                break;
+            }
+        }
+        resp.sendRedirect("./welcome");
 
-        String lName = (String) req.getAttribute("members");
-        System.out.println(lName);
-
-
-       // resp.sendRedirect("./welcome");
-       RequestDispatcher dispatcher = req.getRequestDispatcher("welcome");
-        dispatcher.forward(req,resp);
     }
 
     public String editMember(String actionError, Members member){
@@ -94,17 +76,17 @@ public class Edit extends HttpServlet {
                 + "<body>"
                 // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 + "<h2> Edit Member</h2>"
-                + "<form action=\"./edit\" method=\"post\">"
+                + "<form action=\"./edit?id="+ member.getId()+ "\" method=\"post\">"
                 + "<table> "
-                + "<tr> <td> First Name: </td> <td> <input type=\"text\" value= "+member.getFirstName() + ""
+                + "<tr> <td> First Name: </td> <td> <input type=\"text\" name= \"firstName\" value= "+member.getFirstName() + ""
                 + "> </td> </tr> "
-                + "<tr> <td> Last name: </td> <td> <input type=\"text\" value=" +member.getLastName() +""
+                + "<tr> <td> Last name: </td> <td> <input type=\"text\" name= \"lastName\" value=" +member.getLastName() +""
                 +"> </td> </tr> "
-                + "<tr> <td> User Name: </td> <td> <input type=\"text\" value="+member.getUserName() + ""
+                + "<tr> <td> User Name: </td> <td> <input type=\"text\"name= \"userName\" value="+member.getUserName() + ""
                 + "> </td> </tr> "
-                + "<tr> <td> Email: </td> <td> <input type=\"text\" value=" +member.getEmail() +""
+                + "<tr> <td> Email: </td> <td> <input type=\"text\"name= \"email\" value=" +member.getEmail() +""
                 +"> </td> </tr> "
-                + "<tr> <td> Phone: </td> <td> <input type=\"text\" value=" +member.getPhone() +""
+                + "<tr> <td> Phone: </td> <td> <input type=\"text\"name= \"phone\" value=" +member.getPhone() +""
                 +"> </td> </tr> "
                 + "<tr> <td> <input type=\"submit\" value=\"Submit\"></tr> "
                 + "</table>"
