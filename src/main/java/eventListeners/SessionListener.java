@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+
 @WebListener
 public class SessionListener implements HttpSessionListener {
     @Override
@@ -13,10 +14,14 @@ public class SessionListener implements HttpSessionListener {
         HttpSession session = se.getSession();
         System.out.println("session id: " + session.getId());
 
+
     }
+
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         System.out.println("-- sessionDestroyed invoked --");
     }
+
+
 }

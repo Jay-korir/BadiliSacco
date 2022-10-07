@@ -68,7 +68,7 @@ public class WelcomeServlet extends HttpServlet {
                 + "</html>";
     }
 
-    public  String membersList(List<Members> members){
+    public static String membersList(List<Members> members){
         if(members == null)
             members = new ArrayList<Members>();
         String membersList = "<table >" +
@@ -86,7 +86,8 @@ for (Members member : members)
             + "<td>" + member.getUserName() + "</td>"
             + "<td>" + member.getEmail() + "</td>"
             + "<td>" + member.getPhone() + "</td>"
-            + "<td><a href=\"./edit\">Edit</a>  | <a href=\"./delete\">Delete</a></td>"
+            + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
+            " <a href=\"./edit?id=" + member.getId() + "\">Edit</a></td>"
             + "</tr>";
 
         membersList += "</table>";

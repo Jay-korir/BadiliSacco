@@ -18,6 +18,7 @@ import java.util.List;
 
 @WebServlet("/add")
 public class SaccoMember extends HttpServlet {
+    static  String url;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter pr = resp.getWriter();
@@ -44,7 +45,7 @@ public class SaccoMember extends HttpServlet {
             return;
         }
         if (StringUtils.isBlank(member.getLastName())){
-            wr.print(this.addMember("lastName is requuired"));
+            wr.print(this.addMember("lastName is required"));
             return;
         }
         if (StringUtils.isBlank(member.getUserName())){
@@ -61,12 +62,12 @@ public class SaccoMember extends HttpServlet {
         }
 
         HttpSession session = req.getSession();
+        url = session.getId();
         List<Members> members = (List<Members>) session.getAttribute("members");
     if(members == null)
         members = new ArrayList<>();
 
         members.add(member);
-        session.setAttribute("one",member);
     session.setAttribute("members",members);
 
     RequestDispatcher dispatcher = req.getRequestDispatcher("welcome");

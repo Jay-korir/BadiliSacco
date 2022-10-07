@@ -3,11 +3,27 @@ package model;
 import java.io.Serializable;
 
 public class Members implements Serializable {
+    static int uniqId = 0;
+    private  int id;
     private String firstName;
     private String lastName;
     private  String userName;
     private String email;
     private String phone;
+
+    public Members() {
+        uniqId = uniqId + 1;
+        id = uniqId;
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
