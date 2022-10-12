@@ -11,10 +11,30 @@ public class Members implements Serializable {
     private String email;
     private String phone;
 
+    private String month;
+
+    private String  amount;
+
     public Members() {
         uniqId = uniqId + 1;
         id = uniqId;
 
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public int getId() {

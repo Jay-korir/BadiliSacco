@@ -5,6 +5,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +15,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import static controller.WelcomeServlet.members;
+
 
 @WebServlet("/add")
 public class SaccoMember extends HttpServlet {
     static  String url;
+    ServletContext servletCtx = null;
+
+    public void init(ServletConfig config) throws ServletException{
+        super.init(config);
+
+        servletCtx = config.getServletContext();
+
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter pr = resp.getWriter();
@@ -61,14 +77,7 @@ public class SaccoMember extends HttpServlet {
             return;
         }
 
-        HttpSession session = req.getSession();
-        url = session.getId();
-        List<Members> members = (List<Members>) session.getAttribute("members");
-    if(members == null)
-        members = new ArrayList<>();
-
-        members.add(member);
-    session.setAttribute("members",members);
+       this.insert(member);
 
     RequestDispatcher dispatcher = req.getRequestDispatcher("welcome");
     dispatcher.forward(req,resp);
@@ -79,7 +88,7 @@ public class SaccoMember extends HttpServlet {
                 + "<html> "
                 + "<head> "
                 + "</head>"
-                + "<body>"
+                + "<body bgcolor=\"Lightskyblue\" >"
                // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 + "<h2>Members</h2>"
                 + "<form action=\"./add\" method=\"post\">"
@@ -96,5 +105,22 @@ public class SaccoMember extends HttpServlet {
                 + "Home? <a href='./home'>Register</a><br/>"
                 + "</body>"
                 + "</html>";
+    }
+
+    public  void  insert(Members members){
+        if ( members == null ||StringUtils.isBlank(members.getFirstName()) || StringUtils.isBlank(members.getLastName()) ||
+        StringUtils.isBlank(members.getUserName())|| StringUtils.isBlank(members.getEmail())||StringUtils.isBlank(members.getPhone()))
+             return;
+
+
+
+        try  {
+        Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
+            statement.execute("insert into members(firstname,lastname,username,email,phone)" +
+                    "values('"+ members.getFirstName() + "', '"+members.getLastName() + "','"+members.getUserName() + "','"+members.getEmail() + "','"+members.getPhone() + "')");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

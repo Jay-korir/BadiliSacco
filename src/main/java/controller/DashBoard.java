@@ -2,7 +2,6 @@ package controller;
 
 import model.Members;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ public class DashBoard extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
        // session.setAttribute("username",user);
         session.setAttribute("loggedInTime"," logged in time :" + new Date());
@@ -58,7 +57,7 @@ public class DashBoard extends HttpServlet {
   "<link rel=\"shortcut icon\" href=\"./assets/images/favicon.png\" />"+
 "</head>"+
 "<body bgcolor=\"Lightskyblue\" "+
-"  <div class=\"container-scroller\">"+
+"  <div class=\"container-scroller\" bgcolor=\"Lightskyblue\">"+
     "<!-- partial:partials/_navbar.html -->"+
 
     "<!-- partial -->"+
@@ -79,16 +78,16 @@ public class DashBoard extends HttpServlet {
             "</a>"+
           "</li>"+
           "<li class=\"nav-item\">"+
-            "<a class=\"nav-link\" data-toggle=\"collapse\" href=\"#ui-basic\" aria-expanded=\"false\" aria-controls=\"ui-basic\">"+
-              "<i class=\"icon-layout menu-icon\" <a href='./add'> ></i>"+
-              "<span class=\"menu-title\"> <a href='./add'> Add Members</span>"+
+            "<a class=\"nav-link\" data-toggle=\"collapse\"  href=\"./add\" aria-expanded=\"false\" aria-controls=\"ui-basic\">"+
+              "<i class=\"icon-layout menu-icon\"   ></i>"+
+              "<span class=\"menu-title\"> Add Members</span>"+
             "</a>"+
 
           "</li>"+
           "<li class=\"nav-item\">"+
-            "<a class=\"nav-link\" data-toggle=\"collapse\" href=\"#form-elements\" aria-expanded=\"false\" aria-controls=\"form-elements\">"+
+            "<a class=\"nav-link\" data-toggle=\"collapse\" href=\"./contribution?id\" aria-expanded=\"false\" aria-controls=\"form-elements\">"+
               "<i class=\"icon-columns menu-icon\"></i>"+
-              "<span class=\"menu-title\"> <a href='./contribution?id'> Add Contribution</span>"+
+              "<span class=\"menu-title\">  Add Contribution</span>"+
             "</a>"+
 
           "</li>"+

@@ -1,6 +1,8 @@
 package controller;
 
 import model.Members;
+import model.User;
+import service.Entity;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebInitParam;
@@ -11,29 +13,41 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 
 @WebServlet(urlPatterns = "/login", initParams = {
         @WebInitParam(name = "username",value = "jenelle"),
         @WebInitParam(name = "password",value = "5055")
 })
-public class LogIn extends HttpServlet {
+public class LogIn extends HttpServlet{
+    ServletContext sCtx = null;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+       sCtx = config.getServletContext();
+        super.init(config);
+    }
 
     @Override
     public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
             PrintWriter wr = servletResponse.getWriter();
             wr.print(this.login(null));
 
+
     }
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
         PrintWriter wr = res.getWriter();
-        String user = req.getParameter("UserName");
+        String userr = req.getParameter("username");
         String password = req.getParameter("Password");
 
+        System.out.println("=================");
+        System.out.println(userr);
 
-        if (user == null || user.equalsIgnoreCase("")){
+        if (userr == null || userr.equalsIgnoreCase("")){
             wr.print(this.login("username  is required<br/>"));
         return;
     }
@@ -41,24 +55,23 @@ public class LogIn extends HttpServlet {
             wr.print(this.login("password is required"));
             return;
             }
-          if (!user.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
+
+          if (!userr.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
                 wr.print(this.login("Invalid username & password combination<br/>"));
                return;
             }
+        User user = this.login(userr, password);
 
 
         HttpSession session = req.getSession(true);
-          session.setAttribute("username",user);
+          session.setAttribute("username",userr);
+          session.setAttribute("username",user.getUsername());
         session.setAttribute("loggedInTime"," logged in time :" + new Date());
 
-        List<Members>  members = new ArrayList<Members>();
-        session.setAttribute("members", members);
 
-        System.out.println(session.getId());
-        System.out.println(session.getCreationTime());
-        System.out.println(session.getLastAccessedTime());
 
-        RequestDispatcher read = req.getRequestDispatcher("welcome");
+
+        RequestDispatcher read = req.getRequestDispatcher("dash");
         read.forward(req, res);
 
     }
@@ -167,5 +180,23 @@ public class LogIn extends HttpServlet {
                 +"</html>";
 
 
+    }
+    public User login(String username, String password){
+        User user = null;
+
+        try {
+            Connection connection = (Connection) sCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from members where username='" + username + "' and " + "password='" + password + "' ");
+        while (resultSet.next()){
+            user = new  User();
+           // user.setId((long) resultSet.getInt("id"));
+            user.setUsername(resultSet.getString("username"));
+        }
+        } catch (SQLException e) {
+            System.out.println("error "+ e.getMessage());
+        }
+        return user;
     }
 }

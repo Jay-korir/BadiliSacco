@@ -50,7 +50,7 @@ public class Contribution extends HttpServlet {
         } catch (Exception ex) {
             System.out.println("bean util error " + ex.getMessage());
         }
-        if (org.apache.commons.lang3.StringUtils.isBlank(member.getMonth())) {
+        if (StringUtils.isBlank(member.getMonth())) {
             wr.print(this.addContribution(" month required is required<br/>",member));
             return;
         }
@@ -77,9 +77,9 @@ public class Contribution extends HttpServlet {
                 + "<html> "
                 + "<head> "
                 + "</head>"
-                + "<body>"
+                + "<body bgcolor=\"Lightskyblue\"  >"
                 // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
-                + "<h2>Members</h2>"
+                + "<h2>Contribution</h2>"
                 + "<form action=\"./contribution\" method=\"post\">"
                 + "<table> "
                 + "<tr> <td> User Name: </td> <td> <input type=\"text\"name= \"userName\" value="+member.getUserName() + ""
@@ -94,7 +94,7 @@ public class Contribution extends HttpServlet {
                 + "</table>"
                 + "</form>"
                 + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span><br/>"
-                + "Home? <a href='./home'>Register</a><br/>"
+                + "Home? <a href='./welcome'>Back</a><br/>"
                 + "</body>"
                 + "</html>";
     }

@@ -42,6 +42,8 @@ public class Edit extends HttpServlet {
     }
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter wr = resp.getWriter();
+
          String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String userName = req.getParameter("userName");
@@ -49,10 +51,34 @@ public class Edit extends HttpServlet {
         String phone = req.getParameter("phone");
 
         String id = req.getParameter("id");
-
-
+        Members memb = new Members();
+        try {
+            BeanUtils.populate(memb, req.getParameterMap());
+        } catch (Exception ex) {
+            System.out.println("bean util error " + ex.getMessage());
+        }
+        if (org.apache.commons.lang3.StringUtils.isBlank(memb.getFirstName())) {
+            wr.print(this.editMember(" First Name is required<br/>",memb));
+            return;
+        }
+        if (StringUtils.isBlank(memb.getLastName())){
+            wr.print(this.editMember("lastName is required",memb));
+            return;
+        }
+        if (StringUtils.isBlank(memb.getUserName())){
+            wr.print(this.editMember("username is required",memb));
+            return;
+        }
+        if (StringUtils.isBlank(memb.getEmail())){
+            wr.print(this.editMember("email is required",memb));
+            return;
+        }
+        if (StringUtils.isBlank(memb.getPhone())){
+            wr.print(this.editMember("Phone number  is required",memb));
+            return;
+        }
         HttpSession session = req.getSession();
-        members = (List<Members>) session.getAttribute("members");
+         members = (List<Members>) session.getAttribute("members");
 
         for (Members member : members) {
             if (member.getId() == Integer.parseInt(id)) {
@@ -73,7 +99,7 @@ public class Edit extends HttpServlet {
                 + "<html> "
                 + "<head> "
                 + "</head>"
-                + "<body>"
+                + "<body bgcolor=\"Lightskyblue\"  >"
                 // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 + "<h2> Edit Member</h2>"
                 + "<form action=\"./edit?id="+ member.getId()+ "\" method=\"post\">"

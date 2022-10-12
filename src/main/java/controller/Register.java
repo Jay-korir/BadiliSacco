@@ -1,5 +1,11 @@
 package controller;
 
+import model.Members;
+import service.MYSQLSACCO;
+import service.Reg;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,16 +13,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 @WebServlet("/register")
 public class Register extends HttpServlet {
+    ServletContext servletCtx = null;
+    public void init(ServletConfig config) throws ServletException{
+        super.init(config);
+
+        servletCtx = config.getServletContext();
+
+    }
+   // private  MYSQLSACCO mysqlsacco;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().print(this.register(null));
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
         PrintWriter wr = resp.getWriter();
 
@@ -28,6 +47,10 @@ public class Register extends HttpServlet {
         String email = req.getParameter("Email");
         String password = req.getParameter("Password");
         String conPassword = req.getParameter("ConfirmPassword");
+
+
+
+
 
         String actionError = "";
                     if (first == null || first.equalsIgnoreCase(""))
@@ -54,8 +77,13 @@ public class Register extends HttpServlet {
             if ((password != null && conPassword != null) && !password.equals(conPassword)  )
                 actionError += "password do not match<br/>";
 
-            if((password != null && conPassword != null) && password.equals(conPassword))
+
+
+
+            if((password != null && conPassword != null) && password.equals(conPassword)) {
+                this.insert(user, password);
                 resp.sendRedirect("/login");
+            }
             else
                 wr.print(this.register(actionError));
 
@@ -173,6 +201,17 @@ public class Register extends HttpServlet {
                 +"</html>";
 
 
+    }
+
+    public void insert(String username, String password){
+        try {
+            Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("insert into members(username,password) " +
+                    "values('" + username.trim() + "','" + password + "')");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
