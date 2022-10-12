@@ -1,8 +1,9 @@
 package controller;
 
-import model.Members;
+
 import model.User;
-import service.Entity;
+import org.apache.commons.codec.digest.DigestUtils;
+
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebInitParam;
@@ -27,8 +28,9 @@ public class LogIn extends HttpServlet{
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-       sCtx = config.getServletContext();
         super.init(config);
+        sCtx = config.getServletContext();
+
     }
 
     @Override
@@ -36,6 +38,10 @@ public class LogIn extends HttpServlet{
             PrintWriter wr = servletResponse.getWriter();
             wr.print(this.login(null));
 
+
+        String password = DigestUtils.md5Hex("password");
+
+        System.out.println(password);
 
     }
 
@@ -56,15 +62,14 @@ public class LogIn extends HttpServlet{
             return;
             }
 
-          if (!userr.equals(getServletConfig().getInitParameter("username")) && !password.equals(getServletConfig().getInitParameter("password"))) {
+        User user = this.login(userr, password);
+          if (user == null) {
                 wr.print(this.login("Invalid username & password combination<br/>"));
                return;
             }
-        User user = this.login(userr, password);
 
 
         HttpSession session = req.getSession(true);
-          session.setAttribute("username",userr);
           session.setAttribute("username",user.getUsername());
         session.setAttribute("loggedInTime"," logged in time :" + new Date());
 
@@ -157,7 +162,7 @@ public class LogIn extends HttpServlet{
                  +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"login\">"
                 + " <div class=\"container\">"
                 +"<label ><b>Username</b></label>"
-                +"<input type=\"text\" name= \"UserName\" required placeholder=\"Enter Username\">"
+                +"<input type=\"text\" name= \"username\" required placeholder=\"Enter Username\">"
 
                 +" <label ><b>Password</b></label>"
                 +  "<input type=\"password\" name= \"Password\" required placeholder=\"Enter Password\">"
@@ -187,10 +192,10 @@ public class LogIn extends HttpServlet{
         try {
             Connection connection = (Connection) sCtx.getAttribute("myConnection");
             Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from members where username='" + username + "' and " + "password='" + password + "' ");
+            System.out.println("select * from login where username='" + username + "' and " + "password='" + password + "' ");
+            ResultSet resultSet = statement.executeQuery("select * from login where username='" + username + "' and " + "password='" + password + "' ");
         while (resultSet.next()){
-            user = new  User();
+            user = new User();
            // user.setId((long) resultSet.getInt("id"));
             user.setUsername(resultSet.getString("username"));
         }

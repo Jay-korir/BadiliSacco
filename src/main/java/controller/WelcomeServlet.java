@@ -20,9 +20,9 @@ import java.util.List;
 public class WelcomeServlet extends HttpServlet {
     HttpSession httpSession;
 
-public static List<Members> members;
+    public static List<Members> members;
 
-ServletContext sCtx = null;
+    ServletContext sCtx = null;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -32,9 +32,9 @@ ServletContext sCtx = null;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         httpSession = req.getSession();
-         PrintWriter pw = resp.getWriter();
-         pw.print(this.Welcome());
+        httpSession = req.getSession();
+        PrintWriter pw = resp.getWriter();
+        pw.print(this.Welcome());
 
 
     }
@@ -46,33 +46,33 @@ ServletContext sCtx = null;
         write.print(this.Welcome());
 
 
-              List<Members> members1= new ArrayList<Members>();
+        List<Members> members1= new ArrayList<Members>();
 
-            try {
+        try {
 
-                Connection connection = (Connection) sCtx.getAttribute("myConnection");
-                Statement statement = connection.createStatement();
+            Connection connection = (Connection) sCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
 
-                ResultSet resultSet = statement.executeQuery("select * from members");
-                while (resultSet.next()){
+            ResultSet resultSet = statement.executeQuery("select * from members");
+            while (resultSet.next()){
 
-                    Members members2 = new Members();
-                    members2.setFirstName(resultSet.getString("firstname"));
-                    members2.setLastName(resultSet.getString("lastname"));
-                    members2.setUserName(resultSet.getString("username"));
-                    members2.setEmail(resultSet.getString("email"));
-                    members2.setPhone(resultSet.getString("phone"));
+                Members members2 = new Members();
+                members2.setFirstName(resultSet.getString("firstname"));
+                members2.setLastName(resultSet.getString("lastname"));
+                members2.setUserName(resultSet.getString("username"));
+                members2.setEmail(resultSet.getString("email"));
+                members2.setPhone(resultSet.getString("phone"));
 
-                    members1.add(members2);
+                members1.add(members2);
 
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                throw new RuntimeException(e);
             }
-members = members1;
-
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
+        members = members1;
+
+    }
 
 
 
@@ -89,20 +89,20 @@ members = members1;
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Css/table.css\"/>"
                 + "</head>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: auto;\">"
-               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+                // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 +"<h4>WELCOME TO BADILI SACCO </h4>"
                 +"<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
-              // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
-               //+ "<h2> Welcome: " + httpSession.getAttribute("username")
-              // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
-               // + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
+                // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
+                //+ "<h2> Welcome: " + httpSession.getAttribute("username")
+                // + "<h2>   Logged In At: " + httpSession.getAttribute("loggedInTime") + "</h2>"
+                // + "<span style=\"color:green;font-size: 24px;font-weight:bold\">Logged In</span>"
                 + "<br/>MEMBERS <a href='./add'>Add Members</a><br/>"
-                 + "<br/>" + membersList(new Members())
+                + "<br/>" + membersList(new Members())
                 + "<br/>"
                 + "<br/>Logout <a href='./logout'>Logout</a><br/>"
-              //  +" <a href='./logout</a><br/>n'>L"
-                  +"</form>"
+                //  +" <a href='./logout</a><br/>n'>L"
+                +"</form>"
                 + "</body>"
                 + "</html>";
     }
@@ -117,21 +117,20 @@ members = members1;
                 "<th>Email</th>" +
                 "<th>Phone Number</th>" +
                 "</tr>";
-for (Members member : members)
-    membersList += "<tr>"
-            + "<td>" + member.getFirstName() + "</td>"
-            + "<td>" + member.getLastName() + "</td>"
-            + "<td>" + member.getUserName() + "</td>"
-            + "<td>" + member.getEmail() + "</td>"
-            + "<td>" + member.getPhone() + "</td>"
-            + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
-            " <a href=\"./edit?id=" + member.getId() + "\">Edit</a> |" +
+        for (Members member : members)
+            membersList += "<tr>"
+                    + "<td>" + member.getFirstName() + "</td>"
+                    + "<td>" + member.getLastName() + "</td>"
+                    + "<td>" + member.getUserName() + "</td>"
+                    + "<td>" + member.getEmail() + "</td>"
+                    + "<td>" + member.getPhone() + "</td>"
+                    + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
+                    " <a href=\"./edit?id=" + member.getId() + "\">Edit</a> |" +
 
-        " <a href=\"./contribution?id=" + member.getId() + "\">Contribution</a></td>" +
-            "</tr>";
+                    " <a href=\"./contribution?id=" + member.getId() + "\">Contribution</a></td>" +
+                    "</tr>";
 
         membersList += "</table>";
         return membersList;
     }
 }
-

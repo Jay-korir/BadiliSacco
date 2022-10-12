@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 @WebServlet("/register")
 public class Register extends HttpServlet {
@@ -47,6 +48,9 @@ public class Register extends HttpServlet {
         String email = req.getParameter("Email");
         String password = req.getParameter("Password");
         String conPassword = req.getParameter("ConfirmPassword");
+
+        System.out.println("=================username");
+        System.out.println(user);
 
 
 
@@ -207,8 +211,11 @@ public class Register extends HttpServlet {
         try {
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("insert into members(username,password) " +
+            statement.executeUpdate("insert into members(username, password) " +
                     "values('" + username.trim() + "','" + password + "')");
+            System.out.println(("insert into login(username, password) " +
+                    "values('" + username.trim() + "','" + password + "')"));
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
