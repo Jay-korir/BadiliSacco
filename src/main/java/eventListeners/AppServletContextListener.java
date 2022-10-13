@@ -1,5 +1,7 @@
 package eventListeners;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -18,7 +20,13 @@ public class AppServletContextListener implements ServletContextListener {
 
         try {
             System.out.println("connections starting -----");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco","root","");
+            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco","root","");
+
+            MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource.setURL("jdbc:mysql://localhost:3306/sacco");
+            dataSource.setUser("root");
+            dataSource.setPassword("");
+            Connection connection = dataSource.getConnection();
         servletContext.setAttribute("myConnection",connection);
         } catch (SQLException e) {
             System.out.println("connection failed ----" + e.getMessage());

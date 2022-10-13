@@ -33,19 +33,19 @@ public class DeleteContribution extends HttpServlet {
     }
     @SuppressWarnings("unchecked")
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String myId = req.getParameter("username");
+        int myId = Integer.parseInt(req.getParameter("id"));
         this.delete(myId);
         RequestDispatcher dispatcher = req.getRequestDispatcher("control");
         dispatcher.forward(req, res);
     }
 
-    public int delete(String username){
+    public int delete(int id){
         int status=0;
         try{
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
             Statement sqlStmt = connection.createStatement();
 
-            ResultSet result = sqlStmt.executeQuery("delete from contribution where ?");
+            ResultSet result = sqlStmt.executeQuery("delete from contribution where " + id);
 
 
         }catch(Exception e1){e1.printStackTrace();}
