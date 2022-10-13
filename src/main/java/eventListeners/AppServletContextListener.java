@@ -1,5 +1,6 @@
 package eventListeners;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -24,14 +25,14 @@ public class AppServletContextListener implements ServletContextListener {
             //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco","root","");
 
            // MysqlDataSource dataSource = new MysqlDataSource();
-            BasicDataSource dataSource = new BasicDataSource();
-            dataSource.setUrl("jdbc:mysql://localhost:3306/sacco");
-            dataSource.setUsername("root");
+          //  BasicDataSource dataSource = new BasicDataSource();
+            ComboPooledDataSource dataSource = new ComboPooledDataSource();
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/sacco");
+            dataSource.setUser("root");
             dataSource.setPassword("");
 
-            dataSource.setInitialSize(2);
-            dataSource.setMaxIdle(2);
-            dataSource.setMaxTotal(5);
+            dataSource.setInitialPoolSize(2);
+            dataSource.setMaxIdleTime(2);
             Connection connection = dataSource.getConnection();
         servletContext.setAttribute("myConnection",connection);
         } catch (SQLException e) {
