@@ -1,6 +1,8 @@
 package controller;
 
 import model.Members;
+import model.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import service.MYSQLSACCO;
 import service.Reg;
 
@@ -85,6 +87,9 @@ public class Register extends HttpServlet {
 
 
             if((password != null && conPassword != null) && password.equals(conPassword)) {
+                User userH = new User();
+                userH.setUsername(user);
+                userH.setPassword(DigestUtils.md2Hex(password));
                 this.insert(user, password);
                 resp.sendRedirect("/login");
             }
@@ -170,7 +175,7 @@ public class Register extends HttpServlet {
 
                 + "<form   action=\"./login\" method=\"post\">"
 
-                +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
+                //+"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
                 + " <div class=\"container\">"
                 +"<label ><b>FirstName</b></label>"
                 +"<input type=\"text\" name= \"FirstName\" required placeholder=\"Enter firstname\">"

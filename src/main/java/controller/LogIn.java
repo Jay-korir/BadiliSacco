@@ -62,7 +62,7 @@ public class LogIn extends HttpServlet{
             return;
             }
 
-        User user = this.login(userr, password);
+        User user = this.login(userr,  password);
           if (user == null) {
                 wr.print(this.login("Invalid username & password combination<br/>"));
                return;
@@ -159,7 +159,7 @@ public class LogIn extends HttpServlet{
 
                 + "<form   action=\"./login\" method=\"post\">"
 
-                 +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"login\">"
+                // +"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"login\">"
                 + " <div class=\"container\">"
                 +"<label ><b>Username</b></label>"
                 +"<input type=\"text\" name= \"username\" required placeholder=\"Enter Username\">"
@@ -198,6 +198,13 @@ public class LogIn extends HttpServlet{
             user = new User();
            // user.setId((long) resultSet.getInt("id"));
             user.setUsername(resultSet.getString("username"));
+            user.setPassword(resultSet.getString("password"));
+
+
+            System.out.println("username:==" + username);
+            System.out.println("password:==" + password);
+
+            System.out.println("hashed password::" + DigestUtils.md5Hex(password));
         }
         } catch (SQLException e) {
             System.out.println("error "+ e.getMessage());

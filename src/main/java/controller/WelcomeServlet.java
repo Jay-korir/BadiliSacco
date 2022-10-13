@@ -35,13 +35,13 @@ public class WelcomeServlet extends HttpServlet {
         httpSession = req.getSession();
         PrintWriter pw = resp.getWriter();
         pw.print(this.Welcome());
-
+        System.out.println(members);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //httpSession  = req.getSession();
+        httpSession  = req.getSession();
         PrintWriter write = resp.getWriter();
         write.print(this.Welcome());
 
@@ -132,5 +132,35 @@ public class WelcomeServlet extends HttpServlet {
 
         membersList += "</table>";
         return membersList;
+    }
+
+    public  List<Members> fetch(){
+        List<Members> members1= new ArrayList<Members>();
+
+        try {
+
+            Connection connection = (Connection) sCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from members");
+            while (resultSet.next()){
+
+                Members members2 = new Members();
+                members2.setFirstName(resultSet.getString("firstname"));
+                members2.setLastName(resultSet.getString("lastname"));
+                members2.setUserName(resultSet.getString("username"));
+                members2.setEmail(resultSet.getString("email"));
+                members2.setPhone(resultSet.getString("phone"));
+
+                members1.add(members2);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        members = members1;
+
+        return members;
     }
 }
