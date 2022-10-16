@@ -29,7 +29,8 @@ public class ContributionAction extends HttpServlet {
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        res.getWriter().print(this.addContribution(null));
+        //res.getWriter().print(this.addContribution(null));
+        res.sendRedirect("./addContribution.jsp");
     }
 
     @SuppressWarnings("unchecked")
@@ -47,16 +48,22 @@ public class ContributionAction extends HttpServlet {
 
 
         if (StringUtils.isBlank(contribution.getUsername())) {
-            wr.print(this.addContribution("username is required<br/>"));
+           // wr.print(this.addContribution("username is required<br/>"));
+            servletCtx.setAttribute("loginError","username is required");
+            res.sendRedirect("./addContribution.jsp");
             return;
         }
 
         if (StringUtils.isBlank(contribution.getMonth())) {
-            wr.print(this.addContribution("contribution  month is required<br/>"));
+            //wr.print(this.addContribution("contribution  month is required<br/>"));
+            servletCtx.setAttribute("loginError","month is required");
+            res.sendRedirect("./addContribution.jsp");
             return;
         }
         if (contribution.getAmount() == 0) {
-            wr.print(this.addContribution("amount is required<br/>"));
+           // wr.print(this.addContribution("amount is required<br/>"));
+            servletCtx.setAttribute("loginError","amount is required");
+            res.sendRedirect("./addContribution.jsp");
             return;
         }
 

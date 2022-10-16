@@ -37,10 +37,10 @@ public class ContributionPage extends HttpServlet {
                 + "<head> "
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"./assets/CSS/style.css\"/>"
                 + "</head>"
-                + "<body>"
+                + "<body \"Lightskyblue\">"
                 + "<div class=\"bg-img\">"
                 + "<div class=\"content\">"
-               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
+                + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
                 + "<br/>" + contributionGrid(new Contribution())
                 + "<p><a href='./back'><button class=\"back\">Logout</button></a></p>"
                 + "</div>"
@@ -65,7 +65,7 @@ public class ContributionPage extends HttpServlet {
                 + "<h2> Welcome: " + session.getAttribute("username") + "  Logged In At: " + session.getAttribute("loggedInTime") + "</h2>"
                 + "<br/>" + contributionGrid(new Contribution())
 
-                + "<p><a href='./contribution'><button class=\"button\">Add Vehicle</button></a> <a href='./logout'><button class=\"button\">Logout</button></a></p>"
+                + "<p><a href='./contribution'><button class=\"button\">Add Contribution</button></a> <a href='./logout'><button class=\"button\">Logout</button></a></p>"
                 + "</div>"
                 + "</div>"
                 + "</body>"

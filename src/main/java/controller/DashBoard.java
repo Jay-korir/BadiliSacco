@@ -29,7 +29,8 @@ public class DashBoard extends HttpServlet {
         System.out.println(session.getId());
         System.out.println(session.getCreationTime());
         System.out.println(session.getLastAccessedTime());
-        resp.getWriter().print(this.Dash());
+        resp.sendRedirect("./dashboard.jsp");
+        //resp.getWriter().print(this.Dash());
     }
 
     public String Dash(){

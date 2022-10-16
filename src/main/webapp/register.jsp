@@ -69,6 +69,13 @@
                   <p class="sign-up text-center">Already have an Account?<a href='./login.jsp'>Login</a></p>
                   <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p>
                 </form>
+                  <%
+                    String loginError = (String) application.getAttribute("loginError");
+                      if (loginError != null && !loginError.equals("")) {
+                        %>
+                        <span style="color:red"> <%= application.getAttribute("loginError") %> </span><br/>
+                         <% }
+                  %>
               </div>
             </div>
           </div>

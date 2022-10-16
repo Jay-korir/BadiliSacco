@@ -18,7 +18,8 @@ public class AppServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("start of initialization ");
         ServletContext servletContext = sce.getServletContext();
-        servletContext.setAttribute("applicationlabel","BADILI SACCO");
+        servletContext.setAttribute("applicationLabel","BADILI SACCO");
+
 
         try {
             System.out.println("connections starting -----");
