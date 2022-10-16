@@ -19,10 +19,7 @@ import java.util.*;
 import java.util.Date;
 
 
-@WebServlet(urlPatterns = "/login", initParams = {
-        @WebInitParam(name = "username",value = "jenelle"),
-        @WebInitParam(name = "password",value = "5055")
-})
+@WebServlet(urlPatterns = "/login")
 public class LogIn extends HttpServlet{
     ServletContext sCtx = null;
 
@@ -34,10 +31,10 @@ public class LogIn extends HttpServlet{
     }
 
     @Override
-    public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
+   /* public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
             PrintWriter wr = servletResponse.getWriter();
-            wr.print(this.login(null));
-
+           // wr.print(this.loginTemplate(null));
+        servletResponse.sendRedirect("./login.jsp");
 
         String password = DigestUtils.md5Hex("password");
 
@@ -45,26 +42,35 @@ public class LogIn extends HttpServlet{
 
     }
 
+    */
+
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
         PrintWriter wr = res.getWriter();
         String userr = req.getParameter("username");
-        String password = req.getParameter("Password");
+        String password = req.getParameter("password");
 
         System.out.println("=================");
         System.out.println(userr);
+        System.out.println(password);
 
         if (userr == null || userr.equalsIgnoreCase("")){
-            wr.print(this.login("username  is required<br/>"));
-        return;
+           // wr.print(this.loginTemplate("username  is required<br/>"));
+       sCtx.setAttribute("loginError","username is required");
+        res.sendRedirect("./login.jsp");
+            return;
     }
         if (password == null || password.equalsIgnoreCase("")) {
-            wr.print(this.login("password is required"));
+           // wr.print(this.loginTemplate("password is required"));
+            sCtx.setAttribute("loginError","password is required");
+            res.sendRedirect("./login.jsp");
             return;
             }
 
         User user = this.login(userr,  password);
           if (user == null) {
-                wr.print(this.login("Invalid username & password combination<br/>"));
+               // wr.print(this.loginTemplate("Invalid username & password combination<br/>"));
+              sCtx.setAttribute("loginError","username & password is required");
+              res.sendRedirect("./login.jsp");
                return;
             }
 
@@ -79,11 +85,91 @@ public class LogIn extends HttpServlet{
         RequestDispatcher read = req.getRequestDispatcher("dash");
         read.forward(req, res);
 
+
     }
+public  String loginTemplate(String actionError){
+        return  "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
 
-    public String login(String actionError){
+                "  <head>\n" +
+                "    <!-- Required meta tags -->\n" +
+                "    <meta charset=\"utf-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
+                "    <title>Badili Sacco" +
+                "</title>\n" +
+                "    <!-- plugins:css -->\n" +
+                "    <link rel=\"stylesheet\" href=\"./template/assets/vendors/mdi/css/materialdesignicons.min.css\">\n" +
+                "    <link rel=\"stylesheet\" href=\"./template/assets/vendors/css/vendor.bundle.base.css\">\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Plugin css for this page -->\n" +
+                "    <!-- End plugin css for this page -->\n" +
+                "    <!-- inject:css -->\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Layout styles -->\n" +
+                "    <link rel=\"stylesheet\" href=\"./template/assets/css/style.css\">\n" +
+                "    <!-- End layout styles -->\n" +
+                "    <link rel=\"shortcut icon\" href=\"./template/assets/images/favicon.png\" />\n" +
+                "  </head>\n" +
+                "  <body>\n" +
+                "    <div class=\"container-scroller\">\n" +
+                "      <div class=\"container-fluid page-body-wrapper full-page-wrapper\">\n" +
+                "        <div class=\"row w-100 m-0\">\n" +
+                "          <div class=\"content-wrapper full-page-wrapper d-flex align-items-center auth login-bg\">\n" +
+                "            <div class=\"card col-lg-4 mx-auto\">\n" +
+                "              <div class=\"card-body px-5 py-5\">\n" +
+                "                <h3 class=\"card-title text-left mb-3\">Login</h3>\n" +
+                "                <form   action=\"./login\" method=\"post\">\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Username or email *</label>\n" +
+                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Password *</label>\n" +
+                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group d-flex align-items-center justify-content-between\">\n" +
+                "                    <div class=\"form-check\">\n" +
+                "                      <label class=\"form-check-label\">\n" +
+                "                        <input type=\"checkbox\" class=\"form-check-input\"> Remember me </label>\n" +
+                "                    </div>\n" +
+                "                    <a href=\"#\" class=\"forgot-pass\">Forgot password</a>\n" +
+                "                  </div>\n" +
+                "                  <div class=\"text-center\">\n" +
+                "                    <button type=\"submit\" class=\"btn btn-primary btn-block enter-btn\">Login</button>\n" +
+                "                  </div>\n" +
+                "\n" +
+                "                  <p class=\"sign-up\">Don't have an Account?<a href='./register'>Register</a></p>\n" +
+                "                </form>\n" +
+                "              </div>\n" +
+                "            </div>\n" +
+                "          </div>\n" +
+                "          <!-- content-wrapper ends -->\n" +
+                "        </div>\n" +
+                "        <!-- row ends -->\n" +
+                "      </div>\n" +
+                "      <!-- page-body-wrapper ends -->\n" +
+                "    </div>\n" +
+                "    <!-- container-scroller -->\n" +
+                "    <!-- plugins:js -->\n" +
+                "    <script src=\"../assets/vendors/js/vendor.bundle.base.js\"></script>\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Plugin js for this page -->\n" +
+                "    <!-- End plugin js for this page -->\n" +
+                "    <!-- inject:js -->\n" +
+                "    <script src=\"../../assets/js/off-canvas.js\"></script>\n" +
+                "    <script src=\"../../assets/js/hoverable-collapse.js\"></script>\n" +
+                "    <script src=\"../../assets/js/misc.js\"></script>\n" +
+                "    <script src=\"../../assets/js/settings.js\"></script>\n" +
+                "    <script src=\"../../assets/js/todolist.js\"></script>\n" +
+                "    <!-- endinject -->\n" +
+                "  </body>\n" +
+                "</html>";
+}
 
-        return "<!DOCTYPE html>"
+    public String loginHtml(String actionError){
+
+        return
+                "<!DOCTYPE html>"
      + "<html>"
            + "<head>"
                 + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"

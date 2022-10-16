@@ -30,11 +30,13 @@ public class Register extends HttpServlet {
 
     }
    // private  MYSQLSACCO mysqlsacco;
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().print(this.register(null));
+    /* protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       // resp.getWriter().print(this.registerTemplate(null));
+    resp.sendRedirect("./register.jsp");
     }
 
+
+    */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -87,19 +89,126 @@ public class Register extends HttpServlet {
 
 
             if((password != null && conPassword != null) && password.equals(conPassword)) {
+                  Members members = new Members();
+                  members.setFirstName(first);
+                  members.setLastName(last);
+                  members.setUserName(user);
+                  members.setEmail(email);
+                  members.setPhone(phone);
+
+                  this.insertMembers(first,last,user,email,phone);
+
                 User userH = new User();
+                System.out.println("===============++++++++++++++");
                 userH.setUsername(user);
+
+                System.out.println("888888888888888");
                 userH.setPassword(DigestUtils.md2Hex(password));
                 this.insert(user, password);
-                resp.sendRedirect("/login");
+                resp.sendRedirect("./login.jsp");
             }
             else
-                wr.print(this.register(actionError));
+                resp.sendRedirect("./register.jsp");
+                //wr.print(this.registerTemplate(actionError));
 
 
     }
 
-    public String register(String actionError){
+
+    public  String registerTemplate(String actionError){
+        return "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "    <!-- Required meta tags -->\n" +
+                "    <meta charset=\"utf-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
+                "    <title>Badili Sacco</title>\n" +
+                "    <!-- plugins:css -->\n" +
+                "    <link rel=\"stylesheet\" href=\"./template/assets/vendors/mdi/css/materialdesignicons.min.css\">\n" +
+                "    <link rel=\"stylesheet\" href=\".template/assets/vendors/css/vendor.bundle.base.css\">\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Plugin css for this page -->\n" +
+                "    <!-- End plugin css for this page -->\n" +
+                "    <!-- inject:css -->\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Layout styles -->\n" +
+                "    <link rel=\"stylesheet\" href=\"./template/assets/css/style.css\">\n" +
+                "    <!-- End layout styles -->\n" +
+                "    <link rel=\"shortcut icon\" href=\"./template/assets/images/favicon.png\" />\n" +
+                "  </head>\n" +
+                "  <body>\n" +
+                "    <div class=\"container-scroller\">\n" +
+                "      <div class=\"container-fluid page-body-wrapper full-page-wrapper\">\n" +
+                "        <div class=\"row w-100 m-0\">\n" +
+                "          <div class=\"content-wrapper full-page-wrapper d-flex align-items-center auth login-bg\">\n" +
+                "            <div class=\"card col-lg-4 mx-auto\">\n" +
+                "              <div class=\"card-body px-5 py-5\">\n" +
+                "                <h3 class=\"card-title text-left mb-3\">Register</h3>\n" +
+                "                <form action=\"./login\" method=\"post\">\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>First Name</label>\n" +
+                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Last Name</label>\n" +
+                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Email</label>\n" +
+                "                    <input type=\"email\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Phone</label>\n" +
+                "                    <input type=\"tel\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label>Password</label>\n" +
+                "                    <input type=\"password\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group\">\n" +
+                "                    <label> Confirm Password</label>\n" +
+                "                    <input type=\"password\" class=\"form-control p_input\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"form-group d-flex align-items-center justify-content-between\">\n" +
+                "                    <div class=\"form-check\">\n" +
+                "                      <label class=\"form-check-label\">\n" +
+                "                        <input type=\"checkbox\" class=\"form-check-input\"> Remember me </label>\n" +
+                "                    </div>\n" +
+                "                    <a href=\"#\" class=\"forgot-pass\">Forgot password</a>\n" +
+                "                  </div>\n" +
+                "                  <div class=\"text-center\">\n" +
+                "                    <button type=\"submit\" class=\"btn btn-primary btn-block enter-btn\">Register</button>\n" +
+                "                  </div>\n" +
+                "\n" +
+                "                  <p class=\"sign-up text-center\">Already have an Account?<a href='./login'>Login</a></p>\n" +
+                "                  <p class=\"terms\">By creating an account you are accepting our<a href=\"#\"> Terms & Conditions</a></p>\n" +
+                "                </form>\n" +
+                "              </div>\n" +
+                "            </div>\n" +
+                "          </div>\n" +
+                "          <!-- content-wrapper ends -->\n" +
+                "        </div>\n" +
+                "        <!-- row ends -->\n" +
+                "      </div>\n" +
+                "      <!-- page-body-wrapper ends -->\n" +
+                "    </div>\n" +
+                "    <!-- container-scroller -->\n" +
+                "    <!-- plugins:js -->\n" +
+                "    <script src=\"../../assets/vendors/js/vendor.bundle.base.js\"></script>\n" +
+                "    <!-- endinject -->\n" +
+                "    <!-- Plugin js for this page -->\n" +
+                "    <!-- End plugin js for this page -->\n" +
+                "    <!-- inject:js -->\n" +
+                "    <script src=\"../../assets/js/off-canvas.js\"></script>\n" +
+                "    <script src=\"../../assets/js/hoverable-collapse.js\"></script>\n" +
+                "    <script src=\"../../assets/js/misc.js\"></script>\n" +
+                "    <script src=\"../../assets/js/settings.js\"></script>\n" +
+                "    <script src=\"../../assets/js/todolist.js\"></script>\n" +
+                "    <!-- endinject -->\n" +
+                "  </body>\n" +
+                "</html>";
+    }
+   /* public String register(String actionError){
 
         return "<!DOCTYPE html>"
                 + "<html>"
@@ -212,14 +321,27 @@ public class Register extends HttpServlet {
 
     }
 
+    */
+
     public void insert(String username, String password){
         try {
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("insert into members(username, password) " +
+
+            statement.executeUpdate("insert into login(username, password) " +
                     "values('" + username.trim() + "','" + password + "')");
-            System.out.println(("insert into login(username, password) " +
-                    "values('" + username.trim() + "','" + password + "')"));
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void insertMembers(String firstname, String lastname, String username, String email, String phone){
+        try {
+            Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+            Statement statement = connection.createStatement();
+            statement.execute("INSERT INTO `members`(`firstname`, `lastname`, `username`, `email`, `phone`) " +
+                    "VALUES ('"+ firstname.trim() +"','"+ lastname.trim() +"','"+ username.trim() +"','"+ email.trim() +"','"+ phone.trim() +"')");
+
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

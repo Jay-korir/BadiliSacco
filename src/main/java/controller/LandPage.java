@@ -13,7 +13,8 @@ public class LandPage  extends HttpServlet {
     ServletConfig config;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().print(this.LandPage());
+       resp.sendRedirect("./index.jsp");
+       // resp.getWriter().print(this.LandPage());
     }
 
 
