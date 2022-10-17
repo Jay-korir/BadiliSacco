@@ -87,8 +87,6 @@ public class Display extends HttpServlet {
                     + "<td>" + member.getUserName() + "</td>"
                     + "<td>" + member.getEmail() + "</td>"
 
-                    + "<td>" + member.getMonth() + "</td>"
-                    + "<td>" + member.getAmount() + "</td>"
 
 
                     + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +

@@ -2,6 +2,8 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\DashBoard.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Display.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\UpdateContribution.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Edit.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\MembersAction.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\UserController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Entity.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Contribution.java
@@ -14,7 +16,6 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\User.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\AppContextAttributeListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionHttpBinding.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Reg.java
-C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\SaccoMember.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Register.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\DeleteContribution.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\WelcomeServlet.java
@@ -23,6 +24,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LandPage.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Delete.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\MYSQLSACCO.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\AppServletContextListener.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\MembersController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LogOut.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\RequestListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\IMYSQLDB.java

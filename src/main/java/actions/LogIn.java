@@ -28,19 +28,6 @@ public class LogIn extends HttpServlet{
 
     }
 
-    @Override
-   /* public void doGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-            PrintWriter wr = servletResponse.getWriter();
-           // wr.print(this.loginTemplate(null));
-        servletResponse.sendRedirect("./login.jsp");
-
-        String password = DigestUtils.md5Hex("password");
-
-        System.out.println(password);
-
-    }
-
-    */
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
         PrintWriter wr = res.getWriter();
@@ -52,13 +39,11 @@ public class LogIn extends HttpServlet{
         System.out.println(password);
 
         if (userr == null || userr.equalsIgnoreCase("")){
-           // wr.print(this.loginTemplate("username  is required<br/>"));
        sCtx.setAttribute("loginError","username is required");
         res.sendRedirect("./login.jsp");
             return;
     }
         if (password == null || password.equalsIgnoreCase("")) {
-           // wr.print(this.loginTemplate("password is required"));
             sCtx.setAttribute("loginError","password is required");
             res.sendRedirect("./login.jsp");
             return;
@@ -66,7 +51,6 @@ public class LogIn extends HttpServlet{
 
         User user = this.login(userr,  password);
           if (user == null) {
-               // wr.print(this.loginTemplate("Invalid username & password combination<br/>"));
               sCtx.setAttribute("loginError","username & password is required");
               res.sendRedirect("./login.jsp");
                return;
@@ -296,3 +280,21 @@ public  String loginTemplate(String actionError){
         return user;
     }
 }
+/*
+ public void insertLogin(Connection connection, Members members){
+
+        if ( members == null  || StringUtils.isBlank(members.getUserName())||StringUtils.isBlank(members.getPassword()))
+            return;
+
+        try {
+
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate("insert into login(username, password) " +
+                    "values('" + members.getUserName().trim() + "','" + members.getPassword() + "')");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+ */

@@ -39,9 +39,6 @@
 
 </table>
 
-
-
-
 <br/>Logout <a href='./logout'>Logout</a><br/>
 </body>
 </html>

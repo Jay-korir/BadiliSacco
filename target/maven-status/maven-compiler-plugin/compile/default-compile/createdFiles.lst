@@ -3,6 +3,7 @@ service\Delete.class
 actions\WelcomeServlet.class
 actions\ContributionAction.class
 actions\LandPage.class
+controller\UserController.class
 service\IMYSQLDB.class
 model\Contribution.class
 model\BaseEntity.class
@@ -12,7 +13,9 @@ controller\ContributionController.class
 actions\Display.class
 service\Edit.class
 actions\DashBoard.class
+actions\MembersAction.class
 model\Members.class
+controller\MembersController.class
 model\User.class
 eventListeners\AppContextAttributeListener.class
 actions\Register.class
@@ -20,7 +23,6 @@ actions\LogIn.class
 service\Entity.class
 eventListeners\AppServletContextListener.class
 eventListeners\RequestListener.class
-actions\SaccoMember.class
 eventListeners\SessionListener.class
 service\Reg.class
 service\DeleteContribution.class
