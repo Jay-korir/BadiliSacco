@@ -36,7 +36,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">James Korir</h5>
+                  <h5 class="mb-0 font-weight-normal">User</h5>
                   <span>Admin </span>
                 </div>
               </div>
@@ -82,14 +82,14 @@
             <span class="nav-link">Services</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="./template/index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-            <a class="nav-link" data-toggle="collapse" href="./contribution?id" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="./addContribution.jsp" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>

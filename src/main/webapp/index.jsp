@@ -4,6 +4,7 @@
         <script type='text/javascript' src='./js/sample.js'></script>
     </head>
     <body bgcolor="Lightskyblue" style="margin: auto; width: 220px;">
+     <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
         <%!
             int one = 1;
             int two = 2;
@@ -37,6 +38,6 @@
 
 
 
-
+       </div>
     </body>
 </html>

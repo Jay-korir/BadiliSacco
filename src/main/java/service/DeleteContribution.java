@@ -11,19 +11,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.List;
-import java.util.Objects;
 
 @WebServlet("/deleteContribution")
 
 public class DeleteContribution extends HttpServlet {
 
-    ServletContext servletCtx = null;
+    static ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -33,21 +31,27 @@ public class DeleteContribution extends HttpServlet {
     }
     @SuppressWarnings("unchecked")
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int myId = Integer.parseInt(req.getParameter("id"));
-        this.delete(myId);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("control");
-        dispatcher.forward(req, res);
+       // int myId = Integer.parseInt(req.getParameter("id"));
+       // System.out.println(myId);
+       // this.delete(myId);
+        Contribution contribution = new Contribution();
+        String id = contribution.getUsername();
+        System.out.println("============id =======" + id);
+        this.delete(id);
+         res.sendRedirect("./contributionPage.jsp");
     }
 
-    public int delete(int id){
+
+    public static int delete(String username){
+
         int status=0;
         try{
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
-            Statement sqlStmt = connection.createStatement();
+            PreparedStatement ps=connection.prepareStatement("delete from contribution where username=?");
+            ps.setString(1,username);
+            status=ps.executeUpdate();
 
-            ResultSet result = sqlStmt.executeQuery("delete from contribution where " + id);
-
-
+            connection.close();
         }catch(Exception e1){e1.printStackTrace();}
 
         return status;
