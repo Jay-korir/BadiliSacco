@@ -1,4 +1,4 @@
-<%@ include file="header1.jsp" %>
+<jsp:include page="header1.jsp" />
     <h3 class="card-title text-left mb-3">Login</h3>
     <form action="./login" method="post">
       <div class="form-group">
@@ -29,4 +29,4 @@
                           <span style="color:red"> <%= application.getAttribute("loginError") %> </span><br/>
                         <% }
      %>
- <%@  include file = "footer1.jsp" %>
+ <jsp:include page = "footer1.jsp" />

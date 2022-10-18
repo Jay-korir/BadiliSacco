@@ -1,5 +1,7 @@
 package actions;
 
+import controller.ContributionController;
+import controller.MembersController;
 import model.Members;
 import model.User;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -93,7 +95,9 @@ public class Register extends HttpServlet {
                   members.setEmail(email);
                   members.setPhone(phone);
 
+
                   this.insertMembers(first,last,user,email,phone);
+
 
                 User userH = new User();
                 System.out.println("===============++++++++++++++");
@@ -112,221 +116,14 @@ public class Register extends HttpServlet {
     }
 
 
-    public  String registerTemplate(String actionError){
-        return "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "  <head>\n" +
-                "    <!-- Required meta tags -->\n" +
-                "    <meta charset=\"utf-8\">\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
-                "    <title>Badili Sacco</title>\n" +
-                "    <!-- plugins:css -->\n" +
-                "    <link rel=\"stylesheet\" href=\"./template/assets/vendors/mdi/css/materialdesignicons.min.css\">\n" +
-                "    <link rel=\"stylesheet\" href=\".template/assets/vendors/css/vendor.bundle.base.css\">\n" +
-                "    <!-- endinject -->\n" +
-                "    <!-- Plugin css for this page -->\n" +
-                "    <!-- End plugin css for this page -->\n" +
-                "    <!-- inject:css -->\n" +
-                "    <!-- endinject -->\n" +
-                "    <!-- Layout styles -->\n" +
-                "    <link rel=\"stylesheet\" href=\"./template/assets/css/style.css\">\n" +
-                "    <!-- End layout styles -->\n" +
-                "    <link rel=\"shortcut icon\" href=\"./template/assets/images/favicon.png\" />\n" +
-                "  </head>\n" +
-                "  <body>\n" +
-                "    <div class=\"container-scroller\">\n" +
-                "      <div class=\"container-fluid page-body-wrapper full-page-wrapper\">\n" +
-                "        <div class=\"row w-100 m-0\">\n" +
-                "          <div class=\"content-wrapper full-page-wrapper d-flex align-items-center auth login-bg\">\n" +
-                "            <div class=\"card col-lg-4 mx-auto\">\n" +
-                "              <div class=\"card-body px-5 py-5\">\n" +
-                "                <h3 class=\"card-title text-left mb-3\">Register</h3>\n" +
-                "                <form action=\"./login\" method=\"post\">\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label>First Name</label>\n" +
-                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label>Last Name</label>\n" +
-                "                    <input type=\"text\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label>Email</label>\n" +
-                "                    <input type=\"email\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label>Phone</label>\n" +
-                "                    <input type=\"tel\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label>Password</label>\n" +
-                "                    <input type=\"password\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group\">\n" +
-                "                    <label> Confirm Password</label>\n" +
-                "                    <input type=\"password\" class=\"form-control p_input\">\n" +
-                "                  </div>\n" +
-                "                  <div class=\"form-group d-flex align-items-center justify-content-between\">\n" +
-                "                    <div class=\"form-check\">\n" +
-                "                      <label class=\"form-check-label\">\n" +
-                "                        <input type=\"checkbox\" class=\"form-check-input\"> Remember me </label>\n" +
-                "                    </div>\n" +
-                "                    <a href=\"#\" class=\"forgot-pass\">Forgot password</a>\n" +
-                "                  </div>\n" +
-                "                  <div class=\"text-center\">\n" +
-                "                    <button type=\"submit\" class=\"btn btn-primary btn-block enter-btn\">Register</button>\n" +
-                "                  </div>\n" +
-                "\n" +
-                "                  <p class=\"sign-up text-center\">Already have an Account?<a href='./login'>Login</a></p>\n" +
-                "                  <p class=\"terms\">By creating an account you are accepting our<a href=\"#\"> Terms & Conditions</a></p>\n" +
-                "                </form>\n" +
-                "              </div>\n" +
-                "            </div>\n" +
-                "          </div>\n" +
-                "          <!-- content-wrapper ends -->\n" +
-                "        </div>\n" +
-                "        <!-- row ends -->\n" +
-                "      </div>\n" +
-                "      <!-- page-body-wrapper ends -->\n" +
-                "    </div>\n" +
-                "    <!-- container-scroller -->\n" +
-                "    <!-- plugins:js -->\n" +
-                "    <script src=\"../../assets/vendors/js/vendor.bundle.base.js\"></script>\n" +
-                "    <!-- endinject -->\n" +
-                "    <!-- Plugin js for this page -->\n" +
-                "    <!-- End plugin js for this page -->\n" +
-                "    <!-- inject:js -->\n" +
-                "    <script src=\"../../assets/js/off-canvas.js\"></script>\n" +
-                "    <script src=\"../../assets/js/hoverable-collapse.js\"></script>\n" +
-                "    <script src=\"../../assets/js/misc.js\"></script>\n" +
-                "    <script src=\"../../assets/js/settings.js\"></script>\n" +
-                "    <script src=\"../../assets/js/todolist.js\"></script>\n" +
-                "    <!-- endinject -->\n" +
-                "  </body>\n" +
-                "</html>";
-    }
-   /* public String register(String actionError){
-
-        return "<!DOCTYPE html>"
-                + "<html>"
-                + "<head>"
-                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-                + "<style>"
-                + "body {font-family: Arial, Helvetica, sans-serif;}"
-                + "form {border: 3px solid #f1f1f1;}"
-
-                + "input[type=text], input[type=password] {"
-                + "width: 100%;"
-                + "padding: 12px 20px;"
-                + " margin: 8px 0;"
-                + "display: inline-block;"
-                +" border: 1px solid #ccc;"
-                + "box-sizing: border-box;"
-                + "}"
-
-                +"button {"
-                +  "background-color: #04AA6D;"
-                +" color: white;"
-                +" padding: 14px 20px;"
-                +" margin: 8px 0;"
-                +" border: none;"
-                +" cursor: pointer;"
-                +" width: 100%;"
-                +"}"
-                +"button:hover {"
-                + "opacity: 0.8;"
-                +"}"
-
-                +".cancelbtn {"
-                +  "width: auto;"
-                +"padding: 10px 18px;"
-                + "background-color: #f44336;"
-                +"}"
-
-                +".container {"
-                +"padding: 16px;"
-                +"}"
-
-                +"span.psw {"
-                +"float: right;"
-                +"padding-top: 16px;"
-                +"}"
-                +".span.rgs{"
-                +"float:center;"
-
-                +" }"
-
-                +" @media screen and (max-width: 300px) {"
-                + "span.psw {"
-                + "display: block;"
-                +" float: none;"
-                +" }"
-                + ".cancelbtn {"
-                + "width: 100%;"
-                + " }"
-                +"}"
-                +"input:invalid:required {"
-                +"background-image: linear-gradient(to right, violet, lightgreen);"
-                +"}"
-                +"input:valid {"
-                +"border: 2px solid black;"
-                +"}"
-                +"</style>"
-               // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
-                +"</head>"
-                +"<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: 220px;\">"
-                +"<h2> BADILI SACCO </h2>"
-                +"<h6> Jipange uzeeni </h6>"
-                +"<h2 >User registration</h2>"
-
-                + "<form   action=\"./login\" method=\"post\">"
-
-                //+"<label>Action:</label> <input type=\"text\" name=\"action\" value=\"register\">"
-                + " <div class=\"container\">"
-                +"<label ><b>FirstName</b></label>"
-                +"<input type=\"text\" name= \"FirstName\" required placeholder=\"Enter firstname\">"
-                +"<label ><b>LastName</b></label>"
-                +"<input type=\"text\" name= \"LastName\" required placeholder=\"Enter lastname\">"
-                +"<label ><b>Username</b></label>"
-                +"<input type=\"text\" name= \"UserName\" required placeholder=\"Enter Username\">"
-                +"<label ><b>Email</b></label>"
-                +"<input type=\"text\" name= \"Email\" required placeholder=\"Enter email\">"
-                +"<label ><b>Phone</b></label>"
-                +"<input type=\"text\" name= \"Phone\" required placeholder=\"Enter phone\">"
-
-                +" <label ><b>Password</b></label>"
-                +  "<input type=\"password\" name= \"Password\" required placeholder=\"Enter Password\">"
-                +" <label ><b>ConfirmPassword</b></label>"
-                +  "<input type=\"password\" name= \"ConfirmPassword\" required placeholder=\"Enter Password\">"
-                + "<button type=\"submit\">Register</button>"
-                +"</div>"
-
-                + "<div class=\"container\" style=\"background-color:#f1f1f1\">"
-
-                + " <span class=\"rgs\">Forgot <a href=\"action\">password?</a></span>"
-                + "</div>"
-                + "<div>"
-
-                + " Already registered click to login: <a href='./login'>Login</a><br/>"
-              //  + "Click  to Login <a href='./login'>Login</a><br/>"
-                +"</div>"
-                +"</form>"
-                + "<span style=\"color:red\">" + (actionError != null? actionError : "") + "</span>"
-                +"</body>"
-                +"</html>";
-
-
-    }
-
-    */
 
     public void insert(String username, String password){
         try {
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("insert into login(username, password) " +
-                    "values('" + username.trim() + "','" + password + "')");
+            statement.executeUpdate("insert into login(username, password,usertype) " +
+                    "values('" + username.trim() + "','" + password + "','user')");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

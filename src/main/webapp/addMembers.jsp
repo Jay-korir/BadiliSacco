@@ -1,4 +1,4 @@
-<%@ include file="header.jsp" %>
+<jsp:include page="header.jsp" />
 
    <h2>Members</h2>
   <form action="./add" method="post">

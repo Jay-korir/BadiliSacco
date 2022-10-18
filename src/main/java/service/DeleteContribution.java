@@ -31,24 +31,22 @@ public class DeleteContribution extends HttpServlet {
     }
     @SuppressWarnings("unchecked")
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-       // int myId = Integer.parseInt(req.getParameter("id"));
-       // System.out.println(myId);
-       // this.delete(myId);
+
         Contribution contribution = new Contribution();
-        String id = contribution.getUsername();
+        int id = contribution.getId();
         System.out.println("============id =======" + id);
         this.delete(id);
          res.sendRedirect("./contributionPage.jsp");
     }
 
 
-    public static int delete(String username){
+    public static int delete(int id){
 
         int status=0;
         try{
             Connection connection = (Connection) servletCtx.getAttribute("myConnection");
             PreparedStatement ps=connection.prepareStatement("delete from contribution where username=?");
-            ps.setString(1,username);
+            ps.setInt(1,id);
             status=ps.executeUpdate();
 
             connection.close();

@@ -1,10 +1,10 @@
 <%@ page import = "model.Members" %>
-<%@ page import = "controller.MembersController" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
-<%! MembersController membersController = new MembersController(); %>
+<jsp:useBean id = "membersController"  class = "controller.MembersController" />
+
 
 <!DOCTYPE html>
 <html>
@@ -12,10 +12,12 @@
 <link rel="stylesheet" type="text/css" href="./assets/CSS/style.css"/>
 </head>
 <body bgcolor="Lightskyblue">
-<h2> Welcome: <%= session.getAttribute("username") %> Logged In At: <%= session.getAttribute("loggedInTime") %></h2>
+<h1><%= application.getAttribute("applicationLabel") %></h1>
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
 <br/>Add Members <a href='./addMembers.jsp'>Add Members</a><br/>
 <br/>
+
+
 <h1> Members </h1>
 <table>
 <tr>

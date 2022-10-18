@@ -32,3 +32,4 @@ utilities\DatabaseConnection.class
 filter\SessionFilter.class
 eventListeners\ServletRequetstAListener.class
 actions\LogOut.class
+model\Loan.class

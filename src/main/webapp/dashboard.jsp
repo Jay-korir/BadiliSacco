@@ -98,7 +98,7 @@
             </a>
 
 
-            <a class="nav-link" href="#ui-basic">
+            <a class="nav-link" href="./loan.jsp"  aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>

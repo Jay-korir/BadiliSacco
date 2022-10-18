@@ -5,6 +5,9 @@ public class Contribution extends BaseEntity{
     private String month;
     private   double amount;
 
+
+
+
     public String getUsername() {
         return username;
     }
