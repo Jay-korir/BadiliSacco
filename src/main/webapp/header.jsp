@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
  <html>
       <head>
@@ -24,4 +25,4 @@
        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
          <div class="bg-img">
            <div class="content\">
-           <h1><%= application.getAttribute("applicationLabel") %></h1>
+           <h1>${applicationScope.applicationLabel}</h1>

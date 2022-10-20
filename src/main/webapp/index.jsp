@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <jsp:include page="header.jsp" />
 
 

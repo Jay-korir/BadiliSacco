@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <%@ page import = "model.Contribution" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
@@ -5,6 +6,14 @@
 
 
 <jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
+
+<%!
+
+	String contributionName;
+	String monthName;
+
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -24,13 +33,17 @@
     <th>Contributed amount</th>
     <th></th>
 </tr>
+
 <%
     List<Contribution> contributions = contributionController.list((Connection) application.getAttribute("myConnection"), new Contribution());
     for (Contribution contribution : contributions) {
+     contributionName = contribution.getUsername();
+     monthName = contribution.getMonth();
 %>
+
     <tr>
-        <td><%= contribution.getUsername() %></td>
-        <td><%= contribution.getMonth() %></td>
+        <td>${contributionName}</td>
+        <td>${monthName}</td>
         <td><%= contribution.getAmount() %></td>
         <td><a href="./edit?id=<%= contribution.getId() %>">Edit</a>  | <a href="./deleteContribution?id=<%= contribution.getId() %>">Delete</a></td>
     </tr>

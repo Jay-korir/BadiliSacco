@@ -60,31 +60,46 @@ public class Register extends HttpServlet {
 
 
         String actionError = "";
-                    if (first == null || first.equalsIgnoreCase(""))
-                actionError = "please enter a valid first name<br/>";
-
-            if (last == null || last.equalsIgnoreCase(""))
-                actionError += "please enter a valid last  name<br/>";
-
-            if (user == null|| user.equalsIgnoreCase(""))
-                actionError += "please enter a username<br/>";
-
-            if (email == null || email.equalsIgnoreCase(""))
-                actionError = "please enter your email<br/>";
-
-            if (phone == null || phone.equalsIgnoreCase(""))
-                actionError += "please enter mobile number<br/>";
-
-            if (password == null || phone.equalsIgnoreCase(""))
-                actionError += "enter valid password<br/>";
-
-            if (conPassword == null || phone.equalsIgnoreCase(""))
-                actionError = "please confirm password<br/>";
-
-            if ((password != null && conPassword != null) && !password.equals(conPassword)  )
-                actionError += "password do not match<br/>";
-
-
+                    if (first == null || first.equalsIgnoreCase("")){
+                        servletCtx.setAttribute("registerError","firstname is required");
+                        resp.sendRedirect("./register.jsp");
+                   return;
+                    }
+            if (last == null || last.equalsIgnoreCase("")){
+                servletCtx.setAttribute("registerError","lastname is required");
+                 resp.sendRedirect("./register.jsp");
+               return;
+            }
+            if (user == null|| user.equalsIgnoreCase("")) {
+                servletCtx.setAttribute("registerError", "username is required");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
+            if (email == null || email.equalsIgnoreCase("")) {
+                servletCtx.setAttribute("registerError", "email is required");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
+            if (phone == null || phone.equalsIgnoreCase("")) {
+                servletCtx.setAttribute("registerError", "phone is required");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
+            if (password == null || password.equalsIgnoreCase("")) {
+                servletCtx.setAttribute("registerError", "password is required");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
+            if (conPassword == null || conPassword.equalsIgnoreCase("")) {
+                servletCtx.setAttribute("registerError", "confirm password is required");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
+            if ((password != null && conPassword != null) && !password.equals(conPassword)  ) {
+                servletCtx.setAttribute("registerError", "password and confirm password dont match");
+                resp.sendRedirect("./register.jsp");
+                return;
+            }
 
 
             if((password != null && conPassword != null) && password.equals(conPassword)) {

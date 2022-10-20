@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <jsp:include page="header.jsp" />
 
    <h2>Members</h2>
@@ -18,7 +19,7 @@ String addError = (String) application.getAttribute("addError");
 
 if (addError != null && !addError.equals("")) {
 %>
- <span style="color:red"> <%= application.getAttribute("addError") %> </span><br/>
+ <span style="color:red"> ${applicationScope.addError}  </span><br/>
 <% }
 %>
 <a href='./dashboard.jsp'>Back</a>

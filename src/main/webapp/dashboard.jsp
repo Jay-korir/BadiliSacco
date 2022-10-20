@@ -89,7 +89,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-            <a class="nav-link" data-toggle="collapse" href="./addContribution.jsp" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="./contributionPage.jsp" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>

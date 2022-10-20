@@ -1,6 +1,7 @@
 package service;
 
 
+import controller.ContributionController;
 import model.Contribution;
 
 import javax.servlet.RequestDispatcher;
@@ -33,9 +34,10 @@ public class DeleteContribution extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Contribution contribution = new Contribution();
-        int id = contribution.getId();
-        System.out.println("============id =======" + id);
-        this.delete(id);
+        contribution.setId(Integer.parseInt(req.getParameter("id")));
+        Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+        ContributionController contributionController = new ContributionController();
+        contributionController.delete(connection,contribution);
          res.sendRedirect("./contributionPage.jsp");
     }
 
