@@ -55,7 +55,22 @@ public class ContributionController  implements Serializable {
     public void delete(Connection connection, Contribution contribution){
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("delete from departments where id=" +contribution.getId());
+            System.out.println("==============================");
+            System.out.println("delete from contribution where username=" +"'" +contribution.getUsername() +"'");
+            statement.executeUpdate("delete from contribution where username=" +"'"+contribution.getUsername() +"'");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public  void update(Connection connection, Contribution contribution){
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE contribution " + "SET" + "username  = '" + contribution.getUsername() + "'," +
+                    "month = '" + contribution.getMonth() +"',"+
+                    "amount = '" + contribution.getAmount() + "'" +
+                    "WHERE " + "username=" + "'" + contribution.getUsername() + "'");
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

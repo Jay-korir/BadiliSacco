@@ -21,8 +21,8 @@
          <link rel="stylesheet" type=\"text/css\" href="./assets/CSS/style.css"/>
       </head>
         <style> </style>
-       <body bgcolor="Lightskyblue" style="margin: auto; width: 220px;>
-       <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+       <body style="margin: auto; width: auto;>
+
          <div class="bg-img">
            <div class="content\">
            <h1>${applicationScope.applicationLabel}</h1>

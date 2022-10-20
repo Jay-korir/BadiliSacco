@@ -3,16 +3,33 @@
 
    <h2>Members</h2>
   <form action="./add" method="post">
-  <table>
-      <tr> <td>Firstname: </td> <td> <input type="text" name="firstName"> </td> </tr>
-       <tr> <td>lastname: </td> <td> <input type="text" name="lastName"> </td> </tr>
-       <tr> <td>Username: </td> <td> <input type="text" name="userName"> </td> </tr>
-      <tr> <td> Email: </td> <td> <input type="text" name="email"> </td> </tr>
-       <tr> <td> Phone: </td> <td> <input type="text" name="phone"> </td> </tr>
+<div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+        <div class="form-group">
+           <label>First Name</label>
+           <input type="text" name= "firstName" class="form-control p_input">
+         </div>
+         <div class="form-group">
+           <label>Last Name</label>
+           <input type="text" name= "lastName" class="form-control p_input">
+         </div>
+         <div class="form-group">
+           <label>Username</label>
+           <input type="text" name= "userName" class="form-control p_input">
+         </div>
 
+          <div class="form-group">
+             <label>Email</label>
+             <input type="email" name= "email" class="form-control p_input">
+           </div>
+         <div class="form-group">
+            <label>Phone</label>
+           <input type="tel" name= "phone"class="form-control p_input">
+         </div>
+<button type="submit" class="btn btn-primary mr-2">Submit</button>
+<a href='./dashboard.jsp'>Back</a>
 
-    <tr> <td> <input class="button" type="submit" value="Submit"></tr>
-  </table>
    </form>
 <%
 String addError = (String) application.getAttribute("addError");
@@ -22,7 +39,10 @@ if (addError != null && !addError.equals("")) {
  <span style="color:red"> ${applicationScope.addError}  </span><br/>
 <% }
 %>
-<a href='./dashboard.jsp'>Back</a>
+</div>
+</div>
+</div>
+
 
 </body>
 </html>

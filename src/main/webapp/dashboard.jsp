@@ -117,11 +117,11 @@
               </span>
             <span class="menu-title">Welfare</span>
           </a>
-          <a class="nav-link"  href="./addMembers.jsp">
+          <a class="nav-link"  href="./membersPage.jsp">
             <span class="menu-icon">
                <i class="mdi mdi-contacts"></i>
             </span>
-          <span class="menu-title">Add Members</span>
+          <span class="menu-title">Members</span>
          </a>
 
         </ul>

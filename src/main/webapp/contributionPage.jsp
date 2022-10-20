@@ -1,4 +1,5 @@
 <%@ page isELIgnored="false" %>
+<jsp:include page="header.jsp" />
 <%@ page import = "model.Contribution" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
@@ -15,43 +16,51 @@
 %>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="./assets/CSS/style.css"/>
-</head>
-<body bgcolor="Lightskyblue">
+
 <h1><%= application.getAttribute("applicationLabel") %></h1>
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
 <br/>Add Contribution <a href='./addContribution.jsp'>Add Contribution</a><br/>
 <br/>
-<h1> Contribution </h1>
-<table>
-<tr>
-    <th>Contributor username</th>
-    <th>Contribution month</th>
-    <th>Contributed amount</th>
-    <th></th>
-</tr>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title"> Contributions </h2>
+                    <div class="table-responsive">
+                      <table class="table table-dark">
+                        <thead>
+                          <tr>
 
-<%
-    List<Contribution> contributions = contributionController.list((Connection) application.getAttribute("myConnection"), new Contribution());
-    for (Contribution contribution : contributions) {
-     contributionName = contribution.getUsername();
-     monthName = contribution.getMonth();
-%>
+                            <th> Contributor username </th>
+                            <th> Contribution month </th>
+                            <th> Contributed amount</th>
+                            <th> actions </th>
+                          </tr>
+                        </thead>
+                        <%
+                            List<Contribution> contributions = contributionController.list((Connection) application.getAttribute("myConnection"), new Contribution());
+                            for (Contribution contribution : contributions) {
+                             contributionName = contribution.getUsername();
+                             monthName = contribution.getMonth();
+                        %>
 
-    <tr>
-        <td>${contributionName}</td>
-        <td>${monthName}</td>
-        <td><%= contribution.getAmount() %></td>
-        <td><a href="./edit?id=<%= contribution.getId() %>">Edit</a>  | <a href="./deleteContribution?id=<%= contribution.getId() %>">Delete</a></td>
-    </tr>
+                       <tbody>
+                       <tr>
+                               <td><%= contribution.getUsername() %></td>
+                               <td><%= contribution.getMonth() %></td>
+                               <td><%= contribution.getAmount() %></td>
+                               <td><a href="./updateContribution?username=<%= contribution.getUsername() %>">Edit</a>  | <a href="./deleteContribution?username=<%= contribution.getUsername() %>">Delete</a></td>
+                           </tr>
 
-<% } %>
+                       </tbody>
+                       <% } %>
+                      </table>
 
-</table>
 
-<br/>Logout <a href='./logout'>Logout</a><br/>
+
+<a href='./dashboard.jsp'>Back</a><br/>
+ </div>
+         </div>
+                </div>
+              </div>
 </body>
 </html>
