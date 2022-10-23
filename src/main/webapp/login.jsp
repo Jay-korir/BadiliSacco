@@ -27,6 +27,6 @@
                String loginError = (String) application.getAttribute("loginError");
                 if (loginError != null && !loginError.equals("")) {
                         %>
-                          <span style="color:red"> < ${applicationScope.loginError}> </span><br/>
+                          <span style="color:red">  ${applicationScope.loginError} </span><br/>
                         <% } %>
  <jsp:include page = "footer1.jsp" />

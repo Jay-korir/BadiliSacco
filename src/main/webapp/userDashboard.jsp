@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Badili Sacco</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="./template/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End Plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="./template/assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="./template/assets/images/favicon.png" />
-  </head>
+<%@ page isELIgnored="false" %>
+<%@ page import = "model.Contribution" %>
+
+<jsp:include page ="header.jsp" />
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+
   <body>
+<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
+<% String currentUser = request.getParameter("username");
+ Servlet
+ %>
+     <%     int userContributions =contributionController.totalUserContribution((Connection) application.getAttribute("myConnection"),currentUser); %>
+
+
+
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -36,7 +32,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">User</h5>
+                  <h5 class="mb-0 font-weight-normal"><h1>${username}</h1></h5>
                   <span>Admin </span>
                 </div>
               </div>
@@ -89,7 +85,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-            <a class="nav-link" data-toggle="collapse" href="./addContribution.jsp" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="./memberContribution.jsp" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
@@ -98,7 +94,7 @@
             </a>
 
 
-            <a class="nav-link" href="#ui-basic">
+            <a class="nav-link" href="./loan.jsp">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
@@ -109,20 +105,13 @@
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-              <span class="menu-title">Expenses</span>
+              <span class="menu-title"> check Expenses</span>
             </a>
           <a class="nav-link" href="#ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
             <span class="menu-title">Welfare</span>
-          </a>
-          <a class="nav-link"  href="./addMembers.jsp">
-            <span class="menu-icon">
-               <i class="mdi mdi-contacts"></i>
-            </span>
-          <span class="menu-title">Add Members</span>
-         </a>
 
         </ul>
       </nav>
@@ -147,7 +136,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">ksh 100000</h3>
+                        <h3 class="mb-0">userContributions</h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
                       </div>
                     </div>

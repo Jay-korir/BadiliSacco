@@ -61,7 +61,11 @@ public class ContributionAction extends HttpServlet {
 
         ContributionController contributionController = new ContributionController();
         contributionController.add((Connection) servletCtx.getAttribute("myConnection"),contribution);
+
          res.sendRedirect("./contributionPage.jsp");
+
+
+
     }
 
 }

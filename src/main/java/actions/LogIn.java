@@ -56,25 +56,15 @@ public class LogIn extends HttpServlet{
                return;
             }
 
-        Connection connection = (Connection) sCtx.getAttribute("myConnection");
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select usertype from login where username='" + user + "' and " + "password='" + password + "' ");
+        HttpSession session = req.getSession(true);
+        session.setAttribute("username", user.getUsername());
+        session.setAttribute("userType", user.getUserType());
+        sCtx.setAttribute("username", user.getUsername());
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-
-
-
-
-        RequestDispatcher read = req.getRequestDispatcher("dash");
-        read.forward(req, res);
-
+        if (user.getUserType().equals("admin"))
+            res.sendRedirect("./dashboard.jsp");
+        else if (user.getUserType().equals("user"))
+            res.sendRedirect("./userDashboard.jsp");
 
     }
 
@@ -84,19 +74,15 @@ public class LogIn extends HttpServlet{
         try {
             Connection connection = (Connection) sCtx.getAttribute("myConnection");
             Statement statement = connection.createStatement();
-            System.out.println("select * from login where username='" + username + "' and " + "password='" + password + "' ");
-            ResultSet resultSet = statement.executeQuery("select * from login where username='" + username + "' and " + "password='" + password + "' ");
+            ResultSet resultSet = statement.executeQuery("select * from login where username='" + username + "' and " + "password='" + DigestUtils.md2Hex(password) + "' ");
         while (resultSet.next()){
             user = new User();
-           // user.setId((long) resultSet.getInt("id"));
+
             user.setUsername(resultSet.getString("username"));
             user.setPassword(resultSet.getString("password"));
+            user.setUserType(resultSet.getString("usertype"));
 
 
-            System.out.println("username:==" + username);
-            System.out.println("password:==" + password);
-
-            System.out.println("hashed password::" + DigestUtils.md5Hex(password));
         }
         } catch (SQLException e) {
             System.out.println("error "+ e.getMessage());

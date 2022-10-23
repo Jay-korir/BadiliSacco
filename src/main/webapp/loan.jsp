@@ -37,7 +37,7 @@
 
        if (loginError != null && !loginError.equals("")) {
        %>
-         <span style="color:red"> ${applicationScope.loginError} </span><br/>
+         <span style="color:red"> ${applicationScope.username} </span><br/>
         <% }
     %>
         <a href='./dashboard.jsp'>Back</a>

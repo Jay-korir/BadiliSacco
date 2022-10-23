@@ -21,9 +21,11 @@ actions\LogIn.class
 service\Entity.class
 eventListeners\AppServletContextListener.class
 actions\contribution\UpdateContribution.class
+actions\contribution\ContributionActionMember.class
 eventListeners\RequestListener.class
 eventListeners\SessionListener.class
 service\Reg.class
+actions\contribution\DisplayContributions.class
 service\MYSQLSACCO.class
 eventListeners\SessionHttpBinding.class
 utilities\DatabaseConnection.class

@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/display")
+@WebServlet("/displayAction")
 public class Display extends HttpServlet {
     HttpSession httpSession;
 

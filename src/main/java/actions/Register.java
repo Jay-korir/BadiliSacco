@@ -119,8 +119,8 @@ public class Register extends HttpServlet {
                 userH.setUsername(user);
 
                 System.out.println("888888888888888");
-                userH.setPassword(DigestUtils.md2Hex(password));
-                this.insert(user, password);
+               // userH.setPassword(DigestUtils.md2Hex(password));
+                this.insert(user, DigestUtils.md2Hex(password));
                 resp.sendRedirect("./login.jsp");
             }
             else
@@ -129,7 +129,6 @@ public class Register extends HttpServlet {
 
 
     }
-
 
 
     public void insert(String username, String password){

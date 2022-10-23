@@ -17,9 +17,10 @@
 
 
 
-<h1><%= application.getAttribute("applicationLabel") %></h1>
+
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
 <br/>Add Contribution <a href='./addContribution.jsp'>Add Contribution</a><br/>
+
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">

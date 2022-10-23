@@ -21,6 +21,7 @@ public class AppServletContextListener implements ServletContextListener {
         servletContext.setAttribute("applicationLabel","BADILI SACCO");
 
 
+
         try {
             System.out.println("connections starting -----");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco","root","");

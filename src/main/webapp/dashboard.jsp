@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Badili Sacco</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="./template/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End Plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="./template/assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="./template/assets/images/favicon.png" />
-  </head>
+<%@ page isELIgnored="false" %>
+<%@ page import = "model.Contribution" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<jsp:include page ="header.jsp" />
+
   <body>
+<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
+     <%     int contributions =contributionController.totalContribution((Connection) application.getAttribute("myConnection")); %>
+
+
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -26,8 +17,10 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
           <a class="sidebar-brand brand-logo" href="../../index.html"><img src="./template/assets/images/pesa.svg" alt="logo" /></a>
           <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="./template/assets/images/logo-mini.svg" alt="logo" /></a>
+
         </div>
         <ul class="nav">
+        <h3>${applicationScope.applicationLabel}</h3>
           <li class="nav-item profile">
             <div class="profile-desc">
               <div class="profile-pic">
@@ -35,8 +28,9 @@
                   <img class="img-xs rounded-circle " src="./template/assets/images/manu.jpg" alt="">
                   <span class="count bg-success"></span>
                 </div>
+
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">User</h5>
+                  <h5 class="mb-0 font-weight-normal"><h2>${username}</h2></h5>
                   <span>Admin </span>
                 </div>
               </div>
@@ -147,8 +141,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">ksh 100000</h3>
-                        <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                        <h3 class="mb-0"><%= contributions %></h3>
                       </div>
                     </div>
                     <div class="col-3">
