@@ -5,7 +5,6 @@ actions\LandPage.class
 controller\UserController.class
 service\IMYSQLDB.class
 model\Contribution.class
-jstlCustomTags\FooterTag.class
 model\BaseEntity.class
 service\Reg$1.class
 controller\ContributionController.class
@@ -22,7 +21,9 @@ actions\LogIn.class
 service\Entity.class
 controller\LoanController.class
 eventListeners\AppServletContextListener.class
+jstlCustomTags\Header1Tag.class
 actions\contribution\UpdateContribution.class
+jstlCustomTags\Footer1Tag.class
 actions\contribution\ContributionActionMember.class
 eventListeners\RequestListener.class
 eventListeners\SessionListener.class

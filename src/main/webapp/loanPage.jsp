@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
-<jsp:include page="header.jsp" />
+<%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
+<cht:Header></cht:Header>
 <%@ page import = "model.Loan" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>

@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
-<jsp:include page="header.jsp" />
+<%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
+<cht:Header></cht:Header>
    <h2>Loan</h2>
 <form action="./loan" method="post">
 

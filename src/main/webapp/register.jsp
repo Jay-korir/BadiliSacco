@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
-<jsp:include page="header1.jsp" />
+<%@ taglib prefix="cht" uri="WEB-INF/tlds/header1.tld" %>
+<cht:Header1></cht:Header1>
 <h3 class="card-title text-left mb-3">Register</h3>
 <form action= "./register" method = "post">
   <div class="form-group">
@@ -52,4 +53,4 @@
         <span style="color:red">${applicationScope.registerError} </span><br/>
          <% }
   %>
-<jsp:include page = "footer1.jsp" />
+<%@ taglib prefix="cft" uri="WEB-INF/tlds/footer1.tld" %>

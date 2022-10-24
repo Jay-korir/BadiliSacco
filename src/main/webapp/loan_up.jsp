@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
-<jsp:include page="header1.jsp" />
+<%@ taglib prefix="cht" uri="WEB-INF/tlds/header1.tld" %>
+<cht:Header1></cht:Header1>
 
 
    <jsp:useBean id ="loan" class = "model.Loan" />
@@ -12,4 +13,5 @@ for your loan application keep checking for approval. </h1>
 
 <a href='./userDashboard.jsp'>Back</a>
 
- <jsp:include page = "footer1.jsp" />
+ <%@ taglib prefix="cft" uri="WEB-INF/tlds/footer1.tld" %>
+ <cft:Footer1></cft:Footer1>
