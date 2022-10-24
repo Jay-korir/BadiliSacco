@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
+<h1>${applicationScope.applicationLabel}</h1>
 <%@ page import = "model.Contribution" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
@@ -18,9 +19,8 @@
 <tr>name=${username}</tr>
 <form action="./updateContribution" method="post">
 <table>
+<tr>name=${contribution.username}</tr>
 <c:forEach items ="${contributions}" var = "contribution">
-
-   if("${contribution.username}"== ${username})
 
    <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>
   <tr> <td> month: </td> <td> <input type="text"  name="month" value="${contribution.month}"> </td> </tr>

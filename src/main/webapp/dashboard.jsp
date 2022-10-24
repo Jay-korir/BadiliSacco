@@ -7,6 +7,7 @@
 <cht:Header></cht:Header>
 
   <body>
+  <h1>${application.applicationLabel}</h1>
 <jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
      <%     int contributions =contributionController.totalContribution((Connection) application.getAttribute("myConnection")); %>
 

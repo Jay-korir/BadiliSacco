@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
-
+<h1>${applicationScope.applicationLabel}</h1>
    <h2>Members</h2>
   <form action="./add" method="post">
 <div class="col-md-6 grid-margin stretch-card">

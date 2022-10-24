@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
+<h1>${applicationScope.applicationLabel}</h1>
    <h2>Contribution</h2>
 <form action="./memberContribution" method="post">
 

@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
+<h1>${applicationScope.applicationLabel}</h1>
 <%@ page import = "model.Loan" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
@@ -20,7 +21,7 @@
 
 
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
-<br/>Add Contribution <a href='./addContribution.jsp'>Add Contribution</a><br/>
+<br/>Add Contribution <a href='./wmcontri/addContribution.jsp'>Add Contribution</a><br/>
 
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">

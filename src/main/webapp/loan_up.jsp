@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header1.tld" %>
 <cht:Header1></cht:Header1>
-
+<h1>${applicationScope.applicationLabel}</h1>
 
    <jsp:useBean id ="loan" class = "model.Loan" />
    <jsp:setProperty name ="loan" property="*" />
