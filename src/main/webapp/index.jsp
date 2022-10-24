@@ -1,5 +1,8 @@
 <%@ page isELIgnored="false" %>
-<jsp:include page="header.jsp" />
+
+<%@ taglib prefix="jc" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
+<cht:Header></cht:Header>
 
 
 <style>  </style>

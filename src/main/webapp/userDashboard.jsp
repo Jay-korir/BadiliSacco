@@ -8,8 +8,7 @@
 
   <body>
 <jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-<% String currentUser = request.getParameter("username");
- Servlet
+<% String currentUser = (String) session.getAttribute("username");
  %>
      <%     int userContributions =contributionController.totalUserContribution((Connection) application.getAttribute("myConnection"),currentUser); %>
 
@@ -33,7 +32,7 @@
                 </div>
                 <div class="profile-name">
                   <h5 class="mb-0 font-weight-normal"><h1>${username}</h1></h5>
-                  <span>Admin </span>
+                  <span>user </span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -136,8 +135,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">userContributions</h3>
-                        <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                        <h3 class="mb-0"><%= userContributions %></h3>
                       </div>
                     </div>
                     <div class="col-3">
@@ -146,7 +144,7 @@
                       </div>
                     </div>
                   </div>
-                  <h6 class="text-muted font-weight-normal">Total Contribution</h6>
+                  <h6 class="text-muted font-weight-normal">Your Contribution</h6>
                 </div>
               </div>
             </div>

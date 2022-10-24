@@ -2,9 +2,13 @@ package model;
 
 public class Loan  extends  BaseEntity{
    private  String username;
-    private  double amount;
+    private  double loanAmount;
     private  int period;
     private String purpose;
+
+    private  double interest = (2/100);
+
+    private double totalpay;
 
     public String getUsername() {
         return username;
@@ -14,12 +18,12 @@ public class Loan  extends  BaseEntity{
         this.username = username;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getLoanAmount() {
+        return loanAmount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setLoanAmount(double loanAmount) {
+        this.loanAmount = loanAmount;
     }
 
     public int getPeriod() {
@@ -36,5 +40,21 @@ public class Loan  extends  BaseEntity{
 
     public void setPurpose(String purpose) {
         this.purpose = purpose;
+    }
+
+    public void setInterest(double interest) {
+        this.interest = interest;
+    }
+
+    public void setTotalpay(double totalpay) {
+        this.totalpay = totalpay;
+    }
+
+    public double getInterest() {
+        return interest;
+    }
+
+    public double getTotalpay() {
+        return (interest * loanAmount * period) + loanAmount;
     }
 }

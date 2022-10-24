@@ -1,7 +1,9 @@
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\LoanAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\DashBoard.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Display.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Edit.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\DeleteContribution.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\jstlCustomTags\FooterTag.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\MembersAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\UserController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionListener.java
@@ -13,11 +15,13 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Members.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\utilities\DatabaseConnection.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\MySessionAttributeListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\ServletRequetstAListener.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\jstlCustomTags\HeaderTag.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\User.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\ContributionActionMember.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\AppContextAttributeListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionHttpBinding.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Reg.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\LoanController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Loan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Register.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\WelcomeServlet.java

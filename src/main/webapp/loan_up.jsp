@@ -10,6 +10,6 @@
    Username : ${loan.username} <br/>
 for your loan application keep checking for approval. </h1>
 
-<a href='./dashboard.jsp'>Back</a>
+<a href='./userDashboard.jsp'>Back</a>
 
  <jsp:include page = "footer1.jsp" />
