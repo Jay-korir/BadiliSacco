@@ -19,7 +19,10 @@
 <tr>name=${username}</tr>
 <form action="./updateContribution" method="post">
 <table>
-<tr>name=${contribution.username}</tr>
+<tr>name3=${requestScope.username}</tr>
+<h1><%= request.getParameter("username") %></h1>
+
+<tr>name2=${contribution.username}</tr>
 <c:forEach items ="${contributions}" var = "contribution">
 
    <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>

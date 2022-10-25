@@ -8,7 +8,7 @@
 
    <h1>
    Thank you <br/>
-   Username : ${loan.username} <br/>
+   Username : ${username} <br/>
 for your loan application keep checking for approval. </h1>
 
 <a href='./userDashboard.jsp'>Back</a>

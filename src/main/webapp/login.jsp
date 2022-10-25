@@ -1,7 +1,9 @@
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header1.tld" %>
 <cht:Header1></cht:Header1>
-<h1>${application.applicationLabel}</h1>
+
+  <h1>${applicationScope.applicationLabel}</h1>
     <h3 class="card-title text-left mb-3">Login</h3>
     <form action="./login" method="post">
     <div class="form-group">

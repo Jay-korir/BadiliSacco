@@ -35,6 +35,8 @@ public class Header1Tag extends SimpleTagSupport {
                 "        <div class=\"row w-100 m-0\">\n" +
                 "          <div class=\"content-wrapper full-page-wrapper d-flex align-items-center auth login-bg\">\n" +
                 "            <div class=\"card col-lg-4 mx-auto\">\n" +
-                "              <div class=\"card-body px-5 py-5\">");
+                "              <div class=\"card-body px-5 py-5\">"
+
+        );
     }
 }
