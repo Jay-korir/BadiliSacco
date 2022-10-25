@@ -4,44 +4,38 @@
 <h1>${applicationScope.applicationLabel}</h1>
 <%@ page import = "model.Contribution" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-   <h2>Contribution</h2>
+   <h2> Update Contribution</h2>
    <jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-  <% Contribution contribution = new Contribution(); %>
+
 
   <%
-  List<Contribution> contributions = contributionController.list((Connection) application.getAttribute("myConnection"), new Contribution());
-  pageContext.setAttribute("contributions",contributions);
+  Contribution contribution = contributionController.getContribution((Connection) application.getAttribute("myConnection"),
+  Integer.parseInt(request.getParameter("id")));
+  pageContext.setAttribute("contribution",contribution);
   %>
-<tr>name=${username}</tr>
+
 <form action="./updateContribution" method="post">
 <table>
-<tr>name3=${requestScope.username}</tr>
-<h1><%= request.getParameter("username") %></h1>
-
-<tr>name2=${contribution.username}</tr>
-<c:forEach items ="${contributions}" var = "contribution">
-
    <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>
   <tr> <td> month: </td> <td> <input type="text"  name="month" value="${contribution.month}"> </td> </tr>
    <tr> <td> amount: </td> <td> <input type="text" name="amount" value="${contribution.amount}"> </td> </tr>
 
-</c:forEach>
-<tr> <td> <input class="button" type="submit" value="Submit"></tr>
+
+<button type="submit" class="btn btn-primary mr-2">Update</button>
 </table>
 </form>
     <%
-        String loginError = (String) application.getAttribute("loginError");
+        String contributionError = (String) application.getAttribute("contributionError");
 
-       if (loginError != null && !loginError.equals("")) {
+       if (contributionError != null && !contributionError.equals("")) {
        %>
-         <span style="color:red"> ${applicationScope.loginError} %> </span><br/>
+         <span style="color:red"> ${applicationScope.contributionError} </span><br/>
         <% }
     %>
-        <a href='./dashboard.jsp'>Back</a>
+        <a href='./contributionPage.jsp'>Back</a>
        </body>
        </div>
          </div>

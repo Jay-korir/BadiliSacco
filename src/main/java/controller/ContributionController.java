@@ -22,9 +22,9 @@ public class ContributionController  implements Serializable {
 
         try {
             Statement sqlStmt = connection.createStatement();
-            sqlStmt.executeUpdate("insert into contribution(username,month,amount) " +
-                    "values('" + contribution.getUsername() + "','" + contribution.getMonth() + "','" +
-                    +contribution.getAmount() + "')");
+            sqlStmt.executeUpdate("insert into contribution(username,month,amount,id) " +
+                    "values('" + contribution.getUsername() + "','" + contribution.getMonth() + "','" + contribution.getAmount() + "','" +
+                    +contribution.getId() + "')");
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -122,22 +122,24 @@ public class ContributionController  implements Serializable {
 
         return result;
     }
-    public List<Contribution> listUser(Connection connection, String username) {
-        List<Contribution> contributions = new ArrayList<Contribution>();
+
+
+    public Contribution getContribution(Connection connection, int id) {
+        Contribution contribution = new Contribution();
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from contribution where username =" +"'" + username + "'");
+            ResultSet resultSet = statement.executeQuery("select * from contribution where username =" +"'" + id + "'");
             while (resultSet.next()) {
-                model.Contribution contribution = new model.Contribution();
+
                 contribution.setUsername(resultSet.getString("username"));
                 contribution.setMonth(resultSet.getString("month"));
                 contribution.setAmount(resultSet.getDouble("amount"));
-                contributions.add(contribution);
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return contributions;
+        return contribution;
     }
 }

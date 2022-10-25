@@ -60,7 +60,7 @@
                                <td>${fn:toUpperCase(contribution.username)}</td>
                                <td>${contribution.month}</td>
                                <td>${contribution.amount}</td>
-                               <td><a href="./updateContribution?username=${contribution.username}">Edit</a>  | <a href="./deleteContribution?username=${contribution.username}">Delete</a></td>
+                               <td><a href="./updateContribution?username=${contribution.id}">Edit</a>  | <a href="./deleteContribution?username=${contribution.username}">Delete</a></td>
 
                            </tr>
                         </c:forEach>

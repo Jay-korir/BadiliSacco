@@ -1,12 +1,28 @@
 package model;
 
 public class Contribution extends BaseEntity{
+    static  int maxId = 0;
     private String username;
     private String month;
     private   double amount;
 
+    private  int id;
 
 
+    public Contribution() {
+        maxId = maxId + 1;
+        id = maxId;
+
+    }
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

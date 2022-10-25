@@ -39,18 +39,48 @@ public class UpdateContribution extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+               HttpSession session = req.getSession();;
                  resp.sendRedirect("./updateContribution.jsp");
-
     }
 
     @SuppressWarnings("unchecked")
     @Override
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ContributionController contributionController = new ContributionController();
+        PrintWriter wr = resp.getWriter();
         Contribution contribution = new Contribution();
-       // contribution.setUsername(req.getParameter("username"));
+        try {
+            BeanUtils.populate(contribution, req.getParameterMap());
+
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+
+        if (StringUtils.isBlank(contribution.getUsername())) {
+            servletCtx.setAttribute("contributionError","username is required");
+            resp.sendRedirect("./addContribution.jsp");
+            return;
+        }
+
+        if (StringUtils.isBlank(contribution.getMonth())) {
+            servletCtx.setAttribute("contributionError","month is required");
+            resp.sendRedirect("./addContribution.jsp");
+            return;
+        }
+        if (contribution.getAmount() == 0) {
+            servletCtx.setAttribute("contributionError","amount is required");
+            resp.sendRedirect("./addContribution.jsp");
+            return;
+        }
+
         Connection connection = (Connection) servletCtx.getAttribute("myConnection");
-      contributionController.update(connection,contribution);
+          contribution.setUsername("username");
+          contribution.setAmount(Double.parseDouble("amount"));
+          contribution.setMonth("month");
+
+      new ContributionController().update(connection,contribution);
+
+      resp.sendRedirect("./contributionPage.jsp");
     }
 }
