@@ -44,6 +44,7 @@ public class ContributionController  implements Serializable {
                 contribution.setUsername(resultSet.getString("username"));
                 contribution.setMonth(resultSet.getString("month"));
                 contribution.setAmount(resultSet.getDouble("amount"));
+                contribution.setId(resultSet.getInt("id"));
                 contributions.add(contribution);
             }
         } catch (SQLException e) {
@@ -129,7 +130,7 @@ public class ContributionController  implements Serializable {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from contribution where username =" +"'" + id + "'");
+            ResultSet resultSet = statement.executeQuery("select * from contribution where id =" +"'" + id + "'");
             while (resultSet.next()) {
 
                 contribution.setUsername(resultSet.getString("username"));
