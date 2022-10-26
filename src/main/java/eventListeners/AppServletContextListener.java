@@ -4,10 +4,13 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,25 +23,22 @@ public class AppServletContextListener implements ServletContextListener {
         ServletContext servletContext = sce.getServletContext();
         servletContext.setAttribute("applicationLabel","BADILI SACCO");
 
-
-
         try {
             System.out.println("connections starting -----");
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco","root","");
 
-           // MysqlDataSource dataSource = new MysqlDataSource();
-          //  BasicDataSource dataSource = new BasicDataSource();
-            ComboPooledDataSource dataSource = new ComboPooledDataSource();
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/sacco");
-            dataSource.setUser("root");
-            dataSource.setPassword("");
+            InitialContext ictx = new InitialContext();
+            DataSource dataSource = (DataSource) ictx.lookup("java:jboss/datasources/sacco");
 
-            dataSource.setInitialPoolSize(2);
-            dataSource.setMaxIdleTime(2);
+
+
+
+
             Connection connection = dataSource.getConnection();
         servletContext.setAttribute("myConnection",connection);
         } catch (SQLException e) {
             System.out.println("connection failed ----" + e.getMessage());
+            throw new RuntimeException(e);
+        } catch (NamingException e) {
             throw new RuntimeException(e);
         }
 
