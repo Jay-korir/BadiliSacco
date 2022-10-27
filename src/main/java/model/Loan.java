@@ -8,7 +8,7 @@ public class Loan  extends  BaseEntity{
 
     private  double interest = (2/100);
 
-    private double totalpay;
+    private double totalPay;
 
     public String getUsername() {
         return username;
@@ -46,15 +46,15 @@ public class Loan  extends  BaseEntity{
         this.interest = interest;
     }
 
-    public void setTotalpay(double totalpay) {
-        this.totalpay = totalpay;
+    public void setTotalPay(double totalPay) {
+        this.totalPay = totalPay;
     }
 
     public double getInterest() {
         return interest;
     }
 
-    public double getTotalpay() {
+    public double getTotalPay() {
         return (interest * loanAmount * period) + loanAmount;
     }
 }

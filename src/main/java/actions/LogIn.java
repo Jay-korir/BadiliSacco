@@ -1,10 +1,12 @@
 package actions;
 
 
+import controller.AuthController;
 import model.User;
 import org.apache.commons.codec.digest.DigestUtils;
 
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,9 @@ import java.util.Date;
 
 @WebServlet(urlPatterns = "/login")
 public class LogIn extends HttpServlet{
+
+    @Inject
+    AuthController authController;
     ServletContext sCtx = null;
 
     @Override
@@ -30,7 +35,7 @@ public class LogIn extends HttpServlet{
 
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
-        PrintWriter wr = res.getWriter();
+
         String userr = req.getParameter("username");
         String password = req.getParameter("password");
 
@@ -49,7 +54,7 @@ public class LogIn extends HttpServlet{
             return;
             }
 
-        User user = this.login(userr,  password);
+        User user = authController.login(userr,  password);
           if (user == null) {
               sCtx.setAttribute("loginError","username & password is required");
               res.sendRedirect("./login.jsp");
@@ -68,25 +73,5 @@ public class LogIn extends HttpServlet{
 
     }
 
-    public User login(String username, String password ){
-        User user = null;
 
-        try {
-            Connection connection = (Connection) sCtx.getAttribute("myConnection");
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from login where username='" + username + "' and " + "password='" + DigestUtils.md2Hex(password) + "' ");
-        while (resultSet.next()){
-            user = new User();
-
-            user.setUsername(resultSet.getString("username"));
-            user.setPassword(resultSet.getString("password"));
-            user.setUserType(resultSet.getString("usertype"));
-
-
-        }
-        } catch (SQLException e) {
-            System.out.println("error "+ e.getMessage());
-        }
-        return user;
-    }
 }

@@ -5,6 +5,7 @@ import model.Contribution;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -20,6 +21,9 @@ import java.sql.Statement;
 
 @WebServlet("/contribution")
 public class ContributionAction extends HttpServlet {
+
+    @Inject
+    ContributionController contributionController;
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException{
@@ -59,8 +63,8 @@ public class ContributionAction extends HttpServlet {
             return;
         }
 
-        ContributionController contributionController = new ContributionController();
-        contributionController.add((Connection) servletCtx.getAttribute("myConnection"),contribution);
+
+        contributionController.add(contribution);
 
          res.sendRedirect("./contributionPage.jsp");
 

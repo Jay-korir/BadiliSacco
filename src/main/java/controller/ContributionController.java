@@ -3,6 +3,8 @@ package controller;
 import model.Contribution;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContributionController  implements Serializable {
-    public void add(Connection connection, Contribution contribution) {
+
+    @Resource(lookup= "java:jboss/datasources/sacco")
+    DataSource dataSource;
+    public void add(Contribution contribution) {
         if (contribution == null || StringUtils.isBlank(contribution.getUsername()))
             return;
         if (contribution == null || StringUtils.isBlank(contribution.getMonth()))
@@ -21,7 +26,7 @@ public class ContributionController  implements Serializable {
             return;
 
         try {
-            Statement sqlStmt = connection.createStatement();
+            Statement sqlStmt = dataSource.getConnection().createStatement();
             sqlStmt.executeUpdate("insert into contribution(username,month,amount,id) " +
                     "values('" + contribution.getUsername() + "','" + contribution.getMonth() + "','" + contribution.getAmount() + "','" +
                     +contribution.getId() + "')");
@@ -33,11 +38,11 @@ public class ContributionController  implements Serializable {
 
     }
 
-    public List<Contribution> list(Connection connection, Contribution filter) {
+    public List<Contribution> list(Contribution filter) {
         List<Contribution> contributions = new ArrayList<Contribution>();
 
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select * from contribution");
             while (resultSet.next()) {
                 model.Contribution contribution = new model.Contribution();
@@ -53,9 +58,9 @@ public class ContributionController  implements Serializable {
         return contributions;
     }
 
-    public void delete(Connection connection, Contribution contribution) {
+    public void delete(Contribution contribution) {
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
             System.out.println("==============================");
             System.out.println("delete from contribution where username=" + "'" + contribution.getUsername() + "'");
             statement.executeUpdate("delete from contribution where username=" + "'" + contribution.getUsername() + "'");
@@ -65,9 +70,9 @@ public class ContributionController  implements Serializable {
         }
     }
 
-    public void update(Connection connection, Contribution contribution) {
+    public void update(Contribution contribution) {
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
             statement.executeUpdate("UPDATE contribution " + "SET" + "username  = '" + contribution.getUsername() + "'," +
                     "month = '" + contribution.getMonth() + "'," +
                     "amount = '" + contribution.getAmount() + "'" +
@@ -78,12 +83,12 @@ public class ContributionController  implements Serializable {
         }
     }
 
-    public int totalContribution(Connection connection) {
+    public int totalContribution() {
 
         int result = 0;
         try {
 
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
             ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution`");
@@ -101,12 +106,12 @@ public class ContributionController  implements Serializable {
         return result;
     }
 
-    public int totalUserContribution(Connection connection, String username) {
+    public int totalUserContribution(String username) {
 
         int result = 0;
         try {
 
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
             ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution` where username=" + "'" + username + "'");
@@ -125,11 +130,11 @@ public class ContributionController  implements Serializable {
     }
 
 
-    public Contribution getContribution(Connection connection, int id) {
+    public Contribution getContribution(int id) {
         Contribution contribution = new Contribution();
 
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = dataSource.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select * from contribution where id =" +"'" + id + "'");
             while (resultSet.next()) {
 

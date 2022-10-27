@@ -7,6 +7,7 @@ import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,6 +29,8 @@ import static actions.WelcomeServlet.members;
 @WebServlet("/updateContribution")
 
 public class UpdateContribution extends HttpServlet {
+    @Inject
+    ContributionController contributionController;
 
     ServletContext servletCtx = null;
 
@@ -74,12 +77,12 @@ public class UpdateContribution extends HttpServlet {
             return;
         }
 
-        Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+       // Connection connection = (Connection) servletCtx.getAttribute("myConnection");
           contribution.setUsername("username");
           contribution.setAmount(Double.parseDouble("amount"));
           contribution.setMonth("month");
 
-      new ContributionController().update(connection,contribution);
+      contributionController.update(contribution);
 
       resp.sendRedirect("./contributionPage.jsp");
     }

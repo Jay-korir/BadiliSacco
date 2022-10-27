@@ -13,6 +13,7 @@ service\Edit.class
 actions\DashBoard.class
 actions\MembersAction.class
 model\Members.class
+controller\AuthController.class
 controller\MembersController.class
 model\User.class
 eventListeners\AppContextAttributeListener.class

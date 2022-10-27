@@ -3,13 +3,16 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<@ page import = "javax.inject.Inject" %>
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
 
   <body>
   <h1>${application.applicationLabel}</h1>
-<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-     <%     int contributions =contributionController.totalContribution((Connection) application.getAttribute("myConnection")); %>
+  	<%!
+      @Inject
+       private ContributionController contributionController;
+     int contributions =contributionController.totalContribution(); %>
 
 
     <div class="container-scroller">

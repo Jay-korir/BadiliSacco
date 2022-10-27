@@ -4,6 +4,7 @@ package actions.contribution;
 import controller.ContributionController;
 import model.Contribution;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -21,6 +22,8 @@ import java.sql.Statement;
 @WebServlet("/deleteContribution")
 
 public class DeleteContribution extends HttpServlet {
+    @Inject
+    ContributionController contributionController;
 
     static ServletContext servletCtx = null;
 
@@ -36,8 +39,8 @@ public class DeleteContribution extends HttpServlet {
         Contribution contribution = new Contribution();
         contribution.setUsername(req.getParameter("username"));
         Connection connection = (Connection) servletCtx.getAttribute("myConnection");
-        ContributionController contributionController = new ContributionController();
-        contributionController.delete(connection,contribution);
+
+        contributionController.delete(contribution);
          res.sendRedirect("./contributionPage.jsp");
     }
 

@@ -1,7 +1,6 @@
 package controller;
 
 
-import model.Contribution;
 import model.Loan;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,7 +26,7 @@ public class LoanController implements Serializable {
             Statement sqlStmt = connection.createStatement();
             sqlStmt.executeUpdate("insert into loan(username,appliedAmount,interest, totalpay, period,status) " +
                     "values('" + loan.getUsername() + "','" + loan.getLoanAmount() + "','" + loan.getInterest() + "','" +
-                    loan.getTotalpay() + "','"  +loan.getPeriod() + "','"  +"pending" + "')");
+                    loan.getTotalPay() + "','"  +loan.getPeriod() + "','"  +"pending" + "')");
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -47,7 +46,7 @@ public class LoanController implements Serializable {
                 loan.setUsername(resultSet.getString("username"));
                 loan.setLoanAmount(resultSet.getDouble("appliedAmount"));
                 loan.setInterest(resultSet.getDouble("interest"));
-                loan.setTotalpay(resultSet.getDouble("totalpay"));
+                loan.setTotalPay(resultSet.getDouble("totalpay"));
                 loan.setPeriod(resultSet.getInt("period"));
                 resultSet.getString("status");
                 loans.add(loan);

@@ -51,7 +51,7 @@
                           </tr>
                         </thead>
                         <%
-                            List<Contribution> contributions = contributionController.list((Connection) application.getAttribute("myConnection"), new Contribution());
+                            List<Contribution> contributions = contributionController.list(new Contribution());
                              pageContext.setAttribute("contributions",contributions);
                         %>
                        <tbody>

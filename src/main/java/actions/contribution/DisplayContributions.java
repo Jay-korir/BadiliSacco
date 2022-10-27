@@ -3,6 +3,7 @@ package actions.contribution;
 import controller.ContributionController;
 import model.Contribution;
 
+import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/display")
 public class DisplayContributions extends HttpServlet {
+    @Inject
+    ContributionController contributionController;
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -33,16 +36,12 @@ public class DisplayContributions extends HttpServlet {
        Contribution contribution = new Contribution();
 
         PrintWriter wr = resp.getWriter();
-        ContributionController contributionController = new ContributionController();
-        contributionController.totalContribution((Connection) servletCtx.getAttribute("myConnection"));
-          wr.print(contributionController.totalContribution((Connection) servletCtx.getAttribute("myConnection")));
+
+        contributionController.totalContribution();
+          wr.print(contributionController.totalContribution());
 
 
 
-        System.out.println("==========");
-        System.out.println(contributionController.totalUserContribution((Connection) servletCtx.getAttribute("myConnection"),currentUser));
-        System.out.println();
-        wr.print(contributionController.totalUserContribution((Connection) servletCtx.getAttribute("myConnection"),currentUser));
 
     }
 

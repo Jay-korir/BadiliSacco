@@ -6,6 +6,7 @@ import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,6 +21,8 @@ import java.sql.Connection;
 
 @WebServlet("/loan")
 public class LoanAction extends  HttpServlet {
+    @Inject
+    ContributionController contributionController;
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -38,11 +41,9 @@ public class LoanAction extends  HttpServlet {
         Loan loan = new Loan();
 
         PrintWriter wr = resp.getWriter();
-        ContributionController contributionController = new ContributionController();
-        LoanController loanController = new LoanController();
-        contributionController.totalUserContribution((Connection) servletCtx.getAttribute("myConnection"),currentUser);
-
-          double myContribution =  contributionController.totalUserContribution((Connection) servletCtx.getAttribute("myConnection"),currentUser);
+         LoanController loanController = new LoanController();
+        contributionController.totalUserContribution(currentUser);
+          double myContribution =  contributionController.totalUserContribution( currentUser);
 
         System.out.println("==========");
         System.out.println(myContribution);
