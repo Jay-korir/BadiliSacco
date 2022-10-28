@@ -27,9 +27,12 @@ public class ContributionController  implements Serializable {
 
         try {
             Statement sqlStmt = dataSource.getConnection().createStatement();
-            sqlStmt.executeUpdate("insert into contribution(username,month,amount,id) " +
+            System.out.println("insert into contribution(username,month,amount) " +
                     "values('" + contribution.getUsername() + "','" + contribution.getMonth() + "','" + contribution.getAmount() + "','" +
                     +contribution.getId() + "')");
+            sqlStmt.execute("insert into contribution(username,month,amount) " +
+                    "values('" + contribution.getUsername() + "','" + contribution.getMonth() + "','" + contribution.getAmount()
+                    + "')");
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

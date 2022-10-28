@@ -77,7 +77,7 @@ public class UpdateContribution extends HttpServlet {
             return;
         }
 
-       // Connection connection = (Connection) servletCtx.getAttribute("myConnection");
+
           contribution.setUsername("username");
           contribution.setAmount(Double.parseDouble("amount"));
           contribution.setMonth("month");

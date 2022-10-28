@@ -2,8 +2,9 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\LoanAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\DashBoard.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Display.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Edit.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\MembersAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\DeleteContribution.java
-C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\MembersAction.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\UpdateMember.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\UserController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Entity.java
@@ -25,6 +26,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\LoanController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Loan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\controller\AuthController.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Register.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\DeleteMember.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\WelcomeServlet.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LandPage.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Delete.java

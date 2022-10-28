@@ -38,7 +38,6 @@ public class DeleteContribution extends HttpServlet {
 
         Contribution contribution = new Contribution();
         contribution.setUsername(req.getParameter("username"));
-        Connection connection = (Connection) servletCtx.getAttribute("myConnection");
 
         contributionController.delete(contribution);
          res.sendRedirect("./contributionPage.jsp");

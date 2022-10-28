@@ -36,7 +36,7 @@ public class ContributionAction extends HttpServlet {
     @SuppressWarnings("unchecked")
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        PrintWriter wr = res.getWriter();
+
         Contribution contribution = new Contribution();
         try {
             BeanUtils.populate(contribution, req.getParameterMap());

@@ -12,7 +12,8 @@
   	<%!
       @Inject
        private ContributionController contributionController;
-     int contributions =contributionController.totalContribution(); %>
+  %>
+     <%     int contributions =contributionController.totalContribution(); %>
 
 
     <div class="container-scroller">

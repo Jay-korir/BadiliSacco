@@ -2,6 +2,7 @@ eventListeners\MySessionAttributeListener.class
 service\Delete.class
 actions\WelcomeServlet.class
 actions\LandPage.class
+actions\members\UpdateMember.class
 controller\UserController.class
 service\IMYSQLDB.class
 model\Contribution.class
@@ -11,7 +12,6 @@ controller\ContributionController.class
 actions\Display.class
 service\Edit.class
 actions\DashBoard.class
-actions\MembersAction.class
 model\Members.class
 controller\AuthController.class
 controller\MembersController.class
@@ -28,8 +28,10 @@ jstlCustomTags\Footer1Tag.class
 actions\contribution\ContributionActionMember.class
 eventListeners\RequestListener.class
 eventListeners\SessionListener.class
+actions\members\MembersAction.class
 service\Reg.class
 actions\loan\LoanAction.class
+actions\members\DeleteMember.class
 actions\contribution\DisplayContributions.class
 service\MYSQLSACCO.class
 eventListeners\SessionHttpBinding.class
