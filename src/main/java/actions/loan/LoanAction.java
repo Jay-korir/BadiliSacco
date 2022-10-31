@@ -23,6 +23,9 @@ import java.sql.Connection;
 public class LoanAction extends  HttpServlet {
     @Inject
     ContributionController contributionController;
+
+    @Inject
+    LoanController loanController;
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -40,8 +43,7 @@ public class LoanAction extends  HttpServlet {
         System.out.println("myloan===" +loanApplied);
         Loan loan = new Loan();
 
-        PrintWriter wr = resp.getWriter();
-         LoanController loanController = new LoanController();
+
         contributionController.totalUserContribution(currentUser);
           double myContribution =  contributionController.totalUserContribution( currentUser);
 
@@ -82,8 +84,13 @@ public class LoanAction extends  HttpServlet {
             return;
 
         }
+        double myInterest = (2/100) * loanApplied;
+        loan.setInterest(myInterest);
+        double myTotalPay = myInterest + loanApplied;
+        loan.setTotalPay(myTotalPay);
         if (loanApplied <= (myContribution / 2)){
-            loanController.add((Connection) servletCtx.getAttribute("myConnection"),loan);
+
+            loanController.add(loan);
             resp.sendRedirect("./loan_up.jsp");
         }
 

@@ -52,8 +52,11 @@
                        <tr>
                                <td><%= loan.getUsername() %></td>
                                <td><%= loan.getLoanAmount() %></td>
-                               <td><%= contribution.getAmount() %></td>
-                               <td><a href="./updateContribution?username=<%= contribution.getUsername() %>">Edit</a>  | <a href="./deleteContribution?username=<%= contribution.getUsername() %>">Delete</a></td>
+                               <td><%= loan.getInterest() %></td>
+                               <td><%= loan.getTotalPay() %></td>
+                               <td><%= loan.getPeriod %></td>
+                               <td><a href="./approve?id=${member.id}">Pending</a>
+
                            </tr>
 
                        </tbody>

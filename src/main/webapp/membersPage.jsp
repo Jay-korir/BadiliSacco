@@ -49,7 +49,7 @@
                                 <td><%= member.getUserName() %></td>
                                 <td><%= member.getEmail() %></td>
                                 <td><%= member.getPhone() %></td>
-                                <td><a href="./edit">Edit</a>  | <a href="./delete">Delete</a></td>
+                                <td><a href="./updateMember.jsp?id=${member.id}">Edit</a>  | <a href="./deleteMember?username=${member.username}">Delete</a></td>
 
                             </tr>
 

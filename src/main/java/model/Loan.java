@@ -55,6 +55,7 @@ public class Loan  extends  BaseEntity{
     }
 
     public double getTotalPay() {
-        return (interest * loanAmount * period) + loanAmount;
+
+        return  totalPay;
     }
 }

@@ -93,13 +93,21 @@
               <i class="menu-arrow"></i>
             </a>
 
-
+        <li class="nav-item menu-items">
             <a class="nav-link" href="./loan.jsp">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
               <span class="menu-title">Loans</span>
             </a>
+            <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+          </ul>
+        </div>
+      </li>
 
             <a class="nav-link" href="#ui-basic">
               <span class="menu-icon">
