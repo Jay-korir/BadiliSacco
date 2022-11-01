@@ -5,6 +5,8 @@ import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.sql.DataSource;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -14,9 +16,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequestScoped
+@Named("memberController")
 public class MembersController  implements Serializable {
     @Resource(lookup= "java:jboss/datasources/sacco")
     DataSource dataSource;
+
+    private List<Members> list;
     public void add(Members members){
         if ( members == null ||StringUtils.isBlank(members.getFirstName()) || StringUtils.isBlank(members.getLastName()) ||
                 StringUtils.isBlank(members.getUserName())|| StringUtils.isBlank(members.getEmail())||StringUtils.isBlank(members.getPhone()))
@@ -106,4 +112,29 @@ public class MembersController  implements Serializable {
         return members;
     }
 
+    public List<Members> getList() {
+        List<Members> members = new ArrayList<Members>();
+
+        try {
+            Statement statement = dataSource.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from members");
+            while (resultSet.next()){
+                model.Members member = new model.Members();
+                member.setFirstName(resultSet.getString("firstname"));
+                member.setLastName(resultSet.getString("lastname"));
+                member.setUserName(resultSet.getString("username"));
+                member.setEmail(resultSet.getString("email"));
+                member.setPhone(resultSet.getString("phone"));
+                member.setId(resultSet.getInt("id"));
+                members.add(member);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return members;
+    }
+
+    public void setList(List<Members> list) {
+        this.list = list;
+    }
 }

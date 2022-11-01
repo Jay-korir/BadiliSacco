@@ -37,7 +37,7 @@ public class DeleteContribution extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Contribution contribution = new Contribution();
-        contribution.setUsername(req.getParameter("username"));
+        contribution.setId(Integer.parseInt(req.getParameter("id")));
 
         contributionController.delete(contribution);
          res.sendRedirect("./contributionPage.jsp");

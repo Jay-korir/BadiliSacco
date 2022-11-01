@@ -1,6 +1,7 @@
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\LoanAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\DashBoard.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Display.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\DeclineLoan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Edit.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\MembersAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\DeleteContribution.java
@@ -30,6 +31,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\DeleteMember.ja
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\WelcomeServlet.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LandPage.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Delete.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\ApproveLoan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\DisplayContributions.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\MYSQLSACCO.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\AppServletContextListener.java

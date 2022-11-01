@@ -37,8 +37,8 @@ public class DisplayContributions extends HttpServlet {
 
         PrintWriter wr = resp.getWriter();
 
-        contributionController.totalContribution();
-          wr.print(contributionController.totalContribution());
+        contributionController.getTotalContribution();
+          wr.print(contributionController.getTotalContribution());
 
 
 

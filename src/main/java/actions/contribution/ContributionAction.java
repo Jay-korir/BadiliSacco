@@ -26,7 +26,7 @@ public class ContributionAction extends HttpServlet {
     ContributionController contributionController;
     ServletContext servletCtx = null;
 
-    public void init(ServletConfig config) throws ServletException{
+    public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
         servletCtx = config.getServletContext();
@@ -41,24 +41,24 @@ public class ContributionAction extends HttpServlet {
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
 
         if (StringUtils.isBlank(contribution.getUsername())) {
-           servletCtx.setAttribute("addError","username is required");
+            servletCtx.setAttribute("addError", "username is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }
 
         if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("addError","month is required");
+            servletCtx.setAttribute("addError", "month is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }
         if (contribution.getAmount() == 0) {
-           servletCtx.setAttribute("addError","amount is required");
+            servletCtx.setAttribute("addError", "amount is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }
@@ -66,8 +66,7 @@ public class ContributionAction extends HttpServlet {
 
         contributionController.add(contribution);
 
-         res.sendRedirect("./contributionPage.jsp");
-
+        res.sendRedirect("./contributionPage.jsp");
 
 
     }

@@ -12,10 +12,10 @@
 
 
   <%
-  Contribution contribution = contributionController.getContribution((Connection) application.getAttribute("myConnection"),
-  Integer.parseInt(request.getParameter("id")));
-  pageContext.setAttribute("contribution",contribution);
+
+  pageContext.setAttribute("${contributionController.contribution}",contribution);
   %>
+
 
 <form action="./updateContribution" method="post">
 <table>

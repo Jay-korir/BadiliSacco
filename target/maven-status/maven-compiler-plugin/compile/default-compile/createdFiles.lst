@@ -1,5 +1,6 @@
 eventListeners\MySessionAttributeListener.class
 service\Delete.class
+actions\loan\DeclineLoan.class
 actions\WelcomeServlet.class
 actions\LandPage.class
 actions\members\UpdateMember.class
@@ -23,6 +24,7 @@ service\Entity.class
 controller\LoanController.class
 eventListeners\AppServletContextListener.class
 jstlCustomTags\Header1Tag.class
+actions\loan\ApproveLoan.class
 actions\contribution\UpdateContribution.class
 jstlCustomTags\Footer1Tag.class
 actions\contribution\ContributionActionMember.class

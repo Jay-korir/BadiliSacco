@@ -6,8 +6,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-
-<jsp:useBean id = "membersController"  class = "controller.MembersController" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
 
 
@@ -37,24 +36,21 @@
 
                           </tr>
                         </thead>
-                        <%
 
-                             List<Members> members = membersController.list((Connection) application.getAttribute("myConnection"), new Members());
-                            for (Members member : members) {
-                        %>
                           <tbody>
+                          <c:forEach items ="${memberController.list}" var = "member">
                          <tr>
-                                <td><%= member.getFirstName() %></td>
-                                <td><%= member.getLastName() %></td>
-                                <td><%= member.getUserName() %></td>
-                                <td><%= member.getEmail() %></td>
-                                <td><%= member.getPhone() %></td>
-                                <td><a href="./updateMember.jsp?id=${member.id}">Edit</a>  | <a href="./deleteMember?username=${member.username}">Delete</a></td>
+                                <td>${member.firstName}</td>
+                                <td>${member.lastName}</td>
+                                 <td>${member.userName}</td>
+                                <td>${member.email}</td>
+                                <td>${member.phone}</td>
+                                <td><a href="./updateMember.jsp?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
 
                             </tr>
-
+                          </c:forEach>
                         </tbody>
-                        <% } %>
+
                       </table>
 
  <a href='./dashboard.jsp'>Back</a><br/>

@@ -12,15 +12,6 @@
 
 
 
-<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-
-<%!
-
-	String contributionName;
-	String monthName;
-
-%>
-
 <td><c:set var="str" value="Welcome to the sacco system badili sacco"/>
        <c:if test="${fn:contains(str, 'badili')}">
        <p>welcome to badili sacco</p>
@@ -50,17 +41,14 @@
                             <th>date</th>
                           </tr>
                         </thead>
-                        <%
-                            List<Contribution> contributions = contributionController.list(new Contribution());
-                             pageContext.setAttribute("contributions",contributions);
-                        %>
+
                        <tbody>
-                       <c:forEach items ="${contributions}" var = "contribution">
+                       <c:forEach items ="${contributionController.list}" var = "contribution">
                       <tr>
                                <td>${fn:toUpperCase(contribution.username)}</td>
                                <td>${contribution.month}</td>
                                <td>${contribution.amount}</td>
-                               <td><a href="./updateContribution.jsp?id=${contribution.id}">Edit</a>  | <a href="./deleteContribution?username=${contribution.username}">Delete</a></td>
+                               <td><a href="./updateContribution.jsp?id=${contribution.id}">Edit</a>  | <a href="./deleteContribution?id=${contribution.id}">Delete</a></td>
                                 <td>${contribution.id}</td>
                            </tr>
                         </c:forEach>

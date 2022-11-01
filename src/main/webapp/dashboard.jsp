@@ -9,11 +9,6 @@
 
   <body>
   <h1>${application.applicationLabel}</h1>
-  	<%!
-      @Inject
-       private ContributionController contributionController;
-  %>
-     <%     int contributions =contributionController.totalContribution(); %>
 
 
     <div class="container-scroller">
@@ -147,7 +142,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0"><%= contributions %></h3>
+                        <h3 class="mb-0">${contributionController.totalContribution}</h3>
                       </div>
                     </div>
                     <div class="col-3">
