@@ -8,12 +8,6 @@
 <%@ page import="java.util.List" %>
 
   <body>
-<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-<% String currentUser = (String) session.getAttribute("username");
- %>
-     <%     int userContributions =contributionController.totalUserContribution((Connection) application.getAttribute("myConnection"),currentUser); %>
-
-
 
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
@@ -144,7 +138,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0"><%= userContributions %></h3>
+                        <h3 class="mb-0">500000</h3>
                       </div>
                     </div>
                     <div class="col-3">

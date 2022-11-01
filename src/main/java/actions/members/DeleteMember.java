@@ -31,7 +31,7 @@ public class DeleteMember extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Members members = new Members();
-        members.setUserName(req.getParameter("userName"));
+        members.setId(Integer.parseInt(req.getParameter("id")));
 
 
         membersController.delete( members);

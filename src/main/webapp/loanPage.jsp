@@ -22,13 +22,13 @@
 
 
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
-<br/>Add Contribution <a href='./wmcontri/addContribution.jsp'>Add Contribution</a><br/>
+<br/>Loan Applications <br/>
 
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h2 class="card-title"> Contributions </h2>
+                    <h2 class="card-title">Manage Loans</h2>
                     <div class="table-responsive">
                       <table class="table table-dark">
                         <thead>

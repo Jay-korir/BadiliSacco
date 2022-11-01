@@ -24,6 +24,9 @@ public class ContributionAction extends HttpServlet {
 
     @Inject
     ContributionController contributionController;
+
+    @Inject
+    Contribution contribution;
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -37,7 +40,7 @@ public class ContributionAction extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 
-        Contribution contribution = new Contribution();
+         contribution = new Contribution();
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 

@@ -39,24 +39,24 @@ public class ContributionActionMember extends HttpServlet {
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
 
         if (StringUtils.isBlank(contribution.getUsername())) {
-            servletCtx.setAttribute("addError","username is required");
+            servletCtx.setAttribute("addError", "username is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }
 
         if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("addError","month is required");
+            servletCtx.setAttribute("addError", "month is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }
         if (contribution.getAmount() == 0) {
-            servletCtx.setAttribute("addError","amount is required");
+            servletCtx.setAttribute("addError", "amount is required");
             res.sendRedirect("./addContribution.jsp");
             return;
         }

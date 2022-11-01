@@ -8,16 +8,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
    <h2> Update Contribution</h2>
-   <jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
 
 
-  <%
 
-  pageContext.setAttribute("${contributionController.contribution}",contribution);
-  %>
 
 
 <form action="./updateContribution" method="post">
+<c:forEach items ="${contributionController.userContribution}" var = "contribution">
 <table>
    <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>
   <tr> <td> month: </td> <td> <input type="text"  name="month" value="${contribution.month}"> </td> </tr>
@@ -25,6 +22,7 @@
 
 
 <button type="submit" class="btn btn-primary mr-2">Update</button>
+</c:forEach>
 </table>
 </form>
     <%

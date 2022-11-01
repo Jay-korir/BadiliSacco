@@ -28,7 +28,12 @@ public class MembersAction extends HttpServlet {
     MembersController membersController;
     ServletContext servletCtx = null;
 
-    public void init(ServletConfig config) throws ServletException{
+    @Inject
+    public MembersAction(MembersController membersController) {
+        this.membersController = membersController;
+    }
+
+    public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
         servletCtx = config.getServletContext();
@@ -41,7 +46,6 @@ public class MembersAction extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-
         Members member = new Members();
 
         try {
@@ -50,27 +54,27 @@ public class MembersAction extends HttpServlet {
             System.out.println("bean util error " + ex.getMessage());
         }
         if (org.apache.commons.lang3.StringUtils.isBlank(member.getFirstName())) {
-            servletCtx.setAttribute("addError","firstname is required");
+            servletCtx.setAttribute("addError", "firstname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getLastName())){
-            servletCtx.setAttribute("addError","lastname is required");
+        if (StringUtils.isBlank(member.getLastName())) {
+            servletCtx.setAttribute("addError", "lastname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getUserName())){
-            servletCtx.setAttribute("addError","username is required");
+        if (StringUtils.isBlank(member.getUserName())) {
+            servletCtx.setAttribute("addError", "username is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getEmail())){
-            servletCtx.setAttribute("addError","Email is required");
+        if (StringUtils.isBlank(member.getEmail())) {
+            servletCtx.setAttribute("addError", "Email is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getPhone())){
-            servletCtx.setAttribute("addError","phone is required");
+        if (StringUtils.isBlank(member.getPhone())) {
+            servletCtx.setAttribute("addError", "phone is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }

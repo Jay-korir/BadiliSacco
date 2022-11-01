@@ -33,6 +33,7 @@ public class DeleteContribution extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @SuppressWarnings("unchecked")
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -40,9 +41,8 @@ public class DeleteContribution extends HttpServlet {
         contribution.setId(Integer.parseInt(req.getParameter("id")));
 
         contributionController.delete(contribution);
-         res.sendRedirect("./contributionPage.jsp");
+        res.sendRedirect("./contributionPage.jsp");
     }
-
 
 
 }

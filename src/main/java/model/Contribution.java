@@ -1,5 +1,9 @@
 package model;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@Named("contributionI")
 public class Contribution extends BaseEntity{
     static  int maxId = 0;
     private String username;
@@ -8,7 +12,7 @@ public class Contribution extends BaseEntity{
 
     private  int id;
 
-
+    @Inject
     public Contribution() {
         maxId = maxId + 1;
         id = maxId;

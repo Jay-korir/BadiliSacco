@@ -33,18 +33,15 @@ public class DisplayContributions extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String currentUser = servletCtx.getAttribute("username").toString();
         System.out.println(currentUser);
-       Contribution contribution = new Contribution();
+        Contribution contribution = new Contribution();
 
         PrintWriter wr = resp.getWriter();
 
         contributionController.getTotalContribution();
-          wr.print(contributionController.getTotalContribution());
-
-
+        wr.print(contributionController.getTotalContribution());
 
 
     }
-
 
 
 }

@@ -40,7 +40,9 @@ public class LoanAction extends  HttpServlet {
         String currentUser = servletCtx.getAttribute("username").toString();
         System.out.println(currentUser);
         double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
-        System.out.println("myloan===" +loanApplied);
+        System.out.println("myLoan===" +loanApplied);
+        int loanPeriod = Integer.parseInt(req.getParameter("period"));
+        System.out.println("loanPeriod =====" + loanPeriod);
         Loan loan = new Loan();
 
 
@@ -84,10 +86,15 @@ public class LoanAction extends  HttpServlet {
             return;
 
         }
-        double myInterest = (2/100) * loanApplied;
+        System.out.println(loanApplied);
+        double myInterest = ( (0.02) * loanApplied *  loanPeriod );
         loan.setInterest(myInterest);
+        System.out.println("myInterest=====" + myInterest);
+        ;
+
         double myTotalPay = myInterest + loanApplied;
         loan.setTotalPay(myTotalPay);
+        System.out.println("myTotalPay=====" + myTotalPay);
         if (loanApplied <= (myContribution / 2)){
 
             loanController.add(loan);

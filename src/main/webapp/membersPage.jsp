@@ -45,7 +45,7 @@
                                  <td>${member.userName}</td>
                                 <td>${member.email}</td>
                                 <td>${member.phone}</td>
-                                <td><a href="./updateMember.jsp?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
+                                <td><a href="./updateMember?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
 
                             </tr>
                           </c:forEach>

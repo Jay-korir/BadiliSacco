@@ -82,9 +82,7 @@ public class MembersController  implements Serializable {
     public void delete(Members members) {
         try {
             Statement statement = dataSource.getConnection().createStatement();
-            System.out.println("==============================");
-            System.out.println("delete from members where username=" + "'" + members.getUserName() + "'");
-            statement.executeUpdate("delete from members where username=" + "'" + members.getUserName() + "'");
+            statement.executeUpdate("delete from members where id=" + "'" + members.getId() + "'");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

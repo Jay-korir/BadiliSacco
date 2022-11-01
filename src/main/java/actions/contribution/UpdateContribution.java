@@ -40,10 +40,12 @@ public class UpdateContribution extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-               HttpSession session = req.getSession();;
-                 resp.sendRedirect("./updateContribution.jsp");
+        HttpSession session = req.getSession();
+        ;
+        resp.sendRedirect("./updateContribution.jsp");
     }
 
     @SuppressWarnings("unchecked")
@@ -55,35 +57,35 @@ public class UpdateContribution extends HttpServlet {
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
 
         if (StringUtils.isBlank(contribution.getUsername())) {
-            servletCtx.setAttribute("contributionError","username is required");
+            servletCtx.setAttribute("contributionError", "username is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
 
         if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("contributionError","month is required");
+            servletCtx.setAttribute("contributionError", "month is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
         if (contribution.getAmount() == 0) {
-            servletCtx.setAttribute("contributionError","amount is required");
+            servletCtx.setAttribute("contributionError", "amount is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
 
 
-          contribution.setUsername("username");
-          contribution.setAmount(Double.parseDouble("amount"));
-          contribution.setMonth("month");
+        contribution.setUsername("username");
+        contribution.setAmount(Double.parseDouble("amount"));
+        contribution.setMonth("month");
 
-      contributionController.update(contribution);
+        contributionController.update(contribution);
 
-      resp.sendRedirect("./contributionPage.jsp");
+        resp.sendRedirect("./contributionPage.jsp");
     }
 }

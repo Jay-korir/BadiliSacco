@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
 import java.io.Serializable;
@@ -16,13 +17,15 @@ import java.util.List;
 
 @RequestScoped
 @Named("contributionController")
-public class ContributionController  implements Serializable {
+public class ContributionController implements Serializable {
 
-    @Resource(lookup= "java:jboss/datasources/sacco")
+    @Resource(lookup = "java:jboss/datasources/sacco")
     DataSource dataSource;
 
     private List<Contribution> list;
     private List<Contribution> list1;
+
+    @Inject
     public void add(Contribution contribution) {
         if (contribution == null || StringUtils.isBlank(contribution.getUsername()))
             return;
@@ -47,6 +50,7 @@ public class ContributionController  implements Serializable {
 
     }
 
+
     public List<Contribution> list(Contribution filter) {
         List<Contribution> contributions = new ArrayList<Contribution>();
 
@@ -67,6 +71,7 @@ public class ContributionController  implements Serializable {
         return contributions;
     }
 
+    @Inject
     public void delete(Contribution contribution) {
         try {
             Statement statement = dataSource.getConnection().createStatement();
@@ -78,6 +83,7 @@ public class ContributionController  implements Serializable {
             System.out.println(e.getMessage());
         }
     }
+
 
     public void update(Contribution contribution) {
         try {
@@ -92,6 +98,7 @@ public class ContributionController  implements Serializable {
         }
     }
 
+
     public int getTotalContribution() {
 
         int result = 0;
@@ -102,8 +109,8 @@ public class ContributionController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
             ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution`");
             System.out.println("=================");
-            if(resultSet1 != null) {
-                while(resultSet1.next()) {
+            if (resultSet1 != null) {
+                while (resultSet1.next()) {
                     result += (int) resultSet1.getDouble("amount");
                 }
             }
@@ -114,6 +121,7 @@ public class ContributionController  implements Serializable {
 
         return result;
     }
+
 
     public int totalUserContribution(String username) {
 
@@ -125,8 +133,8 @@ public class ContributionController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
             ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution` where username=" + "'" + username + "'");
             System.out.println("=================");
-            if(resultSet1 != null) {
-                while(resultSet1.next()) {
+            if (resultSet1 != null) {
+                while (resultSet1.next()) {
                     result += (int) resultSet1.getDouble("amount");
                 }
             }
@@ -139,12 +147,12 @@ public class ContributionController  implements Serializable {
     }
 
 
-    public Contribution getContribution(int id) {
+    public Contribution getUserContribution(int id) {
         Contribution contribution = new Contribution();
 
         try {
             Statement statement = dataSource.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from contribution where id =" +"'" + id + "'");
+            ResultSet resultSet = statement.executeQuery("select * from contribution where id =" + "'" + id + "'");
             while (resultSet.next()) {
 
                 contribution.setUsername(resultSet.getString("username"));
@@ -158,6 +166,7 @@ public class ContributionController  implements Serializable {
         return contribution;
     }
 
+    @Inject
     public List<Contribution> getList() {
         List<Contribution> contributions = new ArrayList<Contribution>();
 
@@ -191,8 +200,8 @@ public class ContributionController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
             ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution`");
             System.out.println("=================");
-            if(resultSet1 != null) {
-                while(resultSet1.next()) {
+            if (resultSet1 != null) {
+                while (resultSet1.next()) {
                     result += (int) resultSet1.getDouble("amount");
                 }
             }
