@@ -19,6 +19,7 @@ import java.util.List;
 @Named("contributionController")
 public class ContributionController implements Serializable {
 
+
     @Resource(lookup = "java:jboss/datasources/sacco")
     DataSource dataSource;
 

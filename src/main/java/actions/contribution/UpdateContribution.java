@@ -80,12 +80,22 @@ public class UpdateContribution extends HttpServlet {
         }
 
 
+       // contribution.setUsername("username");
+       // contribution.setAmount(Double.parseDouble("amount"));
+       // contribution.setMonth("month");
+
+        //contributionController.update(contribution);
+        //this.update(contribution);
+
+        resp.sendRedirect("./contributionPage.jsp");
+    }
+    @Inject
+    public void update(Contribution contribution){
+        ContributionController contributionController1 = contributionController;
         contribution.setUsername("username");
         contribution.setAmount(Double.parseDouble("amount"));
         contribution.setMonth("month");
 
-        contributionController.update(contribution);
-
-        resp.sendRedirect("./contributionPage.jsp");
+        contributionController1.update(contribution);
     }
 }

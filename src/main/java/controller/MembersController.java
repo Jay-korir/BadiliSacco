@@ -19,6 +19,10 @@ import java.util.List;
 @RequestScoped
 @Named("memberController")
 public class MembersController  implements Serializable {
+
+    public MembersController() {
+    }
+
     @Resource(lookup= "java:jboss/datasources/sacco")
     DataSource dataSource;
 

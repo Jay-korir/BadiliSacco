@@ -30,6 +30,7 @@ public class MembersAction extends HttpServlet {
 
     @Inject
     public MembersAction(MembersController membersController) {
+
         this.membersController = membersController;
     }
 
