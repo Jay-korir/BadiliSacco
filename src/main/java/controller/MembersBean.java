@@ -1,6 +1,5 @@
 package controller;
 
-import model.Contribution;
 import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,7 +8,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.sql.DataSource;
 import java.io.Serializable;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,15 +26,15 @@ public class MembersController  implements Serializable {
 
     private List<Members> list;
     public void add(Members members){
-        if ( members == null ||StringUtils.isBlank(members.getFirstName()) || StringUtils.isBlank(members.getLastName()) ||
-                StringUtils.isBlank(members.getUserName())|| StringUtils.isBlank(members.getEmail())||StringUtils.isBlank(members.getPhone()))
+        if ( members == null ||StringUtils.isBlank(members.getFirstname()) || StringUtils.isBlank(members.getLastname()) ||
+                StringUtils.isBlank(members.getUsername())|| StringUtils.isBlank(members.getEmail())||StringUtils.isBlank(members.getPhone()))
             return;
 
         try {
 
             Statement statement = dataSource.getConnection().createStatement();
             statement.execute("INSERT INTO members(firstname, lastname, username, email, phone) " +
-                    "VALUES ('"+ members.getFirstName().trim() +"','"+ members.getLastName().trim() +"','"+ members.getUserName().trim()+"','"+
+                    "VALUES ('"+ members.getFirstname().trim() +"','"+ members.getLastname().trim() +"','"+ members.getUsername().trim()+"','"+
                     members.getEmail().trim() +"','"+ members.getPhone().trim()  +"')");
 
 
@@ -55,9 +53,9 @@ public class MembersController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("select * from members");
             while (resultSet.next()){
                 model.Members member = new model.Members();
-                member.setFirstName(resultSet.getString("firstname"));
-                member.setLastName(resultSet.getString("lastname"));
-                member.setUserName(resultSet.getString("username"));
+                member.setFirstname(resultSet.getString("firstname"));
+                member.setLastname(resultSet.getString("lastname"));
+                member.setUsername(resultSet.getString("username"));
                 member.setEmail(resultSet.getString("email"));
                 member.setPhone(resultSet.getString("phone"));
                 members.add(member);
@@ -71,12 +69,12 @@ public class MembersController  implements Serializable {
     public void update(Members members) {
         try {
             Statement statement = dataSource.getConnection().createStatement();
-            statement.executeUpdate("UPDATE members " + "SET" + "firstname  = '" + members.getFirstName() + "'," +
-                    "lastname = '" + members.getLastName() + "'," +
-                    "username = '" + members.getUserName() + "'" +
+            statement.executeUpdate("UPDATE members " + "SET" + "firstname  = '" + members.getFirstname() + "'," +
+                    "lastname = '" + members.getLastname() + "'," +
+                    "username = '" + members.getUsername() + "'" +
                     "email = '" + members.getEmail() + "'" +
                     "phone = '" + members.getPhone() + "'" +
-                    "WHERE " + "username=" + "'" + members.getUserName() + "'");
+                    "WHERE " + "username=" + "'" + members.getUsername() + "'");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -100,9 +98,9 @@ public class MembersController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("select * from members where id =" +"'" + id + "'");
             while (resultSet.next()) {
 
-                members.setFirstName(resultSet.getString("firstname"));
-                members.setLastName(resultSet.getString("lastname"));
-                members.setUserName(resultSet.getString("username"));
+                members.setFirstname(resultSet.getString("firstname"));
+                members.setLastname(resultSet.getString("lastname"));
+                members.setUsername(resultSet.getString("username"));
                 members.setEmail(resultSet.getString("email"));
                 members.setPhone(resultSet.getString("phone"));
 
@@ -122,9 +120,9 @@ public class MembersController  implements Serializable {
             ResultSet resultSet = statement.executeQuery("select * from members");
             while (resultSet.next()){
                 model.Members member = new model.Members();
-                member.setFirstName(resultSet.getString("firstname"));
-                member.setLastName(resultSet.getString("lastname"));
-                member.setUserName(resultSet.getString("username"));
+                member.setFirstname(resultSet.getString("firstname"));
+                member.setLastname(resultSet.getString("lastname"));
+                member.setUsername(resultSet.getString("username"));
                 member.setEmail(resultSet.getString("email"));
                 member.setPhone(resultSet.getString("phone"));
                 member.setId(resultSet.getInt("id"));
