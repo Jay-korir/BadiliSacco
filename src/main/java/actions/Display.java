@@ -84,7 +84,7 @@ public class Display extends HttpServlet {
             membersList += "<tr>"
 
 
-                    + "<td>" + member.getUserName() + "</td>"
+                    + "<td>" + member.getUsername() + "</td>"
                     + "<td>" + member.getEmail() + "</td>"
 
 

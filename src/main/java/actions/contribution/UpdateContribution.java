@@ -1,12 +1,13 @@
 package actions.contribution;
 
 
-import controller.ContributionController;
+import controller.ContributionBean;
+import controller.ContributionBeanI;
 import model.Contribution;
-import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -18,19 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import static actions.WelcomeServlet.members;
 
 @WebServlet("/updateContribution")
 
 public class UpdateContribution extends HttpServlet {
-    @Inject
-    ContributionController contributionController;
+    @EJB
+    ContributionBeanI contributionBean;
 
     ServletContext servletCtx = null;
 
@@ -80,22 +74,14 @@ public class UpdateContribution extends HttpServlet {
         }
 
 
-       // contribution.setUsername("username");
-       // contribution.setAmount(Double.parseDouble("amount"));
-       // contribution.setMonth("month");
-
-        //contributionController.update(contribution);
-        //this.update(contribution);
-
-        resp.sendRedirect("./contributionPage.jsp");
-    }
-    @Inject
-    public void update(Contribution contribution){
-        ContributionController contributionController1 = contributionController;
         contribution.setUsername("username");
         contribution.setAmount(Double.parseDouble("amount"));
         contribution.setMonth("month");
 
-        contributionController1.update(contribution);
+       contributionBean.update(contribution);
+
+
+        resp.sendRedirect("./contributionPage.jsp");
     }
+
 }

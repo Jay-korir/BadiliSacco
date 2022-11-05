@@ -37,8 +37,9 @@
                             <th> Contributor username </th>
                             <th> Contribution month </th>
                             <th> Contributed amount</th>
-                            <th> actions </th>
+                            <th> id </th>
                             <th>date</th>
+                            <th>action </th>
                           </tr>
                         </thead>
 
@@ -48,8 +49,10 @@
                                <td>${fn:toUpperCase(contribution.username)}</td>
                                <td>${contribution.month}</td>
                                <td>${contribution.amount}</td>
-                               <td><a href="./updateContribution.jsp?id=${contribution.id}">Edit</a>  | <a href="./deleteContribution?id=${contribution.id}">Delete</a></td>
                                 <td>${contribution.id}</td>
+                                <td>${contribution.timeCreated}</td>
+                               <td><a href="./updateContribution.jsp?id=${contribution.id}">Edit</a>  | <a href="./deleteContribution?id=${contribution.id}">Delete</a></td>
+
                            </tr>
                         </c:forEach>
                        </tbody>

@@ -1,12 +1,14 @@
 package actions.loan;
 
-import controller.ContributionController;
-import controller.LoanController;
+import controller.ContributionBeanI;
+
+import controller.LoanBeanI;
 import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
+ ;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,18 +16,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
 
 
 @WebServlet("/loan")
 public class LoanAction extends  HttpServlet {
-    @Inject
-    ContributionController contributionController;
+//    @EJB
+//    ContributionBeanI contributionBean;
 
-    @Inject
-    LoanController loanController;
+    @EJB
+    LoanBeanI loanBean;
+
+
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -37,8 +40,9 @@ public class LoanAction extends  HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String currentUser = servletCtx.getAttribute("username").toString();
-        System.out.println(currentUser);
+        HttpSession session = req.getSession(true);
+        String currentUser = session.getAttribute("username").toString();
+      System.out.println(currentUser);
         double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
         System.out.println("myLoan===" +loanApplied);
         int loanPeriod = Integer.parseInt(req.getParameter("period"));
@@ -46,11 +50,11 @@ public class LoanAction extends  HttpServlet {
         Loan loan = new Loan();
 
 
-        contributionController.totalUserContribution(currentUser);
-          double myContribution =  contributionController.totalUserContribution( currentUser);
-
-        System.out.println("==========");
-        System.out.println(myContribution);
+//        contributionBean.totalUserContribution(currentUser);
+//          double myContribution =  contributionBean.totalUserContribution( currentUser);
+//
+//        System.out.println("==========");
+//        System.out.println(myContribution);
 
         try {
             BeanUtils.populate(loan, req.getParameterMap());
@@ -80,7 +84,7 @@ public class LoanAction extends  HttpServlet {
             return;
         }
 
-        if (loanApplied >(myContribution / 2)) {
+        if (loanApplied >(500000 / 2)) {
             servletCtx.setAttribute("loanError","exceeded your limit ");
             resp.sendRedirect("./loan.jsp");
             return;
@@ -95,9 +99,13 @@ public class LoanAction extends  HttpServlet {
         double myTotalPay = myInterest + loanApplied;
         loan.setTotalPay(myTotalPay);
         System.out.println("myTotalPay=====" + myTotalPay);
-        if (loanApplied <= (myContribution / 2)){
+        if (loanApplied <= (500000 / 2)){
 
-            loanController.add(loan);
+            try {
+                loanBean.add(loan);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             resp.sendRedirect("./loan_up.jsp");
         }
 

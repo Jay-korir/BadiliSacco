@@ -1,10 +1,13 @@
 package actions.members;
 
 
-import controller.MembersController;
- import model.Members;
+import controller.MembersBean;
+import controller.MembersBeanI;
+import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -20,8 +23,8 @@ import java.io.PrintWriter;
 
 @WebServlet("/updateMember")
 public class UpdateMember extends HttpServlet {
-    @Inject
-    MembersController membersController;
+    @EJB
+    MembersBeanI membersBean;
 
     ServletContext servletCtx = null;
 
@@ -51,18 +54,18 @@ public class UpdateMember extends HttpServlet {
         }
 
 
-        if (StringUtils.isBlank(members.getFirstName())) {
+        if (StringUtils.isBlank(members.getFirstname())) {
             servletCtx.setAttribute("addError","firstname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
 
-        if (StringUtils.isBlank(members.getLastName())) {
+        if (StringUtils.isBlank(members.getLastname())) {
             servletCtx.setAttribute("addError","lastname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(members.getUserName())) {
+        if (StringUtils.isBlank(members.getUsername())) {
             servletCtx.setAttribute("addError","username is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
@@ -77,16 +80,25 @@ public class UpdateMember extends HttpServlet {
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
+        if (StringUtils.isBlank(members.getPassword())) {
+            servletCtx.setAttribute("addError","password is required");
+            resp.sendRedirect("./addMembers.jsp");
+            return;
+        }
 
 
-        members.setUserName("firstName");
-        members.setUserName("lastName");
-        members.setUserName("userName");
-        members.setUserName("email");
-        members.setUserName("phone");
+        members.setUsername("firstName");
+        members.setUsername("lastName");
+        members.setUsername("userName");
+        members.setUsername("email");
+        members.setUsername("phone");
 
 
-        membersController.update(members);
+        try {
+            membersBean.update(members);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         resp.sendRedirect("./membersPage.jsp");
     }

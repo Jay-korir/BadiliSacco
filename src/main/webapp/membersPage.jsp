@@ -31,6 +31,8 @@
                                 <th> username</th>
                                 <th>email</th>
                                 <th>phone</th>
+                                <th>userType </th>
+                                <th>Date </th>
                                 <th>action</th>
 
 
@@ -40,11 +42,13 @@
                           <tbody>
                           <c:forEach items ="${memberController.list}" var = "member">
                          <tr>
-                                <td>${member.firstName}</td>
-                                <td>${member.lastName}</td>
-                                 <td>${member.userName}</td>
+                                <td>${member.firstname}</td>
+                                <td>${member.lastname}</td>
+                                 <td>${member.username}</td>
                                 <td>${member.email}</td>
                                 <td>${member.phone}</td>
+                                <td>${member.userType}</td>
+                                <td>${member.timeCreated}</td>
                                 <td><a href="./updateMember?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
 
                             </tr>

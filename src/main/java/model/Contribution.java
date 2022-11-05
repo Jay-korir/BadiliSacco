@@ -1,32 +1,24 @@
 package model;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 
-@Named("contributionI")
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "contribution")
 public class Contribution extends BaseEntity{
-    static  int maxId = 0;
+     @Column
     private String username;
+
+     @Column
     private String month;
+
+     @Column
     private   double amount;
 
-    private  int id;
 
-    @Inject
-    public Contribution() {
-        maxId = maxId + 1;
-        id = maxId;
 
-    }
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

@@ -57,9 +57,9 @@ public class WelcomeServlet extends HttpServlet {
             while (resultSet.next()){
 
                 Members members2 = new Members();
-                members2.setFirstName(resultSet.getString("firstname"));
-                members2.setLastName(resultSet.getString("lastname"));
-                members2.setUserName(resultSet.getString("username"));
+                members2.setFirstname(resultSet.getString("firstname"));
+                members2.setLastname(resultSet.getString("lastname"));
+                members2.setUsername(resultSet.getString("username"));
                 members2.setEmail(resultSet.getString("email"));
                 members2.setPhone(resultSet.getString("phone"));
 
@@ -119,9 +119,9 @@ public class WelcomeServlet extends HttpServlet {
                 "</tr>";
         for (Members member : members)
             membersList += "<tr>"
-                    + "<td>" + member.getFirstName() + "</td>"
-                    + "<td>" + member.getLastName() + "</td>"
-                    + "<td>" + member.getUserName() + "</td>"
+                    + "<td>" + member.getFirstname() + "</td>"
+                    + "<td>" + member.getLastname() + "</td>"
+                    + "<td>" + member.getUsername() + "</td>"
                     + "<td>" + member.getEmail() + "</td>"
                     + "<td>" + member.getPhone() + "</td>"
                     + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
@@ -146,9 +146,9 @@ public class WelcomeServlet extends HttpServlet {
             while (resultSet.next()){
 
                 Members members2 = new Members();
-                members2.setFirstName(resultSet.getString("firstname"));
-                members2.setLastName(resultSet.getString("lastname"));
-                members2.setUserName(resultSet.getString("username"));
+                members2.setFirstname(resultSet.getString("firstname"));
+                members2.setLastname(resultSet.getString("lastname"));
+                members2.setUsername(resultSet.getString("username"));
                 members2.setEmail(resultSet.getString("email"));
                 members2.setPhone(resultSet.getString("phone"));
 

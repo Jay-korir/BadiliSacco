@@ -1,13 +1,19 @@
 package model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-public class BaseEntity implements Serializable {
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private Date timeCreated;
+    @Column(name = "time_created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeCreated = new Date();
 
     public int getId() {
         return id;
@@ -25,4 +31,3 @@ public class BaseEntity implements Serializable {
         this.timeCreated = timeCreated;
     }
 }
-

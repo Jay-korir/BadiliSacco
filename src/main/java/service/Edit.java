@@ -54,15 +54,15 @@ public class Edit extends HttpServlet {
         } catch (Exception ex) {
             System.out.println("bean util error " + ex.getMessage());
         }
-        if (org.apache.commons.lang3.StringUtils.isBlank(memb.getFirstName())) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(memb.getFirstname())) {
             wr.print(this.editMember(" First Name is required<br/>",memb));
             return;
         }
-        if (StringUtils.isBlank(memb.getLastName())){
+        if (StringUtils.isBlank(memb.getLastname())){
             wr.print(this.editMember("lastName is required",memb));
             return;
         }
-        if (StringUtils.isBlank(memb.getUserName())){
+        if (StringUtils.isBlank(memb.getUsername())){
             wr.print(this.editMember("username is required",memb));
             return;
         }
@@ -79,9 +79,9 @@ public class Edit extends HttpServlet {
 
         for (Members member : members) {
             if (member.getId() == Integer.parseInt(id)) {
-                member.setFirstName(firstName);
-                member.setLastName(lastName);
-                member.setUserName(userName);
+                member.setFirstname(firstName);
+                member.setLastname(lastName);
+                member.setUsername(userName);
                 member.setEmail(email);
                 member.setPhone(phone);
                 break;
@@ -101,11 +101,11 @@ public class Edit extends HttpServlet {
                 + "<h2> Edit Member</h2>"
                 + "<form action=\"./edit?id="+ member.getId()+ "\" method=\"post\">"
                 + "<table> "
-                + "<tr> <td> First Name: </td> <td> <input type=\"text\" name= \"firstName\" value= "+member.getFirstName() + ""
+                + "<tr> <td> First Name: </td> <td> <input type=\"text\" name= \"firstName\" value= "+member.getFirstname() + ""
                 + "> </td> </tr> "
-                + "<tr> <td> Last name: </td> <td> <input type=\"text\" name= \"lastName\" value=" +member.getLastName() +""
+                + "<tr> <td> Last name: </td> <td> <input type=\"text\" name= \"lastName\" value=" +member.getLastname() +""
                 +"> </td> </tr> "
-                + "<tr> <td> User Name: </td> <td> <input type=\"text\"name= \"userName\" value="+member.getUserName() + ""
+                + "<tr> <td> User Name: </td> <td> <input type=\"text\"name= \"userName\" value="+member.getUsername() + ""
                 + "> </td> </tr> "
                 + "<tr> <td> Email: </td> <td> <input type=\"text\"name= \"email\" value=" +member.getEmail() +""
                 +"> </td> </tr> "

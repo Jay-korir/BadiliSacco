@@ -1,16 +1,26 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "loan")
 public class Loan  extends  BaseEntity{
+    @Column
    private  String username;
+    @Column
     private  double loanAmount;
+    @Column
     private  int period;
+    @Column
     private String purpose;
-
+    @Column
     private  double interest = (2/100);
-
+    @Column
     private double totalPay;
-
-    private String status;
+    @Column
+    private String status = "pending";
 
     public String getStatus() {
         return status;

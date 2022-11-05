@@ -1,57 +1,60 @@
 package model;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class Members implements Serializable {
-    static int uniqId = 0;
-    private  int id;
-    private String firstName;
-    private String lastName;
-    private  String userName;
+@Entity
+@Table(name = "members")
+public class Members extends BaseEntity {
+
+
+    @Column
+    private String firstname;
+
+    @Column
+    private String lastname;
+
+    @Column
+    private  String username;
+
+    @Column
     private String email;
+
+    @Column
     private String phone;
 
+    @Column
+    private String password;
+
+    @Transient
+    private String confirmPassword;
+
+    @Column(name = "user_type")
+    private String userType = "user";
 
 
 
-
-    public Members() {
-        uniqId = uniqId + 1;
-        id = uniqId;
-
+    public String getFirstname() {
+        return firstname;
     }
 
-
-    public int getId() {
-        return id;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -69,6 +72,33 @@ public class Members implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+
+
 
 
 }

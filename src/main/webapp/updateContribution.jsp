@@ -14,7 +14,7 @@
 
 
 <form action="./updateContribution" method="post">
-<c:forEach items ="${contributionController.userContribution}" var = "contribution">
+<c:forEach items ="${contributionController.update}" var = "contribution">
 <table>
    <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>
   <tr> <td> month: </td> <td> <input type="text"  name="month" value="${contribution.month}"> </td> </tr>

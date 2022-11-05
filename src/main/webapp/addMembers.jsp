@@ -9,15 +9,15 @@
                   <div class="card-body">
         <div class="form-group">
            <label>First Name</label>
-           <input type="text" name= "firstName" class="form-control p_input">
+           <input type="text" name= "firstname" class="form-control p_input">
          </div>
          <div class="form-group">
            <label>Last Name</label>
-           <input type="text" name= "lastName" class="form-control p_input">
+           <input type="text" name= "lastname" class="form-control p_input">
          </div>
          <div class="form-group">
            <label>Username</label>
-           <input type="text" name= "userName" class="form-control p_input">
+           <input type="text" name= "username" class="form-control p_input">
          </div>
 
           <div class="form-group">
@@ -28,6 +28,10 @@
             <label>Phone</label>
            <input type="tel" name= "phone"class="form-control p_input">
          </div>
+         <div class="form-group">
+                     <label>Password</label>
+                    <input type="tel" name= "password"class="form-control p_input">
+                  </div>
 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 <a href='./dashboard.jsp'>Back</a>
 

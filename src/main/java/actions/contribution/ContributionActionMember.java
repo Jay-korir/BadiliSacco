@@ -1,10 +1,12 @@
 package actions.contribution;
 
-import controller.ContributionController;
+import controller.ContributionBean;
+import controller.ContributionBeanI;
 import model.Contribution;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -15,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 
 
 @WebServlet("/memberContribution")
 public class ContributionActionMember extends HttpServlet {
-    @Inject
-    ContributionController contributionController;
+    @EJB
+    ContributionBeanI contributionBean;
+
     ServletContext servletCtx = null;
 
     public void init(ServletConfig config) throws ServletException {
@@ -34,7 +36,7 @@ public class ContributionActionMember extends HttpServlet {
     @SuppressWarnings("unchecked")
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        PrintWriter wr = res.getWriter();
+
         Contribution contribution = new Contribution();
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
@@ -61,7 +63,7 @@ public class ContributionActionMember extends HttpServlet {
             return;
         }
 
-        contributionController.add(contribution);
+        contributionBean.add(contribution);
         res.sendRedirect("./userDashboard.jsp");
 
 

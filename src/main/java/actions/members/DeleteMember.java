@@ -1,8 +1,11 @@
 package actions.members;
 
 
-import controller.MembersController;
+import controller.MembersBean;
+import controller.MembersBeanI;
 import model.Members;
+
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -12,12 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 
 @WebServlet("/deleteMember")
 public class DeleteMember extends HttpServlet {
-    @Inject
-    MembersController   membersController;
+    @EJB
+    MembersBeanI membersBean;
 
     static ServletContext servletCtx = null;
 
@@ -34,7 +36,11 @@ public class DeleteMember extends HttpServlet {
         members.setId(Integer.parseInt(req.getParameter("id")));
 
 
-        membersController.delete( members);
+        try {
+            membersBean.delete( members);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         res.sendRedirect("./membersPage.jsp");
     }
 

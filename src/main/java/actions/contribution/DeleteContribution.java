@@ -1,11 +1,12 @@
 package actions.contribution;
 
 
-import controller.ContributionController;
+import controller.ContributionBean;
+import controller.ContributionBeanI;
 import model.Contribution;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,16 +15,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 @WebServlet("/deleteContribution")
 
 public class DeleteContribution extends HttpServlet {
-    @Inject
-    ContributionController contributionController;
+    @EJB
+    ContributionBeanI contributionBean;
 
     static ServletContext servletCtx = null;
 
@@ -40,7 +37,7 @@ public class DeleteContribution extends HttpServlet {
         Contribution contribution = new Contribution();
         contribution.setId(Integer.parseInt(req.getParameter("id")));
 
-        contributionController.delete(contribution);
+        contributionBean.delete(contribution);
         res.sendRedirect("./contributionPage.jsp");
     }
 

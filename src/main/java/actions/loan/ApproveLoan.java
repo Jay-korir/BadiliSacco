@@ -1,13 +1,13 @@
 package actions.loan;
 
-import controller.ContributionController;
-import controller.LoanController;
-import model.Contribution;
+import controller.LoanBean;
+import controller.LoanBeanI;
 import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,8 +21,8 @@ import java.io.PrintWriter;
 
 @WebServlet("/approve")
 public class ApproveLoan extends HttpServlet {
-    @Inject
-    LoanController loanController;
+    @EJB
+    LoanBeanI loanBean;
 
     ServletContext servletCtx = null;
 
@@ -89,7 +89,11 @@ public class ApproveLoan extends HttpServlet {
         loan.setPeriod(Integer.parseInt("period"));
         loan.setPurpose("purpose");
 
-        loanController.update(loan);
+        try {
+            loanBean.update(loan);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         resp.sendRedirect("./loanPage.jsp");
     }

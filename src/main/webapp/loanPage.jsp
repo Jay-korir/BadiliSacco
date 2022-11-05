@@ -9,18 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
 
-<jsp:useBean id = "loanController"  class = "controller.LoanController" />
-
-<%!
-
-	String contributionName;
-	String monthName;
-
-%>
-
-
-
-
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
 <br/>Loan Applications <br/>
 

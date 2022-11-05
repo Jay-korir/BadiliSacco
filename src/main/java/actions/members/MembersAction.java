@@ -1,13 +1,13 @@
 package actions.members;
 
-import controller.ContributionController;
-import controller.MembersController;
+import controller.MembersBean;
+import controller.MembersBeanI;
 import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,23 +16,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.Statement;
 
 
 @WebServlet("/add")
 public class MembersAction extends HttpServlet {
 
-    @Inject
-    MembersController membersController;
+    @EJB
+    MembersBeanI membersBean;
+
     ServletContext servletCtx = null;
 
-    @Inject
-    public MembersAction(MembersController membersController) {
 
-        this.membersController = membersController;
-    }
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -54,17 +48,17 @@ public class MembersAction extends HttpServlet {
         } catch (Exception ex) {
             System.out.println("bean util error " + ex.getMessage());
         }
-        if (org.apache.commons.lang3.StringUtils.isBlank(member.getFirstName())) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(member.getFirstname())) {
             servletCtx.setAttribute("addError", "firstname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getLastName())) {
+        if (StringUtils.isBlank(member.getLastname())) {
             servletCtx.setAttribute("addError", "lastname is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
-        if (StringUtils.isBlank(member.getUserName())) {
+        if (StringUtils.isBlank(member.getUsername())) {
             servletCtx.setAttribute("addError", "username is required");
             resp.sendRedirect("./addMembers.jsp");
             return;
@@ -79,9 +73,18 @@ public class MembersAction extends HttpServlet {
             resp.sendRedirect("./addMembers.jsp");
             return;
         }
+        if (StringUtils.isBlank(member.getPassword())) {
+            servletCtx.setAttribute("addError", "password is required");
+            resp.sendRedirect("./addMembers.jsp");
+            return;
+        }
 
 
-        membersController.add(member);
+        try {
+            membersBean.add(member);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         resp.sendRedirect("./membersPage.jsp");
     }
 
