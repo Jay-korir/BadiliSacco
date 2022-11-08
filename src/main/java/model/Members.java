@@ -96,5 +96,17 @@ public class Members extends BaseEntity {
         this.userType = userType;
     }
 
-
+    @Override
+    public String toString() {
+        return "Members{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }

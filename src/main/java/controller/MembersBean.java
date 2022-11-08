@@ -1,5 +1,6 @@
 package controller;
 
+import model.Contribution;
 import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,8 +49,15 @@ public class MembersBean implements MembersBeanI {
 
     }
 
-    public void delete(Members members) {
+    public void delete(Long memberId) {
+        System.out.println(this.getMember(memberId));
+        em.remove(em.find(Members.class, memberId));
 
+    }
+    public Members getMember(Long id) {
+        return em.createQuery("FROM Members s WHERE s.id =:Id", Members.class)
+                .setParameter("Id",id)
+                .getResultList().get(0);
     }
 
     public Members getMember(int id) {

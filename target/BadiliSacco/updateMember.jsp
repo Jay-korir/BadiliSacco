@@ -8,27 +8,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
    <h2> Update Member</h2>
-   <jsp:useBean id = "membersController"  class = "controller.MembersController" />
 
 
-  <%
-  Members members = membersController.getMember((Connection) application.getAttribute("myConnection"),
-  Integer.parseInt(request.getParameter("id")));
-  pageContext.setAttribute("members",members);
-  %>
+ <% Long a = Long.valueOf(Integer.parseInt(request.getParameter("id")));
+  pageContext.setAttribute("id", a);
+ %>
+
+ <jsp:useBean id = "memberController"  class = "controller.MembersBean" />
+
+
+    <c:set var="members" value = "${memberController.getMember(id)}" />
 
 <form action="./updateMember" method="post">
-<table>
-    <tr> <td>firstname: </td> <td> <input type="text"   name="firstName" value="${members.firstName}"> </td> </tr>
-    <tr> <td>lastname: </td> <td> <input type="text"   name="lastName" value="${members.lastName}"> </td> </tr>
-     <tr> <td>Username: </td> <td> <input type="text"   name="userName" value="${members.userName}"> </td> </tr>
-     <tr> <td>email: </td> <td> <input type="text"   name="email" value="${members.email}"> </td> </tr>
-     <tr> <td>phone: </td> <td> <input type="text"   name="phone" value="${members.phone}"> </td> </tr>
 
+<div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+        <div class="form-group">
+         <input type="hidden" name="id" class="form-control" id="exampleInputUsername1" placeholder="id" value="${members.id}">
+          <input type="hidden" name="password" class="form-control" id="exampleInputUsername1" placeholder="id" value="${members.password}">
+          <label>First Name</label>
+           <input type="text" name= "firstname" class="form-control p_input" value="${members.firstname}">
+         </div>
+         <div class="form-group">
+           <label>Last Name</label>
+           <input type="text" name= "lastname" class="form-control p_input" value="${members.lastname}">
+         </div>
+         <div class="form-group">
+           <label>Username</label>
+           <input type="text" name= "username" class="form-control p_input" value="${members.username}">
+         </div>
 
+          <div class="form-group">
+             <label>Email</label>
+             <input type="email" name= "email" class="form-control p_input" value="${members.email}">
+           </div>
+         <div class="form-group">
+            <label>Phone</label>
+           <input type="tel" name= "phone"class="form-control p_input" value="${members.phone}">
+         </div>
 
 <button type="submit" class="btn btn-primary mr-2">Update</button>
-</table>
+
 </form>
     <%
         String addError = (String) application.getAttribute("addError");

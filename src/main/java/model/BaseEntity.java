@@ -30,4 +30,6 @@ public abstract class BaseEntity implements Serializable {
     public void setTimeCreated(Date timeCreated) {
         this.timeCreated = timeCreated;
     }
+
+
 }

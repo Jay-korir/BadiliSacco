@@ -35,19 +35,20 @@ public class UpdateContribution extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        ;
-        resp.sendRedirect("./updateContribution.jsp");
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+//
+//        resp.sendRedirect("./updateContribution.jsp");
+//    }
 
     @SuppressWarnings("unchecked")
     @Override
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter wr = resp.getWriter();
+
         Contribution contribution = new Contribution();
+        System.out.println("===================");
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 
@@ -72,13 +73,14 @@ public class UpdateContribution extends HttpServlet {
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
+        contribution.setId(contribution.getId());
+        contribution.setUsername(contribution.getUsername());
+        contribution.setAmount(contribution.getAmount());
+        contribution.setMonth(contribution.getMonth());
 
-
-        contribution.setUsername("username");
-        contribution.setAmount(Double.parseDouble("amount"));
-        contribution.setMonth("month");
         System.out.println(contribution);
-        contributionBean.update(contribution);
+
+        contributionBean.add(contribution);
 
 
         resp.sendRedirect("./contributionPage.jsp");

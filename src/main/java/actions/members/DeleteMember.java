@@ -33,11 +33,11 @@ public class DeleteMember extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Members members = new Members();
-        members.setId(Integer.parseInt(req.getParameter("id")));
+        members.setId(Long.valueOf(Integer.parseInt(req.getParameter("id"))));
 
 
         try {
-            membersBean.delete( members);
+            membersBean.delete(members.getId());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

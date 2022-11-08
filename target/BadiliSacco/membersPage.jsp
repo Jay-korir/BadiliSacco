@@ -49,7 +49,7 @@
                                 <td>${member.phone}</td>
                                 <td>${member.userType}</td>
                                 <td>${member.timeCreated}</td>
-                                <td><a href="./updateMember?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
+                                <td><a href="./updateMember.jsp?id=${member.id}">Edit</a>  | <a href="./deleteMember?id=${member.id}">Delete</a></td>
 
                             </tr>
                           </c:forEach>

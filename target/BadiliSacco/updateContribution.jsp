@@ -14,21 +14,33 @@
 
 
 <form action="./updateContribution" method="post">
-<% int a = Integer.parseInt(request.getParameter("id"));
+<% Long a = Long.valueOf(Integer.parseInt(request.getParameter("id")));
  pageContext.setAttribute("id", a);
-
 %>
-<h1>${id}</h1>
-<c:forEach items= "${contributionController.getContribution(id)}" var = "contribution">
-<table>
-   <tr> <td>Username: </td> <td> <input type="text"   name="username" value="${contribution.username}"> </td> </tr>
-  <tr> <td> month: </td> <td> <input type="text"  name="month" value="${contribution.month}"> </td> </tr>
-   <tr> <td> amount: </td> <td> <input type="text" name="amount" value="${contribution.amount}"> </td> </tr>
+<jsp:useBean id = "contributionController"  class = "controller.ContributionBean" />
 
 
+   <c:set var="contribution" value = "${contributionController.getContribution(id)}" />
+
+<div class="row">
+<div class="col-md-6 grid-margin stretch-card">
+<div class="card">
+  <div class="card-body">
+      <div class="form-group">
+      <input type="hidden" name="id" class="form-control" id="exampleInputUsername1" placeholder="id" value="${contribution.id}">
+<label for="exampleInputUsername1"> Contributor Username</label>
+<input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value="${contribution.username}">
+  </div>
+       <div class="form-group">
+<label for="exampleInputEmail1">Contribution Month</label>
+<input type="text" name="month" class="form-control" id="exampleInputName" placeholder="Month" value="${contribution.month}">
+           </div>
+  <div class="form-group">
+<label for="exampleInputPassword1">Amount contribution</label>
+<input type="text" name="amount" class="form-control" id="exampleInputPassword1" placeholder="Amount" value="${contribution.amount}">
+   </div>
 <button type="submit" class="btn btn-primary mr-2">Update</button>
-</table>
-   </c:forEach>
+
 </form>
     <%
         String contributionError = (String) application.getAttribute("contributionError");

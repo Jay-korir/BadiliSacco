@@ -17,5 +17,5 @@ public interface ContributionBeanI {
     //List<Contribution> list(Contribution filter);
     List<Contribution> getList();
 
-    Contribution getContribution(int id);
+    Contribution getContribution(Long id);
 }

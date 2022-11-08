@@ -11,5 +11,9 @@ public interface MembersBeanI {
 
     void update(Members members) throws Exception;
 
-    void delete(Members members) throws Exception;
+    void delete(Long memberId) throws Exception;
+
+    Members getMember(Long id) throws Exception;
+
+
 }

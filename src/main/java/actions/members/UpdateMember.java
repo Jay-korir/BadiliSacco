@@ -34,9 +34,11 @@ public class UpdateMember extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();;
+        HttpSession session = req.getSession();
+        ;
         resp.sendRedirect("./updateMember.jsp");
     }
 
@@ -44,58 +46,55 @@ public class UpdateMember extends HttpServlet {
     @Override
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter wr = resp.getWriter();
+
         Members members = new Members();
         try {
             BeanUtils.populate(members, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
 
         if (StringUtils.isBlank(members.getFirstname())) {
-            servletCtx.setAttribute("addError","firstname is required");
-            resp.sendRedirect("./addMembers.jsp");
+            servletCtx.setAttribute("addError", "firstname is required");
+            resp.sendRedirect("./updateMember.jsp");
             return;
         }
 
         if (StringUtils.isBlank(members.getLastname())) {
-            servletCtx.setAttribute("addError","lastname is required");
-            resp.sendRedirect("./addMembers.jsp");
+            servletCtx.setAttribute("addError", "lastname is required");
+            resp.sendRedirect("./updateMember.jsp");
             return;
         }
         if (StringUtils.isBlank(members.getUsername())) {
-            servletCtx.setAttribute("addError","username is required");
-            resp.sendRedirect("./addMembers.jsp");
+            servletCtx.setAttribute("addError", "username is required");
+            resp.sendRedirect("./updateMember.jsp");
             return;
         }
         if (StringUtils.isBlank(members.getEmail())) {
-            servletCtx.setAttribute("addError","email is required");
-            resp.sendRedirect("./addMembers.jsp");
+            servletCtx.setAttribute("addError", "email is required");
+            resp.sendRedirect("./updateMember.jsp");
             return;
         }
         if (StringUtils.isBlank(members.getPhone())) {
-            servletCtx.setAttribute("addError"," is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(members.getPassword())) {
-            servletCtx.setAttribute("addError","password is required");
-            resp.sendRedirect("./addMembers.jsp");
+            servletCtx.setAttribute("addError", " is required");
+            resp.sendRedirect("./updateMember.jsp");
             return;
         }
 
 
-        members.setUsername("firstName");
-        members.setUsername("lastName");
-        members.setUsername("userName");
-        members.setUsername("email");
-        members.setUsername("phone");
+        members.setId(members.getId());
+        members.setFirstname(members.getFirstname());
+        members.setLastname(members.getLastname());
+        members.setUsername(members.getUsername());
+        members.setEmail(members.getEmail());
+        members.setPhone(members.getPhone());
+        members.setPassword(members.getPassword());
 
-
+        System.out.println(members);
         try {
-            membersBean.update(members);
+            membersBean.add(members);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
