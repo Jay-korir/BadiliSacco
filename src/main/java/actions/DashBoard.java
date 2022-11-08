@@ -20,7 +20,7 @@ public class DashBoard extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
-        session.setAttribute("loggedInTime"," logged in time :" + new Date());
+        session.setAttribute("loggedInTime", " logged in time :" + new Date());
 
         List<Members> members = new ArrayList<Members>();
         session.setAttribute("members", members);

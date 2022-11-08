@@ -42,24 +42,31 @@ public class ContributionBean implements ContributionBeanI {
 
 
 
-    public List<Contribution> list(Contribution filter) {
-        List<Contribution> contributions = new ArrayList<Contribution>();
+//    public List<Contribution> list(Contribution filter) {
+//        List<Contribution> contributions = new ArrayList<Contribution>();
+//
+//
+//        return contributions;
+//    }
 
 
-        return contributions;
+     public void delete(Long contributionId) {
+         em.remove(em.find(Contribution.class, contributionId));
     }
+     public List<Contribution> getList() {
+         return em.createQuery("FROM Contribution s", Contribution.class).getResultList();
+     }
 
 
-    public void delete(Contribution contribution) {
-        em.remove(contribution);
+     public Contribution getContribution(int id) {
+         return em.createQuery("FROM Contribution s WHERE s.id =:Id", Contribution.class)
+                 .setParameter("Id",id)
+                 .getResultList().get(0);
+     }
 
-    }
 
-
-    public  void update(Contribution contribution) {
-    // em.persist(contribution);
-        List<Contribution> contributions =  em.createQuery("From Contribution where a.id: myId",Contribution.class)
-             .setParameter("myId",contribution.getId()).getResultList();
+     public  void update(Contribution contribution) {
+  em.persist(contribution);
 
     }
 
@@ -76,24 +83,7 @@ public class ContributionBean implements ContributionBeanI {
     public int totalUserContribution(String username) {
 
         int result = 0;
-       /* try {
 
-            Statement statement = dataSource.getConnection().createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
-            ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution` where username=" + "'" + username + "'");
-            System.out.println("=================");
-            if (resultSet1 != null) {
-                while (resultSet1.next()) {
-                    result += (int) resultSet1.getDouble("amount");
-                }
-            }
-            System.out.println(result);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        */
 
         return result;
     }
@@ -102,71 +92,16 @@ public class ContributionBean implements ContributionBeanI {
     public Contribution getUserContribution(int id) {
         Contribution contribution = new Contribution();
 
-       /* try {
-            Statement statement = dataSource.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from contribution where id =" + "'" + id + "'");
-            while (resultSet.next()) {
 
-                contribution.setUsername(resultSet.getString("username"));
-                contribution.setMonth(resultSet.getString("month"));
-                contribution.setAmount(resultSet.getDouble("amount"));
-
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        */
         return contribution;
     }
 
 
-    public List<Contribution> getList() {
-       // List<Contribution> contributions = new ArrayList<Contribution>();
-
-        return em.createQuery("FROM Contribution s", Contribution.class).getResultList();
-
-       /* try {
-            Statement statement = dataSource.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from contribution");
-            while (resultSet.next()) {
-                model.Contribution contribution = new model.Contribution();
-                contribution.setUsername(resultSet.getString("username"));
-                contribution.setMonth(resultSet.getString("month"));
-                contribution.setAmount(resultSet.getDouble("amount"));
-                contribution.setId(resultSet.getInt("id"));
-                contributions.add(contribution);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        */
-
-    }
 
 
 
     public int getList1() {
         int result = 0;
-       /* try {
-
-            Statement statement = dataSource.getConnection().createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT SUM(amount) as totalAmount FROM `contribution`");
-            ResultSet resultSet1 = statement.executeQuery("SELECT amount FROM `contribution`");
-            System.out.println("=================");
-            if (resultSet1 != null) {
-                while (resultSet1.next()) {
-                    result += (int) resultSet1.getDouble("amount");
-                }
-            }
-            System.out.println(result);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        */
 
         return result;
     }

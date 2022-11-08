@@ -8,7 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
- ;
+;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ import java.io.IOException;
 
 
 @WebServlet("/loan")
-public class LoanAction extends  HttpServlet {
+public class LoanAction extends HttpServlet {
 //    @EJB
 //    ContributionBeanI contributionBean;
 
@@ -42,9 +42,9 @@ public class LoanAction extends  HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         String currentUser = session.getAttribute("username").toString();
-      System.out.println(currentUser);
+        System.out.println(currentUser);
         double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
-        System.out.println("myLoan===" +loanApplied);
+        System.out.println("myLoan===" + loanApplied);
         int loanPeriod = Integer.parseInt(req.getParameter("period"));
         System.out.println("loanPeriod =====" + loanPeriod);
         Loan loan = new Loan();
@@ -59,39 +59,39 @@ public class LoanAction extends  HttpServlet {
         try {
             BeanUtils.populate(loan, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
         if (StringUtils.isBlank(loan.getUsername())) {
-            servletCtx.setAttribute("loanError","username is required");
+            servletCtx.setAttribute("loanError", "username is required");
             resp.sendRedirect("./loan.jsp");
             return;
         }
         if (loan.getLoanAmount() == 0) {
-            servletCtx.setAttribute("loanError","amount is required");
+            servletCtx.setAttribute("loanError", "amount is required");
             resp.sendRedirect("./loan.jsp");
             return;
         }
         if (loan.getPeriod() == 0) {
-            servletCtx.setAttribute("loanError","payment is required");
+            servletCtx.setAttribute("loanError", "payment is required");
             resp.sendRedirect("./loan.jsp");
             return;
         }
         if (StringUtils.isBlank(loan.getPurpose())) {
-            servletCtx.setAttribute("loanError","purpose of loan is required");
+            servletCtx.setAttribute("loanError", "purpose of loan is required");
             resp.sendRedirect("./loan.jsp");
             return;
         }
 
-        if (loanApplied >(500000 / 2)) {
-            servletCtx.setAttribute("loanError","exceeded your limit ");
+        if (loanApplied > (500000 / 2)) {
+            servletCtx.setAttribute("loanError", "exceeded your limit ");
             resp.sendRedirect("./loan.jsp");
             return;
 
         }
         System.out.println(loanApplied);
-        double myInterest = ( (0.02) * loanApplied *  loanPeriod );
+        double myInterest = ((0.02) * loanApplied * loanPeriod);
         loan.setInterest(myInterest);
         System.out.println("myInterest=====" + myInterest);
         ;
@@ -99,7 +99,7 @@ public class LoanAction extends  HttpServlet {
         double myTotalPay = myInterest + loanApplied;
         loan.setTotalPay(myTotalPay);
         System.out.println("myTotalPay=====" + myTotalPay);
-        if (loanApplied <= (500000 / 2)){
+        if (loanApplied <= (500000 / 2)) {
 
             try {
                 loanBean.add(loan);

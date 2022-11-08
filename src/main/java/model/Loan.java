@@ -5,20 +5,26 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "loan")
-public class Loan  extends  BaseEntity{
+@Table(name = "loans")
+public class Loan extends BaseEntity {
     @Column
-   private  String username;
+    private String username;
+
     @Column
-    private  double loanAmount;
+    private double loanAmount;
+
     @Column
-    private  int period;
+    private int period;
+
     @Column
     private String purpose;
+
     @Column
-    private  double interest = (2/100);
+    private double interest = (2 / 100);
+
     @Column
     private double totalPay;
+
     @Column
     private String status = "pending";
 
@@ -76,6 +82,6 @@ public class Loan  extends  BaseEntity{
 
     public double getTotalPay() {
 
-        return  totalPay;
+        return totalPay;
     }
 }

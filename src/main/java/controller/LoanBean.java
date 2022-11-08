@@ -29,7 +29,7 @@ public class LoanBean implements LoanBeanI {
             return;
         if (loan == null || loan.getLoanAmount() == 0)
             return;
-        if (loan== null || loan.getPeriod() == 0)
+        if (loan == null || loan.getPeriod() == 0)
             return;
         if (loan == null || StringUtils.isBlank(loan.getPurpose()))
             return;
@@ -38,13 +38,15 @@ public class LoanBean implements LoanBeanI {
 
     }
 
-    public List<Loan> getList()  {
-       return  em.createQuery("From Loan l", Loan.class).getResultList();
+    public List<Loan> getList() {
+        return em.createQuery("From Loan l", Loan.class).getResultList();
     }
+
     public void update(Loan loan) {
-em.persist(loan);
+        em.persist(loan);
     }
+
     public void decline(Loan loan) {
-em.persist(loan);
+        em.persist(loan);
     }
 }

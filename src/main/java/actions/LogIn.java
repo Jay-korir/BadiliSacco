@@ -1,7 +1,6 @@
 package actions;
 
 
-
 import controller.UserBeanI;
 import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
@@ -20,7 +19,7 @@ import java.util.Date;
 
 
 @WebServlet(urlPatterns = "/login")
-public class LogIn extends HttpServlet{
+public class LogIn extends HttpServlet {
 
     @EJB
     UserBeanI userBean;
@@ -35,35 +34,35 @@ public class LogIn extends HttpServlet{
     }
 
 
-    public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
-          Members member = new Members();
-          member.setUsername("username");
-          member.setPassword("password");
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        Members member = new Members();
+        member.setUsername("username");
+        member.setPassword("password");
 
         try {
             BeanUtils.populate(member, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
         try {
             Members members = userBean.login(member);
             HttpSession session = req.getSession(true);
-            session.setAttribute("username",members.getUsername());
+            session.setAttribute("username", members.getUsername());
             session.setAttribute("loggedInTime", " Logged In At: " + new Date());
 
 
-            System.out.println("===="+ members.getUserType());
+            System.out.println("====" + members.getUserType());
 
-            if ( members.getUserType().equals("admin"))
+            if (members.getUserType().equals("admin"))
                 res.sendRedirect("./dashboard.jsp");
 
             else if (members.getUserType().equals("user"))
                 res.sendRedirect("./userDashboard.jsp");
 
         } catch (Exception e) {
-            sCtx.setAttribute("loginError" , e.getMessage());
+            sCtx.setAttribute("loginError", e.getMessage());
             res.sendRedirect("./login.jsp");
         }
        /* System.out.println("=================");

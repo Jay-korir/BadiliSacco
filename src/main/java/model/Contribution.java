@@ -6,18 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "contribution")
-public class Contribution extends BaseEntity{
-     @Column
+@Table(name = "contributions")
+public class Contribution extends BaseEntity {
+    @Column
     private String username;
 
-     @Column
+    @Column
     private String month;
 
-     @Column
-    private   double amount;
-
-
+    @Column
+    private double amount;
 
 
     public String getUsername() {
@@ -42,5 +40,14 @@ public class Contribution extends BaseEntity{
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Contribution{" +
+                "username='" + username + '\'' +
+                ", month='" + month + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }

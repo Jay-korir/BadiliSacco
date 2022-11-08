@@ -27,9 +27,9 @@ public class MembersBean implements MembersBeanI {
     @PersistenceContext
     EntityManager em;
 
-    public void add(Members members){
-        if ( members == null ||StringUtils.isBlank(members.getFirstname()) || StringUtils.isBlank(members.getLastname()) ||
-                StringUtils.isBlank(members.getUsername())|| StringUtils.isBlank(members.getEmail())||StringUtils.isBlank(members.getPhone()))
+    public void add(Members members) {
+        if (members == null || StringUtils.isBlank(members.getFirstname()) || StringUtils.isBlank(members.getLastname()) ||
+                StringUtils.isBlank(members.getUsername()) || StringUtils.isBlank(members.getEmail()) || StringUtils.isBlank(members.getPhone()))
             return;
 
         em.merge(members);
@@ -37,7 +37,7 @@ public class MembersBean implements MembersBeanI {
     }
 
 
-    public List<Members> list(Members filter){
+    public List<Members> list(Members filter) {
         List<Members> members = new ArrayList<Members>();
 
 
@@ -51,8 +51,9 @@ public class MembersBean implements MembersBeanI {
     public void delete(Members members) {
 
     }
+
     public Members getMember(int id) {
-         Members members = new Members();
+        Members members = new Members();
 
 
         return members;

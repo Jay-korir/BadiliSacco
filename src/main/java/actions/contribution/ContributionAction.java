@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet("/contribution")
 public class ContributionAction extends HttpServlet {
 
-     @EJB
+    @EJB
     ContributionBeanI contributionBean;
 
     ServletContext servletCtx = null;
@@ -34,7 +34,7 @@ public class ContributionAction extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 
-      Contribution   contribution = new Contribution();
+        Contribution contribution = new Contribution();
         try {
             BeanUtils.populate(contribution, req.getParameterMap());
 
@@ -61,10 +61,8 @@ public class ContributionAction extends HttpServlet {
         }
 
 
-       contributionBean.add(contribution);
+        contributionBean.add(contribution);
         res.sendRedirect("./contributionPage.jsp");
-
-
 
 
     }

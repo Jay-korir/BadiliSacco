@@ -77,8 +77,8 @@ public class UpdateContribution extends HttpServlet {
         contribution.setUsername("username");
         contribution.setAmount(Double.parseDouble("amount"));
         contribution.setMonth("month");
-
-       contributionBean.update(contribution);
+        System.out.println(contribution);
+        contributionBean.update(contribution);
 
 
         resp.sendRedirect("./contributionPage.jsp");

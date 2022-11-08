@@ -32,9 +32,11 @@ public class ApproveLoan extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();;
+        HttpSession session = req.getSession();
+        ;
         resp.sendRedirect("./loanApprove.jsp");
     }
 
@@ -47,39 +49,39 @@ public class ApproveLoan extends HttpServlet {
         try {
             BeanUtils.populate(loan, req.getParameterMap());
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
 
         if (StringUtils.isBlank(loan.getUsername())) {
-            servletCtx.setAttribute("contributionError","username is required");
+            servletCtx.setAttribute("contributionError", "username is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
 
-        if ( loan.getLoanAmount() == 0){
-            servletCtx.setAttribute("contributionError","month is required");
+        if (loan.getLoanAmount() == 0) {
+            servletCtx.setAttribute("contributionError", "month is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
         if (loan.getPeriod() == 0) {
-            servletCtx.setAttribute("contributionError","amount is required");
+            servletCtx.setAttribute("contributionError", "amount is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
         if (StringUtils.isBlank(loan.getPurpose())) {
-            servletCtx.setAttribute("contributionError","username is required");
+            servletCtx.setAttribute("contributionError", "username is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
         if (loan.getInterest() == 0) {
-            servletCtx.setAttribute("contributionError","amount is required");
+            servletCtx.setAttribute("contributionError", "amount is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }
         if (loan.getTotalPay() == 0) {
-            servletCtx.setAttribute("contributionError","amount is required");
+            servletCtx.setAttribute("contributionError", "amount is required");
             resp.sendRedirect("./addContribution.jsp");
             return;
         }

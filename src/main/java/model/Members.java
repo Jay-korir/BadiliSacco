@@ -14,7 +14,7 @@ public class Members extends BaseEntity {
     private String lastname;
 
     @Column
-    private  String username;
+    private String username;
 
     @Column
     private String email;
@@ -30,7 +30,6 @@ public class Members extends BaseEntity {
 
     @Column(name = "user_type")
     private String userType = "user";
-
 
 
     public String getFirstname() {
@@ -96,9 +95,6 @@ public class Members extends BaseEntity {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-
-
-
 
 
 }
