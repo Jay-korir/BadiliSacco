@@ -44,6 +44,8 @@ public class ContributionActionMember extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println(contribution);
+
 
         try {
             contributionBean.add(contribution);

@@ -28,6 +28,10 @@ public class Loan extends BaseEntity {
     @Column
     private String status = "pending";
 
+    @Column
+    private double userContribution;
+
+
     public String getStatus() {
         return status;
     }
@@ -83,5 +87,13 @@ public class Loan extends BaseEntity {
     public double getTotalPay() {
 
         return totalPay;
+    }
+
+    public double getUserContribution() {
+        return userContribution;
+    }
+
+    public void setUserContribution(double userContribution) {
+        this.userContribution = userContribution;
     }
 }

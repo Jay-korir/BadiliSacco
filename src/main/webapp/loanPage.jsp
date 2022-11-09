@@ -42,7 +42,6 @@
                                <td>${loan.totalPay}</td>
                                <td>${loan.period}</td>
                                <td> ${loan.status}</a>
-                               <td><a href="./approveLoan?id=${loan.id}">Accept</a>  | <a href="./decline?id=${loan.id}">Decline</a></td>
 
                            </tr>
 

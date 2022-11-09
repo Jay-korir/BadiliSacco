@@ -5,7 +5,6 @@ import controller.ContributionBeanI;
 import controller.LoanBeanI;
 import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 ;
@@ -28,8 +27,12 @@ public class LoanAction extends HttpServlet {
     @EJB
     LoanBeanI loanBean;
 
+    @EJB
+    ContributionBeanI contributionBean;
 
     ServletContext servletCtx = null;
+
+    Loan loan = new Loan();
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -41,20 +44,16 @@ public class LoanAction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
-        String currentUser = session.getAttribute("username").toString();
-        System.out.println(currentUser);
-        double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
-        System.out.println("myLoan===" + loanApplied);
-        int loanPeriod = Integer.parseInt(req.getParameter("period"));
-        System.out.println("loanPeriod =====" + loanPeriod);
-        Loan loan = new Loan();
+//        String currentUser = session.getAttribute("username").toString();
+//        System.out.println(currentUser);
+//        double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
+//        System.out.println("myLoan===" + loanApplied);
+//        int loanPeriod = Integer.parseInt(req.getParameter("period"));
+//        System.out.println("loanPeriod =====" + loanPeriod);
 
 
-//        contributionBean.totalUserContribution(currentUser);
-//          double myContribution =  contributionBean.totalUserContribution( currentUser);
-//
-//        System.out.println("==========");
-//        System.out.println(myContribution);
+
+
 
         try {
             BeanUtils.populate(loan, req.getParameterMap());
@@ -63,52 +62,43 @@ public class LoanAction extends HttpServlet {
             System.out.println(ex.getMessage());
         }
 
-        if (StringUtils.isBlank(loan.getUsername())) {
-            servletCtx.setAttribute("loanError", "username is required");
-            resp.sendRedirect("./loan.jsp");
-            return;
-        }
-        if (loan.getLoanAmount() == 0) {
-            servletCtx.setAttribute("loanError", "amount is required");
-            resp.sendRedirect("./loan.jsp");
-            return;
-        }
-        if (loan.getPeriod() == 0) {
-            servletCtx.setAttribute("loanError", "payment is required");
-            resp.sendRedirect("./loan.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(loan.getPurpose())) {
-            servletCtx.setAttribute("loanError", "purpose of loan is required");
-            resp.sendRedirect("./loan.jsp");
-            return;
+
+//        System.out.println(loanApplied);
+//        double myInterest = ((0.02) * loanApplied * loanPeriod);
+//        loan.setInterest(myInterest);
+//        System.out.println("myInterest=====" + myInterest);
+//        ;
+//
+//        double myTotalPay = myInterest + loanApplied;
+//        loan.setTotalPay(myTotalPay);
+//        System.out.println("myTotalPay=====" + myTotalPay);
+//        if (loanApplied <= (500000 / 2)) {
+
+        System.out.println("==============");
+        double userContribution = contributionBean.totalUserContribution(loan.getUsername());
+        System.out.println(userContribution);
+        loan.setUserContribution(userContribution);
+        System.out.println("+++++++++" +this.totalUserContribution());
+        try {
+            System.out.println("=======" + loanBean.totalUserLoan(loan.getUsername()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
-        if (loanApplied > (500000 / 2)) {
-            servletCtx.setAttribute("loanError", "exceeded your limit ");
-            resp.sendRedirect("./loan.jsp");
-            return;
 
-        }
-        System.out.println(loanApplied);
-        double myInterest = ((0.02) * loanApplied * loanPeriod);
-        loan.setInterest(myInterest);
-        System.out.println("myInterest=====" + myInterest);
-        ;
-
-        double myTotalPay = myInterest + loanApplied;
-        loan.setTotalPay(myTotalPay);
-        System.out.println("myTotalPay=====" + myTotalPay);
-        if (loanApplied <= (500000 / 2)) {
-
-            try {
+        try {
                 loanBean.add(loan);
+                resp.sendRedirect("./loan_up.jsp");
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                servletCtx.setAttribute("loanError", e.getMessage());
             }
-            resp.sendRedirect("./loan_up.jsp");
-        }
 
+
+
+
+    }
+    public double totalUserContribution() {
+      return   contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
 
     }
 

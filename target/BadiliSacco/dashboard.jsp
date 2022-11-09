@@ -151,7 +151,7 @@
                       </div>
                     </div>
                   </div>
-                  <h6 class="text-muted font-weight-normal">Total Contribution</h6>
+                  <h6 class="text-muted font-weight-normal">Members Contributions</h6>
                 </div>
               </div>
             </div>
@@ -161,8 +161,8 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">Ksh 5000</h3>
-                        <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
+                        <h3 class="mb-0">${loanController.getTotalPay()}</h3>
+                        <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
                     <div class="col-3">
@@ -171,7 +171,7 @@
                       </div>
                     </div>
                   </div>
-                  <h6 class="text-muted font-weight-normal">Revenue current</h6>
+                  <h6 class="text-muted font-weight-normal">Amount Receivable</h6>
                 </div>
               </div>
             </div>
@@ -181,8 +181,8 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">Ksh 30000</h3>
-                        <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+                        <h3 class="mb-0">${loanController.getTotalLoan()}</h3>
+                        <p class="text-danger ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
                     <div class="col-3">
@@ -191,7 +191,7 @@
                       </div>
                     </div>
                   </div>
-                  <h6 class="text-muted font-weight-normal">Loans</h6>
+                  <h6 class="text-muted font-weight-normal">Amount loaned</h6>
                 </div>
               </div>
             </div>
@@ -201,8 +201,8 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">ksh 105000</h3>
-                        <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                        <h3 class="mb-0">${contributionController.getTotalContribution() - loanController.getTotalLoan()}</h3>
+                        <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
                     <div class="col-3">
@@ -211,7 +211,7 @@
                       </div>
                     </div>
                   </div>
-                  <h6 class="text-muted font-weight-normal">Balances</h6>
+                  <h6 class="text-muted font-weight-normal">Sacco wallet</h6>
                 </div>
               </div>
             </div>
