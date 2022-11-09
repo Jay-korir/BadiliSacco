@@ -36,7 +36,12 @@ public class ContributionBean implements ContributionBeanI {
             throw new Exception("amount required");
 
 
+        for (Contribution contribution1: getListUser(contribution.getUsername())) {
+            if (contribution1.getUsername().equals(contribution.getUsername()) && (contribution1.getMonth().equals(contribution.getMonth())))
+                System.out.println("month already contributed");
+            return;
 
+        }
 
         em.merge(contribution);
 
