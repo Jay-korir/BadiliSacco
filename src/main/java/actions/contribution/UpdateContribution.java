@@ -55,35 +55,19 @@ public class UpdateContribution extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
-
-        if (StringUtils.isBlank(contribution.getUsername())) {
-            servletCtx.setAttribute("contributionError", "username is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-
-        if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("contributionError", "month is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (contribution.getAmount() == 0) {
-            servletCtx.setAttribute("contributionError", "amount is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        contribution.setId(contribution.getId());
-        contribution.setUsername(contribution.getUsername());
-        contribution.setAmount(contribution.getAmount());
-        contribution.setMonth(contribution.getMonth());
-
         System.out.println(contribution);
 
-        contributionBean.add(contribution);
 
 
-        resp.sendRedirect("./contributionPage.jsp");
+        try {
+            contributionBean.update(contribution);
+            resp.sendRedirect("./contributionPage.jsp");
+        } catch (Exception e) {
+            servletCtx.setAttribute("addError",e.getMessage());
+        }
+
+
+
     }
 
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Contribution;
+import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -8,49 +9,56 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.ArrayList;
 import java.util.List;
 
  @Stateless
  @Remote
  @Named("contributionController")
+ @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ContributionBean implements ContributionBeanI {
 
     @PersistenceContext
     EntityManager em;
 
 
-    public void add(Contribution contribution) {
+    public void add(Contribution contribution) throws Exception {
         if (contribution == null || StringUtils.isBlank(contribution.getUsername()))
-            return;
+            throw new Exception("username required");
         if (contribution == null || StringUtils.isBlank(contribution.getMonth()))
-            return;
+            throw new Exception("month required");
         if (contribution == null || contribution.getAmount() == 0)
-            return;
+            throw new Exception("amount required");
 
-       if (contribution.getId() != null)
-            System.out.println("Entity manager will perform an update");
+
+
 
         em.merge(contribution);
 
 
     }
 
+     public void update(Contribution contribution) throws Exception {
+         if (contribution == null || StringUtils.isBlank(contribution.getUsername()))
+             throw new Exception("username required");
+         if (contribution == null || StringUtils.isBlank(contribution.getMonth()))
+             throw new Exception("month required");
+         if (contribution == null || contribution.getAmount() == 0)
+             throw new Exception("amount required");
 
 
 
 
+         em.merge(contribution);
 
-//    public List<Contribution> list(Contribution filter) {
-//        List<Contribution> contributions = new ArrayList<Contribution>();
-//
-//
-//        return contributions;
-//    }
+
+     }
+
 
 
      public void delete(Long contributionId) {
@@ -62,6 +70,11 @@ public class ContributionBean implements ContributionBeanI {
          return em.createQuery("FROM Contribution s", Contribution.class).getResultList();
      }
 
+     public List<Contribution> getListUser(String username) {
+         return em.createQuery("FROM Contribution c WHERE c.username =:userName", Contribution.class)
+                 .setParameter("userName",username)
+                 .getResultList();
+     }
 
      public Contribution getContribution(Long id) {
          return em.createQuery("FROM Contribution s WHERE s.id =:Id", Contribution.class)
@@ -70,48 +83,26 @@ public class ContributionBean implements ContributionBeanI {
      }
 
 
-     public  void update(Contribution contribution) {
-  em.persist(contribution);
 
+    public double getTotalContribution() {
+        return (double) em.createQuery("select sum(amount) from Contribution").getSingleResult();
     }
 
 
-    public int getTotalContribution() {
-
-        int result = 0;
-
-
-        return result;
+    public double totalUserContribution(String username) {
+      return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName ")
+                .setParameter("userName", username).getSingleResult();
     }
-
-
-    public int totalUserContribution(String username) {
-
-        int result = 0;
-
-
-        return result;
-    }
-
-
-    public Contribution getUserContribution(int id) {
-        Contribution contribution = new Contribution();
-
-
-        return contribution;
     }
 
 
 
 
 
-    public int getList1() {
-        int result = 0;
-
-        return result;
-    }
 
 
 
-}
+
+
+
 

@@ -7,7 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -45,26 +45,14 @@ public class ContributionActionMember extends HttpServlet {
             System.out.println(ex.getMessage());
         }
 
-
-        if (StringUtils.isBlank(contribution.getUsername())) {
-            servletCtx.setAttribute("addError", "username is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
+        try {
+            contributionBean.add(contribution);
+            res.sendRedirect("./userDashboard.jsp");
+        } catch (Exception e) {
+            servletCtx.setAttribute("addError",e.getMessage());
+            res.sendRedirect("./memberContribution.jsp");
         }
 
-        if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("addError", "month is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (contribution.getAmount() == 0) {
-            servletCtx.setAttribute("addError", "amount is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
-        }
-
-        contributionBean.add(contribution);
-        res.sendRedirect("./userDashboard.jsp");
 
 
     }

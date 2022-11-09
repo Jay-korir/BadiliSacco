@@ -28,10 +28,10 @@ public class MembersBean implements MembersBeanI {
     @PersistenceContext
     EntityManager em;
 
-    public void add(Members members) {
+    public void add(Members members) throws Exception {
         if (members == null || StringUtils.isBlank(members.getFirstname()) || StringUtils.isBlank(members.getLastname()) ||
                 StringUtils.isBlank(members.getUsername()) || StringUtils.isBlank(members.getEmail()) || StringUtils.isBlank(members.getPhone()))
-            return;
+            throw new Exception(" all fields  required not be null");
 
         em.merge(members);
 

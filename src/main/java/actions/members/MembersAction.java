@@ -48,44 +48,16 @@ public class MembersAction extends HttpServlet {
         } catch (Exception ex) {
             System.out.println("bean util error " + ex.getMessage());
         }
-        if (org.apache.commons.lang3.StringUtils.isBlank(member.getFirstname())) {
-            servletCtx.setAttribute("addError", "firstname is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(member.getLastname())) {
-            servletCtx.setAttribute("addError", "lastname is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(member.getUsername())) {
-            servletCtx.setAttribute("addError", "username is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(member.getEmail())) {
-            servletCtx.setAttribute("addError", "Email is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(member.getPhone())) {
-            servletCtx.setAttribute("addError", "phone is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(member.getPassword())) {
-            servletCtx.setAttribute("addError", "password is required");
-            resp.sendRedirect("./addMembers.jsp");
-            return;
-        }
 
 
         try {
             membersBean.add(member);
+            resp.sendRedirect("./membersPage.jsp");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            servletCtx.setAttribute("addError",e.getMessage());
+            resp.sendRedirect("./addMembers.jsp");
         }
-        resp.sendRedirect("./membersPage.jsp");
+
     }
 
 }

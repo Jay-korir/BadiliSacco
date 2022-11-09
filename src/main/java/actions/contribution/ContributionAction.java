@@ -42,27 +42,15 @@ public class ContributionAction extends HttpServlet {
             System.out.println(ex.getMessage());
         }
 
-
-        if (StringUtils.isBlank(contribution.getUsername())) {
-            servletCtx.setAttribute("addError", "username is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
-        }
-
-        if (StringUtils.isBlank(contribution.getMonth())) {
-            servletCtx.setAttribute("addError", "month is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (contribution.getAmount() == 0) {
-            servletCtx.setAttribute("addError", "amount is required");
-            res.sendRedirect("./addContribution.jsp");
-            return;
+        try {
+            contributionBean.add(contribution);
+            res.sendRedirect("./contributionPage.jsp");
+        } catch (Exception e) {
+            servletCtx.setAttribute("addError",e.getMessage());
+           res.sendRedirect("./addContribution.jsp");
         }
 
 
-        contributionBean.add(contribution);
-        res.sendRedirect("./contributionPage.jsp");
 
 
     }

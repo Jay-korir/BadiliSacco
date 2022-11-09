@@ -6,16 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ContributionBeanI {
-    void add(Contribution contribution);
+    void add(Contribution contribution) throws Exception;
 
-    void update(Contribution contribution);
+    void update(Contribution contribution) throws Exception;
 
     void delete(Long contributionId);
 
-    int totalUserContribution(String username);
 
-    //List<Contribution> list(Contribution filter);
     List<Contribution> getList();
 
     Contribution getContribution(Long id);
+
+    double getTotalContribution();
+
+    double totalUserContribution(String username);
+
+    List<Contribution> getListUser(String username);
 }

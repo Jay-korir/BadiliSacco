@@ -5,12 +5,15 @@ import model.Members;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
 @Remote
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class UserBean implements UserBeanI {
 
     @PersistenceContext

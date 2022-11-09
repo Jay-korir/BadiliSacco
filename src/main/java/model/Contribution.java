@@ -45,6 +45,7 @@ public class Contribution extends BaseEntity {
     @Override
     public String toString() {
         return "Contribution{" +
+                "id='" + getId() + '\'' +
                 "username='" + username + '\'' +
                 ", month='" + month + '\'' +
                 ", amount=" + amount +

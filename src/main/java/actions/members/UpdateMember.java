@@ -84,13 +84,6 @@ public class UpdateMember extends HttpServlet {
         }
 
 
-        members.setId(members.getId());
-        members.setFirstname(members.getFirstname());
-        members.setLastname(members.getLastname());
-        members.setUsername(members.getUsername());
-        members.setEmail(members.getEmail());
-        members.setPhone(members.getPhone());
-        members.setPassword(members.getPassword());
 
         System.out.println(members);
         try {
