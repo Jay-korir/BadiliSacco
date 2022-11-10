@@ -111,7 +111,7 @@ public class ContributionBean implements ContributionBeanI {
         resultList.forEach(System.out::println);
     }
     public void limit(){
-        Query query = em.createQuery("SELECT m FROM Members m ORDER BY m.id DESC limit 0 50");
+        Query query = em.createQuery("SELECT m FROM Members m ORDER BY m.id DESC ").setMaxResults(4);
         List<Members> resultList = query.getResultList();
         resultList.forEach(System.out::println);
 
