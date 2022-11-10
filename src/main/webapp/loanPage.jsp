@@ -12,6 +12,9 @@
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
 <br/>Loan Applications <br/>
 
+
+<br/>
+
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -20,6 +23,7 @@
                     <div class="table-responsive">
                       <table class="table table-dark">
                         <thead>
+                        <br/>Add Loan <a href='./loan.jsp'>New Loan</a><br/>
                           <tr>
 
                             <th> Loaner username </th>
@@ -34,7 +38,7 @@
 
 
                        <tbody>
-                       <c:forEach items ="${loanController.list}" var = "loan">
+                       <c:forEach items ="${loanView.list}" var = "loan">
                        <tr>
                                <td>${loan.username}</td>
                                <td>${loan.loanAmount}</td>

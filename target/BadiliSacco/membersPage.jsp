@@ -40,7 +40,7 @@
                         </thead>
 
                           <tbody>
-                          <c:forEach items ="${memberController.list}" var = "member">
+                          <c:forEach items ="${memberView.list}" var = "member">
                          <tr>
                                 <td>${member.firstname}</td>
                                 <td>${member.lastname}</td>

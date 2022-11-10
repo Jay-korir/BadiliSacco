@@ -12,6 +12,7 @@ actions\LogIn.class
 jstlCustomTags\Header1Tag.class
 actions\loan\ApproveLoan.class
 eventListeners\RequestListener.class
+view\LoanView.class
 controller\MembersBean.class
 actions\members\DeleteMember.class
 actions\contribution\DeleteContribution.class
@@ -25,10 +26,12 @@ actions\LandPage.class
 actions\members\UpdateMember.class
 controller\UserBean.class
 model\BaseEntity.class
+view\MembersView.class
 service\Reg$1.class
 actions\Display.class
 service\Edit.class
 actions\Register.class
+view\ContributionView.class
 service\Entity.class
 eventListeners\AppServletContextListener.class
 actions\contribution\UpdateContribution.class

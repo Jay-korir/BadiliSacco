@@ -44,7 +44,7 @@
                         </thead>
 
                        <tbody>
-                       <c:forEach items ="${contributionController.list}" var = "contribution">
+                       <c:forEach items ="${contributionView.list}" var = "contribution">
                       <tr>
                                <td>${fn:toUpperCase(contribution.username)}</td>
                                <td>${contribution.month}</td>

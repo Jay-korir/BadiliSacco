@@ -19,7 +19,6 @@ import java.util.List;
 
  @Stateless
  @Remote
- @Named("contributionController")
  @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ContributionBean implements ContributionBeanI {
 
@@ -71,7 +70,7 @@ public class ContributionBean implements ContributionBeanI {
          em.remove(em.find(Contribution.class, contributionId));
 
     }
-     public List<Contribution> getList() {
+     public List<Contribution> list() {
          return em.createQuery("FROM Contribution s", Contribution.class).getResultList();
      }
 

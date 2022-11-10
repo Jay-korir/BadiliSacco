@@ -13,7 +13,7 @@ public interface ContributionBeanI {
     void delete(Long contributionId);
 
 
-    List<Contribution> getList();
+    List<Contribution> list();
 
     Contribution getContribution(Long id);
 

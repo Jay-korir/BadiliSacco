@@ -7,7 +7,7 @@ import java.util.List;
 public interface LoanBeanI {
     void add(Loan loan) throws Exception;
 
-    List<Loan> getList() throws Exception;
+    List<Loan> list() throws Exception;
 
     void update(Loan loan) throws Exception;
 
@@ -21,6 +21,6 @@ public interface LoanBeanI {
 
     double getTotalPay() throws Exception;
 
-    List<Loan> list(Loan filter) throws Exception;
+    //List<Loan> list(Loan filter) throws Exception;
 
 }

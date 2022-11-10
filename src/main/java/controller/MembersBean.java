@@ -21,7 +21,6 @@ import java.util.List;
 
 @Stateless
 @Remote
-@Named("memberController")
 public class MembersBean implements MembersBeanI {
 
 
@@ -38,12 +37,7 @@ public class MembersBean implements MembersBeanI {
     }
 
 
-    public List<Members> list(Members filter) {
-        List<Members> members = new ArrayList<Members>();
 
-
-        return members;
-    }
 
     public void update(Members members) {
 
@@ -67,7 +61,7 @@ public class MembersBean implements MembersBeanI {
         return members;
     }
 
-    public List<Members> getList() {
+    public List<Members> list() {
 
         return em.createQuery("FROM Members s", Members.class).getResultList();
     }

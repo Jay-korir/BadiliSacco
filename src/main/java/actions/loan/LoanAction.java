@@ -27,8 +27,8 @@ public class LoanAction extends HttpServlet {
     @EJB
     LoanBeanI loanBean;
 
-    @EJB
-    ContributionBeanI contributionBean;
+@EJB
+        ContributionBeanI contributionBean;
 
     ServletContext servletCtx = null;
 
@@ -44,12 +44,6 @@ public class LoanAction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
-//        String currentUser = session.getAttribute("username").toString();
-//        System.out.println(currentUser);
-//        double loanApplied = Double.parseDouble(req.getParameter("loanAmount"));
-//        System.out.println("myLoan===" + loanApplied);
-//        int loanPeriod = Integer.parseInt(req.getParameter("period"));
-//        System.out.println("loanPeriod =====" + loanPeriod);
 
 
 
@@ -63,34 +57,21 @@ public class LoanAction extends HttpServlet {
         }
 
 
-//        System.out.println(loanApplied);
-//        double myInterest = ((0.02) * loanApplied * loanPeriod);
-//        loan.setInterest(myInterest);
-//        System.out.println("myInterest=====" + myInterest);
-//        ;
-//
-//        double myTotalPay = myInterest + loanApplied;
-//        loan.setTotalPay(myTotalPay);
-//        System.out.println("myTotalPay=====" + myTotalPay);
-//        if (loanApplied <= (500000 / 2)) {
-
         System.out.println("==============");
+        System.out.println("loanee===" + loan.getUsername());
         double userContribution = contributionBean.totalUserContribution(loan.getUsername());
-        System.out.println(userContribution);
-        loan.setUserContribution(userContribution);
-        System.out.println("+++++++++" +this.totalUserContribution());
-        try {
-            System.out.println("=======" + loanBean.totalUserLoan(loan.getUsername()));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
+        System.out.println("contr==" +userContribution);
+        loan.setUserContribution(userContribution);
+        System.out.println("+++++++++ total user contri" +this.totalUserContribution());
+        System.out.println("loanAction=====" + loan);
 
         try {
                 loanBean.add(loan);
-                resp.sendRedirect("./loan_up.jsp");
+                resp.sendRedirect("./loanPage.jsp");
             } catch (Exception e) {
                 servletCtx.setAttribute("loanError", e.getMessage());
+                resp.sendRedirect("./loan.jsp");
             }
 
 
@@ -98,9 +79,10 @@ public class LoanAction extends HttpServlet {
 
     }
     public double totalUserContribution() {
-      return   contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
+        return   contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
 
     }
+
 
 
 }

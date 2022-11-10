@@ -20,13 +20,15 @@ import java.util.List;
 
 @Stateless
 @Remote
-@Named("loanController")
 public class LoanBean implements LoanBeanI {
+
+    @EJB
+    ContributionBeanI contributionBean;
 
     @PersistenceContext
     EntityManager em;
 
-
+Loan loan = new Loan();
 
     public void add(Loan loan) throws Exception {
         if (loan == null || StringUtils.isBlank(loan.getUsername()))
@@ -48,16 +50,22 @@ public class LoanBean implements LoanBeanI {
         double myInterest = ((0.02) * loanApplied * loanPeriod);
         loan.setInterest(myInterest);
         System.out.println("myInterest=====" + myInterest);
-        ;
+
 
         double myTotalPay = myInterest + loanApplied;
         loan.setTotalPay(myTotalPay);
         System.out.println("myTotalPay=====" + myTotalPay);
-        if (loanApplied <= (100000)) {
 
+
+
+        System.out.println("====loanbean====" + loan);
+
+        if (loanApplied <= (100000)) {
+            System.out.println(loan);
             em.merge(loan);
         }
     }
+
     public double totalUserLoan(String username) {
         return (double) em.createQuery("Select sum(loanAmount) from Loan l WHERE l.username =:userName ")
                 .setParameter("userName", username).getSingleResult();
@@ -74,7 +82,7 @@ public class LoanBean implements LoanBeanI {
         return (double) em.createQuery("select sum(loanAmount) from Loan").getSingleResult();
     }
 
-    public List<Loan> getList() {
+    public List<Loan> list() {
         return em.createQuery("From Loan l", Loan.class).getResultList();
     }
 
@@ -86,10 +94,7 @@ public class LoanBean implements LoanBeanI {
         em.persist(loan);
     }
 
-    public List<Loan> list(Loan filter) {
-        List<Loan> loan = new ArrayList<Loan>();
 
 
-        return loan;
-    }
+
 }

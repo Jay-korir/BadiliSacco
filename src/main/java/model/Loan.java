@@ -96,4 +96,18 @@ public class Loan extends BaseEntity {
     public void setUserContribution(double userContribution) {
         this.userContribution = userContribution;
     }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "username='" + username + '\'' +
+                ", loanAmount=" + loanAmount +
+                ", period=" + period +
+                ", purpose='" + purpose + '\'' +
+                ", interest=" + interest +
+                ", totalPay=" + totalPay +
+                ", status='" + status + '\'' +
+                ", userContribution=" + userContribution +
+                '}';
+    }
 }
