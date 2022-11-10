@@ -1,6 +1,6 @@
 package view;
 
-import controller.ContributionBeanI;
+import bean.ContributionBeanI;
 import model.Contribution;
 
 import javax.ejb.EJB;

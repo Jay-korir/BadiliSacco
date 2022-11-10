@@ -1,12 +1,10 @@
 package actions.contribution;
 
 
-import controller.ContributionBean;
-import controller.ContributionBeanI;
+import bean.ContributionBeanI;
 import model.Contribution;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

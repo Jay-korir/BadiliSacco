@@ -1,7 +1,6 @@
 package view;
 
-import controller.MembersBeanI;
-import model.Contribution;
+import bean.MembersBeanI;
 import model.Members;
 
 import javax.ejb.EJB;

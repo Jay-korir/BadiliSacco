@@ -1,7 +1,6 @@
-package controller;
+package bean;
 
 import model.Contribution;
-import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -11,7 +10,6 @@ import javax.ejb.Stateless;
 
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 

@@ -1,8 +1,7 @@
-package controller;
+package bean;
 
 import model.Contribution;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ContributionBeanI {

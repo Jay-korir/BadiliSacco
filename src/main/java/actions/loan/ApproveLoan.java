@@ -1,7 +1,6 @@
 package actions.loan;
 
-import controller.LoanBean;
-import controller.LoanBeanI;
+import bean.LoanBeanI;
 import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -1,8 +1,8 @@
 package actions.loan;
 
-import controller.ContributionBeanI;
+import bean.ContributionBeanI;
 
-import controller.LoanBeanI;
+import bean.LoanBeanI;
 import model.Loan;
 import org.apache.commons.beanutils.BeanUtils;
 

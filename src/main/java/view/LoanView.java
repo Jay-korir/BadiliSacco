@@ -1,8 +1,7 @@
 package view;
 
-import controller.LoanBeanI;
+import bean.LoanBeanI;
 import model.Loan;
-import model.Members;
 
 import javax.ejb.EJB;
 import javax.inject.Named;

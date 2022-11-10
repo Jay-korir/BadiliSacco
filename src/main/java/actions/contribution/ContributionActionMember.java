@@ -1,10 +1,8 @@
 package actions.contribution;
 
-import controller.ContributionBean;
-import controller.ContributionBeanI;
+import bean.ContributionBeanI;
 import model.Contribution;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 @WebServlet("/memberContribution")

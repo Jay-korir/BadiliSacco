@@ -1,8 +1,7 @@
-package controller;
+package bean;
 
 
 import model.Loan;
-import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -10,12 +9,10 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Stateless

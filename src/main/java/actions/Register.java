@@ -1,6 +1,6 @@
 package actions;
 
-import controller.UserBeanI;
+import bean.UserBeanI;
 import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
 

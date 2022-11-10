@@ -1,12 +1,10 @@
 package actions.members;
 
 
-import controller.MembersBean;
-import controller.MembersBeanI;
+import bean.MembersBeanI;
 import model.Members;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

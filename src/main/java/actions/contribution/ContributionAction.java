@@ -1,9 +1,8 @@
 package actions.contribution;
 
-import controller.ContributionBeanI;
+import bean.ContributionBeanI;
 import model.Contribution;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletConfig;
