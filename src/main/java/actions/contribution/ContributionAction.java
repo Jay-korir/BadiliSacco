@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 @WebServlet("/contribution")
 public class ContributionAction extends HttpServlet {
@@ -40,6 +41,12 @@ public class ContributionAction extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println("==group By ===");
+        contributionBean.groupBy();
+        System.out.println("++order by ===");
+        contributionBean.orderBy();
+        System.out.println("==limit==");
+        contributionBean.limit();
 
         try {
             contributionBean.add(contribution);

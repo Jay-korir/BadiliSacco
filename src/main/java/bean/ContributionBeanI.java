@@ -21,4 +21,10 @@ public interface ContributionBeanI {
     double totalUserContribution(String username);
 
     List<Contribution> getListUser(String username);
+
+    void groupBy();
+
+    void orderBy();
+
+    void limit();
 }

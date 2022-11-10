@@ -1,6 +1,7 @@
 package bean;
 
 import model.Contribution;
+import model.Members;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -12,6 +13,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import java.util.List;
 
@@ -95,6 +97,26 @@ public class ContributionBean implements ContributionBeanI {
       return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName ")
                 .setParameter("userName", username).getSingleResult();
     }
+    public void groupBy(){
+        String hql="SELECT username ,sum(amount) FROM Contribution c GROUP BY c.username";
+        Query query=  em.createQuery(hql);
+        List<Object[]> list = query.getResultList();
+        for (Object[] object:list ) {
+            System.out.println(object[0] + "     " + object[1]);
+        }
+    }
+    public void orderBy(){
+        Query query = em.createQuery("SELECT c FROM Contribution c ORDER BY c.amount DESC");
+        List<Contribution> resultList = query.getResultList();
+        resultList.forEach(System.out::println);
+    }
+    public void limit(){
+        Query query = em.createQuery("SELECT m FROM Members m ORDER BY m.id DESC limit 0 50");
+        List<Members> resultList = query.getResultList();
+        resultList.forEach(System.out::println);
+
+    }
+
     }
 
 
