@@ -116,6 +116,19 @@ public class ContributionBean implements ContributionBeanI {
         resultList.forEach(System.out::println);
 
     }
+    public void inner(){
+
+        Query query = em.createQuery(" SELECT m FROM Members m INNER JOIN Contribution c ON m.username=c.username");
+        List<Members> resultList = query.getResultList();
+        resultList.forEach(System.out::println);
+    }
+
+     public void leftJoin(){
+
+         Query query = em.createQuery(" select c.username, c.month, m.email,m.lastname from Contribution c left join c.Members m");
+         List<Members> resultList = query.getResultList();
+         resultList.forEach(System.out::println);
+     }
 
     }
 

@@ -47,6 +47,10 @@ public class ContributionAction extends HttpServlet {
         contributionBean.orderBy();
         System.out.println("==limit==");
         contributionBean.limit();
+        System.out.println("====innerJoin");
+        contributionBean.inner();
+        System.out.println("======leftJoin");
+        contributionBean.leftJoin();
 
         try {
             contributionBean.add(contribution);

@@ -44,6 +44,7 @@ eventListeners\SessionListener.class
 actions\members\MembersAction.class
 service\Reg.class
 actions\loan\LoanAction.class
+model\Reports.class
 service\MYSQLSACCO.class
 eventListeners\SessionHttpBinding.class
 jstlCustomTags\HeaderTag.class

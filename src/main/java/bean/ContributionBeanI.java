@@ -27,4 +27,8 @@ public interface ContributionBeanI {
     void orderBy();
 
     void limit();
+
+    void inner();
+
+    void leftJoin();
 }
