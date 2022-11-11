@@ -32,6 +32,9 @@ public class Members extends BaseEntity {
     private String userType = "user";
 
 
+
+
+
     public String getFirstname() {
         return firstname;
     }

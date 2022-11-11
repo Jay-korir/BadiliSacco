@@ -1,9 +1,7 @@
 package model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "contributions")
@@ -16,6 +14,8 @@ public class Contribution extends BaseEntity {
 
     @Column
     private double amount;
+
+
 
 
     public String getUsername() {

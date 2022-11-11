@@ -7,6 +7,7 @@ service\IMYSQLDB.class
 bean\ContributionBean.class
 model\Contribution.class
 actions\DashBoard.class
+restapi\ContributionRestApi.class
 model\Members.class
 eventListeners\AppContextAttributeListener.class
 actions\LogIn.class
@@ -36,6 +37,7 @@ actions\Register.class
 view\ContributionView.class
 service\Entity.class
 eventListeners\AppServletContextListener.class
+rest\RestConfig.class
 actions\contribution\UpdateContribution.class
 jstlCustomTags\Footer1Tag.class
 actions\contribution\ContributionActionMember.class
@@ -49,4 +51,5 @@ service\MYSQLSACCO.class
 eventListeners\SessionHttpBinding.class
 jstlCustomTags\HeaderTag.class
 utilities\DatabaseConnection.class
+rest\ResponseWrapper.class
 actions\contribution\ContributionAction.class

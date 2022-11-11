@@ -125,7 +125,7 @@ public class ContributionBean implements ContributionBeanI {
 
      public void leftJoin(){
 
-         Query query = em.createQuery(" select c.username, c.month, m.email,m.lastname from Contribution c left join c.Members m");
+         Query query = em.createQuery(" SELECT m.firstname, m.lastname, c.amount FROM Members m LEFT JOIN Contribution c ON m.username = c.username");
          List<Members> resultList = query.getResultList();
          resultList.forEach(System.out::println);
      }

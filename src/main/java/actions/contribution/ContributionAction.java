@@ -50,7 +50,7 @@ public class ContributionAction extends HttpServlet {
         System.out.println("====innerJoin");
         contributionBean.inner();
         System.out.println("======leftJoin");
-        contributionBean.leftJoin();
+        //contributionBean.leftJoin();
 
         try {
             contributionBean.add(contribution);
