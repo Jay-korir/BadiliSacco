@@ -8,6 +8,7 @@ bean\ContributionBean.class
 model\Contribution.class
 actions\DashBoard.class
 restapi\ContributionRestApi.class
+restapi\MembersRestapi.class
 model\Members.class
 eventListeners\AppContextAttributeListener.class
 actions\LogIn.class
@@ -33,6 +34,7 @@ service\Edit.class
 bean\MembersBeanI.class
 bean\UserBeanI.class
 bean\UserBean.class
+restapi\LoanRestApi.class
 actions\Register.class
 view\ContributionView.class
 service\Entity.class
