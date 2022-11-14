@@ -31,4 +31,6 @@ public interface ContributionBeanI {
     void inner();
 
     void leftJoin();
+
+    void crossJoin();
 }

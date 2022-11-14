@@ -32,12 +32,12 @@ public class ApproveLoan extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        ;
-        resp.sendRedirect("./loanApprove.jsp");
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+//        ;
+//        resp.sendRedirect("./loanApprove.jsp");
+//    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -53,42 +53,7 @@ public class ApproveLoan extends HttpServlet {
         }
 
 
-        if (StringUtils.isBlank(loan.getUsername())) {
-            servletCtx.setAttribute("contributionError", "username is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-
-        if (loan.getLoanAmount() == 0) {
-            servletCtx.setAttribute("contributionError", "month is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (loan.getPeriod() == 0) {
-            servletCtx.setAttribute("contributionError", "amount is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (StringUtils.isBlank(loan.getPurpose())) {
-            servletCtx.setAttribute("contributionError", "username is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (loan.getInterest() == 0) {
-            servletCtx.setAttribute("contributionError", "amount is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-        if (loan.getTotalPay() == 0) {
-            servletCtx.setAttribute("contributionError", "amount is required");
-            resp.sendRedirect("./addContribution.jsp");
-            return;
-        }
-
-        loan.setUsername("username");
-        loan.setLoanAmount(Double.parseDouble("loanAmount"));
-        loan.setPeriod(Integer.parseInt("period"));
-        loan.setPurpose("purpose");
+        loan.setStatus("Approved");
 
         try {
             loanBean.update(loan);

@@ -17,10 +17,10 @@
 <% Long a = Long.valueOf(Integer.parseInt(request.getParameter("id")));
  pageContext.setAttribute("id", a);
 %>
-<jsp:useBean id = "contributionController"  class = "controller.ContributionBean" />
+<jsp:useBean id = "contributionView"  class = "view.ContributionView" />
 
 
-   <c:set var="contribution" value = "${contributionController.getContribution(id)}" />
+   <c:set var="contribution" value = "${contributionView.getMyContribution(id)}" />
 
 <div class="row">
 <div class="col-md-6 grid-margin stretch-card">

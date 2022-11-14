@@ -19,7 +19,11 @@ public interface LoanBeanI {
 
     double getTotalLoan() throws Exception;
 
-    double getTotalPay() throws Exception;
+    double getTotalLoansPay() throws Exception;
+
+    List<Loan> unApprovedList() throws Exception;
+
+    Loan getLoan(Long id) throws Exception;
 
     //List<Loan> list(Loan filter) throws Exception;
 

@@ -23,6 +23,7 @@
                     <div class="table-responsive">
                       <table class="table table-dark">
                         <thead>
+                        <br/>Approve Loan <a href='./unapprovedLoans.jsp'>Online Loans</a><br/>
                         <br/>Add Loan <a href='./loan.jsp'>New Loan</a><br/>
                           <tr>
 
@@ -46,6 +47,7 @@
                                <td>${loan.totalPay}</td>
                                <td>${loan.period}</td>
                                <td> ${loan.status}</a>
+
 
                            </tr>
 

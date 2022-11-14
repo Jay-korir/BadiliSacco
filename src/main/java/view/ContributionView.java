@@ -17,4 +17,13 @@ public class ContributionView implements Serializable {
         return contributionBean.list();
 
     }
+    public double getMyContribution(String username){
+       return contributionBean.totalUserContribution(username);
+    }
+    public double getTotalContri(){
+        return contributionBean.getTotalContribution();
+    }
+    public  Contribution getMyContribution(Long id){
+        return contributionBean.getContribution(id);
+    }
 }

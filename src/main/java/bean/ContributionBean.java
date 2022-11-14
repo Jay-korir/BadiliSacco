@@ -130,6 +130,16 @@ public class ContributionBean implements ContributionBeanI {
          resultList.forEach(System.out::println);
      }
 
+
+     public void crossJoin() {
+         String hql = "from Contribution c, Members m";
+         Query query = em.createQuery(hql);
+         List<Object[]> list = query.getResultList();
+         for (Object[] object : list) {
+             System.out.println(object[0] + "     " + object[1]);
+         }
+     }
+
     }
 
 

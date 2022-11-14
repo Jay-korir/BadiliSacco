@@ -26,7 +26,7 @@ public class Loan extends BaseEntity {
     private double totalPay;
 
     @Column
-    private String status = "pending";
+    private String status;
 
     @Column
     private double userContribution;

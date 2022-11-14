@@ -51,6 +51,8 @@ public class ContributionAction extends HttpServlet {
         contributionBean.inner();
         System.out.println("======leftJoin");
         //contributionBean.leftJoin();
+        System.out.println("===========crossJoin");
+        contributionBean.crossJoin();
 
         try {
             contributionBean.add(contribution);
