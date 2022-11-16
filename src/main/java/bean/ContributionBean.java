@@ -31,6 +31,8 @@ public class ContributionBean implements ContributionBeanI {
             throw new Exception("username required");
         if (contribution == null || StringUtils.isBlank(contribution.getMonth()))
             throw new Exception("month required");
+        if (contribution == null || StringUtils.isBlank(contribution.getType()))
+            throw new Exception("type required");
         if (contribution == null || contribution.getAmount() == 0)
             throw new Exception("amount required");
 
@@ -94,8 +96,11 @@ public class ContributionBean implements ContributionBeanI {
 
 
     public double totalUserContribution(String username) {
-      return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName ")
-                .setParameter("userName", username).getSingleResult();
+      return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName " +
+              "and c.type =:pwd")
+                .setParameter("userName", username)
+              .setParameter("pwd","Daily/monthly")
+              .getSingleResult();
     }
     public void groupBy(){
         String hql="SELECT username ,sum(amount) FROM Contribution c GROUP BY c.username";

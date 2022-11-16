@@ -23,14 +23,22 @@ public class SessionFilter  implements Filter {
 
         String reqPath = httpServletRequest.getServletPath();
 
+        System.out.println("Request path: "+ reqPath);
+        System.out.println("\n\nNew session: "+ session.isNew());
+
         if (reqPath == null) {
             session.invalidate();
             httpServletResponse.sendRedirect("./");
             return;
         }
 
-        if (reqPath.equalsIgnoreCase("/welcome") && session.isNew()) {
-            httpServletResponse.sendRedirect("./login");
+        if ((reqPath.contains("/welcome")
+                || reqPath.contains("./dashboard.jsp")
+                || reqPath.contains("/contribution")
+                || reqPath.contains("./membersPage")
+                || reqPath.contains("./loanPage"))
+                && session.isNew()) {
+            httpServletResponse.sendRedirect("./login.jsp");
             return;
         }
 

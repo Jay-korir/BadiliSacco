@@ -26,4 +26,9 @@ public class ContributionView implements Serializable {
     public  Contribution getMyContribution(Long id){
         return contributionBean.getContribution(id);
     }
+    public List<Contribution> getUserContribution(String username){
+        return contributionBean.getListUser(username);
+
+    }
+
 }

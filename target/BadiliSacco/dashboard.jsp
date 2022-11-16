@@ -118,7 +118,12 @@
             </span>
           <span class="menu-title">Members</span>
          </a>
-
+<a class="nav-link" href="./login.jsp">
+              <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+              </span>
+              <span class="menu-title">Log out</span>
+            </a>
         </ul>
       </nav>
 

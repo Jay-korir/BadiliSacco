@@ -44,6 +44,7 @@ rest\RestConfig.class
 actions\contribution\UpdateContribution.class
 jstlCustomTags\Footer1Tag.class
 actions\contribution\ContributionActionMember.class
+soap\ContributionSoap.class
 bean\ContributionBeanI.class
 eventListeners\SessionListener.class
 actions\members\MembersAction.class

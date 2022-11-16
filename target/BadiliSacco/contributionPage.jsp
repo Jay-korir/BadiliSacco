@@ -36,6 +36,7 @@
 
                             <th> Contributor username </th>
                             <th> Contribution month </th>
+                            <th> Contribution type </th>
                             <th> Contributed amount</th>
                             <th> id </th>
                             <th>date</th>
@@ -48,6 +49,7 @@
                       <tr>
                                <td>${fn:toUpperCase(contribution.username)}</td>
                                <td>${contribution.month}</td>
+                               <td>${contribution.type}</td>
                                <td>${contribution.amount}</td>
                                 <td>${contribution.id}</td>
                                 <td>${contribution.timeCreated}</td>

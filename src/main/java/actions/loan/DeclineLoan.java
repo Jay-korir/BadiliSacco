@@ -54,7 +54,7 @@ public class DeclineLoan extends HttpServlet {
             System.out.println(ex.getMessage());
         }
 
- loan.setStatus("pending");
+        loan.setStatus("declined");
 
         try {
             loanBean.update(loan);

@@ -15,6 +15,8 @@ public class Contribution extends BaseEntity {
     @Column
     private double amount;
 
+    @Column
+    private  String type;
 
 
 
@@ -42,12 +44,21 @@ public class Contribution extends BaseEntity {
         this.amount = amount;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Contribution{" +
                 "id='" + getId() + '\'' +
                 "username='" + username + '\'' +
                 ", month='" + month + '\'' +
+                ", type='" + type+ '\'' +
                 ", amount=" + amount +
                 '}';
     }

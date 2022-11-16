@@ -27,8 +27,8 @@ public class LoanAction extends HttpServlet {
     @EJB
     LoanBeanI loanBean;
 
-@EJB
-        ContributionBeanI contributionBean;
+    @EJB
+    ContributionBeanI contributionBean;
 
     ServletContext servletCtx = null;
 
@@ -46,9 +46,6 @@ public class LoanAction extends HttpServlet {
         HttpSession session = req.getSession(true);
 
 
-
-
-
         try {
             BeanUtils.populate(loan, req.getParameterMap());
 
@@ -61,28 +58,26 @@ public class LoanAction extends HttpServlet {
         System.out.println("loanee===" + loan.getUsername());
         double userContribution = contributionBean.totalUserContribution(loan.getUsername());
 
-        System.out.println("contr==" +userContribution);
+        System.out.println("contr==" + userContribution);
         loan.setUserContribution(userContribution);
-        System.out.println("+++++++++ total user contri" +this.totalUserContribution());
+        System.out.println("+++++++++ total user contri" + this.totalUserContribution());
         System.out.println("loanAction=====" + loan);
 
         try {
-                loanBean.add(loan);
-                resp.sendRedirect("./loanPage.jsp");
-            } catch (Exception e) {
-                servletCtx.setAttribute("loanError", e.getMessage());
-                resp.sendRedirect("./loan.jsp");
-            }
-
-
+            loanBean.add(loan);
+            resp.sendRedirect("./loanPage.jsp");
+        } catch (Exception e) {
+            servletCtx.setAttribute("loanError", e.getMessage());
+            resp.sendRedirect("./loan.jsp");
+        }
 
 
     }
+
     public double totalUserContribution() {
-        return   contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
+        return contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
 
     }
-
 
 
 }

@@ -6,22 +6,21 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
-<jsp:useBean id = "contributionController"  class = "controller.ContributionController" />
-
-<%!
-
-	String contributionName;
-	String monthName;
-
-%>
 
 
+<jsp:useBean id = "contributionView"  class = "view.ContributionView" />
+
+
+   <c:set var="contribution" value = "${contributionView.getUserContribution(${username})}" />
 
 
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>
-<br/>Add Contribution <a href='./addContribution.jsp'>Add Contribution</a><br/>
+<br/>Add Contribution <a href='./memberContribution.jsp'>Add Contribution</a><br/>
 
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">
@@ -33,28 +32,27 @@
                         <thead>
                           <tr>
 
-                            <th> Contributor username </th>
-                            <th> Contribution month </th>
-                            <th> Contributed amount</th>
-
+                           <th> Contributor username </th>
+                       <th> Contribution month </th>
+                       <th> Contribution type </th>
+                       <th> Contributed amount</th>
+                       <th> id </th>
+                       <th>date</th>
                           </tr>
                         </thead>
-                        <%
-                            List<Contribution> contributions = contributionController.listUser((Connection) application.getAttribute("myConnection"), contribution.getUsername());
-                            for (Contribution contribution : contributions) {
-                              if(contribution.getUsername().equals(contribution.getUsername()))
 
-                        %>
 
                        <tbody>
-                       <tr>
-                               <td><%= contribution.getUsername() %></td>
-                               <td><%= contribution.getMonth() %></td>
-                               <td><%= contribution.getAmount() %></td>
+                       <tr><td>${fn:toUpperCase(contribution.username)}</td>
+                              <td>${contribution.month}</td>
+                              <td>${contribution.type}</td>
+                              <td>${contribution.amount}</td>
+                               <td>${contribution.id}</td>
+                               <td>${contribution.timeCreated}</td>
                            </tr>
 
                        </tbody>
-                       <% } %>
+
                       </table>
 
 

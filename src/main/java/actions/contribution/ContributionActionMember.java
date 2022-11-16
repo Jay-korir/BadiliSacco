@@ -43,7 +43,7 @@ public class ContributionActionMember extends HttpServlet {
         }
         System.out.println(contribution);
 
-
+        System.out.println("=====user contribution ==" + contributionBean.getListUser(contribution.getUsername()));
         try {
             contributionBean.add(contribution);
             res.sendRedirect("./userDashboard.jsp");
