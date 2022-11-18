@@ -16,6 +16,8 @@ public class MembersView  implements Serializable {
 
     public List<Members> getList() throws Exception {
         return membersBean.list();
-
+    }
+    public  Members editMember(Long id) throws Exception {
+        return membersBean.getMember(id);
     }
 }

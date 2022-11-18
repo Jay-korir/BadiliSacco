@@ -31,6 +31,10 @@
 <label for="exampleInputUsername1"> Contributor Username</label>
 <input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value="${contribution.username}">
   </div>
+  <div class="form-group">
+    <label for="exampleInputUsername1"> Contributor Id</label>
+    <input type="text" name="idNumber" class="form-control" id="exampleInputUsername1" placeholder="idNumber" value="${contribution.idNumber}">
+      </div>
        <div class="form-group">
 <label for="exampleInputEmail1">Contribution Month</label>
 <input type="text" name="month" class="form-control" id="exampleInputName" placeholder="Month" value="${contribution.month}">

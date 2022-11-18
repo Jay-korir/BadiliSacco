@@ -33,4 +33,8 @@ public interface ContributionBeanI {
     void leftJoin();
 
     void crossJoin();
+
+    double payLoan();
+
+    double payPenalty();
 }

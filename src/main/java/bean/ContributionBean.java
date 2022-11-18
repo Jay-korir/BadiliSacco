@@ -91,8 +91,11 @@ public class ContributionBean implements ContributionBeanI {
 
 
     public double getTotalContribution() {
-        return (double) em.createQuery("select sum(amount) from Contribution").getSingleResult();
+        return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.type =:Type" )
+                .setParameter("Type", "Daily/monthly")
+                .getSingleResult();
     }
+
 
 
     public double totalUserContribution(String username) {
@@ -102,6 +105,16 @@ public class ContributionBean implements ContributionBeanI {
               .setParameter("pwd","Daily/monthly")
               .getSingleResult();
     }
+     public double payPenalty() {
+         return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.type =:Type" )
+                 .setParameter("Type", "penalty")
+                 .getSingleResult();
+     }
+     public double payLoan() {
+         return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.type =:Type" )
+                 .setParameter("Type", "payLoan")
+                 .getSingleResult();
+     }
     public void groupBy(){
         String hql="SELECT username ,sum(amount) FROM Contribution c GROUP BY c.username";
         Query query=  em.createQuery(hql);

@@ -35,6 +35,7 @@
                           <tr>
 
                             <th> Contributor username </th>
+                            <th> Contributor IdNumber </th>
                             <th> Contribution month </th>
                             <th> Contribution type </th>
                             <th> Contributed amount</th>
@@ -48,6 +49,7 @@
                        <c:forEach items ="${contributionView.list}" var = "contribution">
                       <tr>
                                <td>${fn:toUpperCase(contribution.username)}</td>
+                               <td>${contribution.idNumber}</td>
                                <td>${contribution.month}</td>
                                <td>${contribution.type}</td>
                                <td>${contribution.amount}</td>

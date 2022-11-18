@@ -18,6 +18,10 @@ public class Contribution extends BaseEntity {
     @Column
     private  String type;
 
+    @Column(name = "id_number")
+    private  Long idNumber;
+
+
 
 
     public String getUsername() {
@@ -50,6 +54,14 @@ public class Contribution extends BaseEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(Long idNumber) {
+        this.idNumber = idNumber;
     }
 
     @Override

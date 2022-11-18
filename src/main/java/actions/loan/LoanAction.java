@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static actions.LogIn.loggedUser;
+
 
 @WebServlet("/loan")
 public class LoanAction extends HttpServlet {
@@ -65,6 +67,9 @@ public class LoanAction extends HttpServlet {
 
         try {
             loanBean.add(loan);
+            if (loggedUser.equals("user")){
+                resp.sendRedirect("./loan_up.jsp");
+            }else
             resp.sendRedirect("./loanPage.jsp");
         } catch (Exception e) {
             servletCtx.setAttribute("loanError", e.getMessage());

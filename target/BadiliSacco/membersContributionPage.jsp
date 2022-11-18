@@ -14,9 +14,9 @@
 
 
 <jsp:useBean id = "contributionView"  class = "view.ContributionView" />
+<h1>${username}</h1>
 
-
-   <c:set var="contribution" value = "${contributionView.getUserContribution(${username})}" />
+<c:set var="contribution" value = "${contributionView.getUserContribution(username)}" />
 
 
 <span style="color:green;font-size: 24px;font-weight:bold">Logged In</span>

@@ -14,10 +14,10 @@
   pageContext.setAttribute("id", a);
  %>
 
- <jsp:useBean id = "memberController"  class = "controller.MembersBean" />
+ <jsp:useBean id = "memberView"  class = "view.MembersView" />
 
 
-    <c:set var="members" value = "${memberController.getMember(id)}" />
+    <c:set var="members" value = "${memberView.editMember(id)}" />
 
 <form action="./updateMember" method="post">
 
@@ -38,6 +38,10 @@
            <label>Username</label>
            <input type="text" name= "username" class="form-control p_input" value="${members.username}">
          </div>
+         <div class="form-group">
+                    <label>Id Number</label>
+                    <input type="text" name= "idNumber" class="form-control p_input" value="${members.idNumber}">
+                  </div>
 
           <div class="form-group">
              <label>Email</label>

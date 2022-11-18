@@ -30,6 +30,7 @@
                                 <th> lastname</th>
                                 <th> username</th>
                                 <th>email</th>
+                                <th>IdNumber</th>
                                 <th>phone</th>
                                 <th>userType </th>
                                 <th>Date </th>
@@ -46,6 +47,7 @@
                                 <td>${member.lastname}</td>
                                  <td>${member.username}</td>
                                 <td>${member.email}</td>
+                                <td>${member.idNumber}</td>
                                 <td>${member.phone}</td>
                                 <td>${member.userType}</td>
                                 <td>${member.timeCreated}</td>

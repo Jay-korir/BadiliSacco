@@ -33,7 +33,7 @@
                             <th> total pay </th>
                             <th> payment period(months)</th>
                             <th> status </th>
-                            <th> action <th>
+
                           </tr>
                         </thead>
 

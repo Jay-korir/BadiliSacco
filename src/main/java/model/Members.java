@@ -31,6 +31,9 @@ public class Members extends BaseEntity {
     @Column(name = "user_type")
     private String userType = "user";
 
+    @Column(name = "id_number")
+    private  Long idNumber;
+
 
 
 
@@ -97,6 +100,14 @@ public class Members extends BaseEntity {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public Long getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(Long idNumber) {
+        this.idNumber = idNumber;
     }
 
     @Override

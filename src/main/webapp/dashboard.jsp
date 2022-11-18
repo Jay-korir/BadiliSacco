@@ -166,7 +166,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.totalReceivables()}</h3>
+                        <h3 class="mb-0">${loanView.totalReceivables()-contributionView.getPaidLoan()}</h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
@@ -186,7 +186,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.totalLoaned()}</h3>
+                        <h3 class="mb-0">${loanView.totalLoaned()-contributionView.getPaidLoan()}</h3>
                         <p class="text-danger ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
@@ -206,7 +206,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${contributionController.getTotalContribution() - loanController.getTotalLoan()}</h3>
+                        <h3 class="mb-0">${contributionView.getTotalContri()-loanView.totalLoaned()+contributionView.getPaidLoan()+contributionView.getPenalty()}</h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>

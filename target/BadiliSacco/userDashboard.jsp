@@ -137,7 +137,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${contributionView.getMyContribution(username)}</h3>
+                        <h3 class="mb-0">${contributionView.getMyContribution(username) + 0}</h3>
                       </div>
                     </div>
                     <div class="col-3">
@@ -156,7 +156,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${contributionView.getMyContribution(username) + loanView.getMyLoan(username)} </h3>
+                        <h3 class="mb-0">${contributionView.getMyContribution(username)  + 0} </h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
@@ -176,7 +176,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.getMyLoan(username)}</h3>
+                        <h3 class="mb-0">${loanView.getMyLoan(username) + 0}</h3>
                         <p class="text-danger ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
@@ -196,7 +196,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.getTotalPay(username)}</h3>
+                        <h3 class="mb-0">${loanView.getTotalPay(username) + 0}</h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>

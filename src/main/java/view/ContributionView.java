@@ -8,6 +8,8 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
+import static actions.LogIn.loggedUser;
+
 @Named("contributionView")
 public class ContributionView implements Serializable {
     @EJB
@@ -29,6 +31,15 @@ public class ContributionView implements Serializable {
     public List<Contribution> getUserContribution(String username){
         return contributionBean.getListUser(username);
 
+    }
+
+    public double getPenalty(){
+
+        return contributionBean.payPenalty();
+
+    }
+    public double getPaidLoan(){
+        return contributionBean.payLoan();
     }
 
 }
