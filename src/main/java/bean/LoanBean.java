@@ -65,8 +65,9 @@ Loan loan = new Loan();
         if (loggedUser.equals("admin")) {
             loan.setStatus("Approved");
         }
-        else if (loggedUser.equals("user"))
-            loan.setStatus("pending");
+        else if (loggedUser.equals("user")){
+            loan.setStatus("pending");}
+
 
 
 

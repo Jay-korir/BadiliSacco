@@ -23,9 +23,17 @@
   <label for="exampleInputEmail1">Payment period</label>
   <input type="number" name="period" class="form-control" id="exampleInputName" placeholder="period in months">
 </div>
-      <div class="form-group">
+
+  <div class="form-group">
 <label for="exampleInputUsername1">Purpose </label>
-  <input type="text" name="purpose" class="form-control" id="exampleInputUsername1" placeholder="loan purpose">
+  <select class="form-control" name="purpose" class="form-control" id="exampleInputUsername1" placeholder="loan purpose">
+    <option>Education</option>
+    <option>wedding</option>
+    <option>health</option>
+<option>business</option>
+<option>others</option>
+
+ </select>
 </div>
 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 

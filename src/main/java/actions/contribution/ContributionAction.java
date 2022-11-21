@@ -40,19 +40,21 @@ public class ContributionAction extends HttpServlet {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }
-        System.out.println("==group By ===");
-        contributionBean.groupBy();
-        System.out.println("++order by ===");
-        contributionBean.orderBy();
-        System.out.println("==limit==");
-        contributionBean.limit();
-        System.out.println("====innerJoin");
-        contributionBean.inner();
-        System.out.println("======leftJoin");
-        //contributionBean.leftJoin();
-        System.out.println("===========crossJoin");
-        contributionBean.crossJoin();
+      }
+//        System.out.println("==group By ===");
+//        contributionBean.groupBy();
+//        System.out.println("++order by ===");
+//        contributionBean.orderBy();
+//        System.out.println("==limit==");
+//        contributionBean.limit();
+//        System.out.println("====innerJoin");
+//        contributionBean.inner();
+//        System.out.println("======leftJoin");
+//        //contributionBean.leftJoin();
+//        System.out.println("===========crossJoin");
+//        contributionBean.crossJoin();
+
+
 
         try {
             contributionBean.add(contribution);

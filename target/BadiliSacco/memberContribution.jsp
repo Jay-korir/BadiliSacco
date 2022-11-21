@@ -48,6 +48,7 @@
         <option>penalty</option>
         <option>welfare</option>
    <option>payLoan</option>
+    <option>Registration</option>
 
      </select>
      </div>

@@ -9,7 +9,10 @@
    <h1>
    Thank you <br/>
    Username : ${username} <br/>
-for your loan application keep checking for approval. </h1>
+for your loan application keep checking for approval.
+Download the form a submit it to the office</h1>
+
+<a href='./downloadPdf'>Download loan Form</a><br/>
 
 <a href='./userDashboard.jsp'>Back</a>
 

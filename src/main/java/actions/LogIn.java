@@ -4,6 +4,7 @@ package actions;
 import bean.UserBeanI;
 import model.Members;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 
 
 import javax.ejb.EJB;
@@ -39,6 +40,7 @@ public class LogIn extends HttpServlet {
         Members member = new Members();
         member.setUsername("username");
         member.setPassword("password");
+        String password = req.getParameter("password");
 
         try {
             BeanUtils.populate(member, req.getParameterMap());
@@ -46,6 +48,7 @@ public class LogIn extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        member.setPassword(DigestUtils.md5Hex(password));
 
         try {
             Members members = userBean.login(member);

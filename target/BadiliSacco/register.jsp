@@ -16,7 +16,10 @@
     <label>Username</label>
     <input type="text" name= "username" class="form-control p_input">
   </div>
-
+<div class="form-group">
+           <label>Id Number</label>
+           <input type="text" name= "idNumber" class="form-control p_input">
+         </div>
    <div class="form-group">
       <label>Email</label>
       <input type="email" name= "email" class="form-control p_input">

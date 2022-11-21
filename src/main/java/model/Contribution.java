@@ -22,7 +22,15 @@ public class Contribution extends BaseEntity {
     private  Long idNumber;
 
 
+    @Transient
+    private  double total;
 
+    public Contribution() {
+    }
+
+    public Contribution(double total) {
+        this.total = total;
+    }
 
     public String getUsername() {
         return username;

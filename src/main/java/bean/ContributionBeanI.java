@@ -22,6 +22,8 @@ public interface ContributionBeanI {
 
     List<Contribution> getListUser(String username);
 
+    List<Contribution> userContribution(String username);
+
     void groupBy();
 
     void orderBy();

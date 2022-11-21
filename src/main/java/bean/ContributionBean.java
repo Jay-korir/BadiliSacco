@@ -96,6 +96,18 @@ public class ContributionBean implements ContributionBeanI {
                 .getSingleResult();
     }
 
+     public List<Contribution> userContribution(String username) {
+         return  em.createQuery("Select new Contribution(sum(c.amount))  from Contribution c WHERE c.username =:userName " +
+                         "and c.type =:pwd",Contribution.class)
+                 .setParameter("userName", username)
+                 .setParameter("pwd","Daily/monthly")
+                 .getResultList();
+     }
+//     public List<Enrollment> getEnrollmentsByTrainees() {
+//         List<Enrollment> enrollments = entityManager.createQuery("SELECT new Enrollment(e.trainee, count(e.trainee)) FROM Enrollment e group by e.trainee", Enrollment.class)
+//                 .getResultList();
+//         return enrollments;
+//     }
 
 
     public double totalUserContribution(String username) {
