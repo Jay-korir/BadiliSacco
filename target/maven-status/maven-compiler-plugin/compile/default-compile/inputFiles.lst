@@ -8,6 +8,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\utilities\DatabaseConnection.ja
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\MySessionAttributeListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\ContributionActionMember.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\AppContextAttributeListener.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Mail.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Register.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\UpdateLoan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\WelcomeServlet.java
@@ -32,6 +33,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\bean\ContributionBeanI.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Reports.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\restapi\RestLoginWrapper.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\bean\UserBean.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\EmailSending.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Edit.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\DeleteContribution.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\UpdateMember.java

@@ -106,18 +106,19 @@
               </span>
               <span class="menu-title">Reports</span>
             </a>
-          <a class="nav-link" href="#ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
-              </span>
-            <span class="menu-title">Welfare</span>
-          </a>
+
           <a class="nav-link"  href="./membersPage.jsp">
             <span class="menu-icon">
                <i class="mdi mdi-contacts"></i>
             </span>
           <span class="menu-title">Members</span>
          </a>
+         <a class="nav-link" href="./email.jsp">
+           <span class="menu-icon">
+             <i class="mdi mdi-contacts"></i>
+           </span>
+          <span class="menu-title">Notification</span>
+        </a>
 <a class="nav-link" href="./login.jsp">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>

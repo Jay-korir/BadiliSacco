@@ -11,6 +11,7 @@ actions\DashBoard.class
 restapi\ContributionRestApi.class
 restapi\MembersRestapi.class
 model\Members.class
+actions\Mail$1.class
 eventListeners\AppContextAttributeListener.class
 actions\LogIn.class
 jstlCustomTags\Header1Tag.class
@@ -29,11 +30,13 @@ actions\LogOut.class
 model\Loan.class
 actions\LandPage.class
 actions\members\UpdateMember.class
+actions\Mail.class
 model\BaseEntity.class
 view\MembersView.class
 service\Reg$1.class
 actions\Display.class
 service\Edit.class
+actions\EmailSending.class
 actions\contribution\CreatePdf.class
 bean\MembersBeanI.class
 bean\UserBeanI.class

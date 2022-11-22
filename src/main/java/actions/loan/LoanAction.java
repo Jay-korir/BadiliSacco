@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import javax.ejb.EJB;
 ;
+import javax.ejb.Schedule;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -79,6 +80,7 @@ public class LoanAction extends HttpServlet {
 
     }
 
+    //@Schedule(0 12 * * ?)
     public double totalUserContribution() {
         return contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
 
