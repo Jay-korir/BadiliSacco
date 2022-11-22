@@ -103,7 +103,7 @@ Loan loan = new Loan();
         loan.setTotalPay(myTotalPay);
         System.out.println("myTotalPay=====" + myTotalPay);
 
-
+          loan.setStatus("Approved");
 
         System.out.println("====loanbean====" + loan);
 
@@ -123,6 +123,11 @@ Loan loan = new Loan();
                 .setParameter("userName", username)
                 .setParameter("Status","Approved")
                 .getSingleResult();
+    }
+    public List<Loan> loanReport(String status) {
+        return em.createQuery("FROM Loan l WHERE l.status =:Type", Loan.class)
+                .setParameter("Type",status)
+                .getResultList();
     }
     public double totalPay(String username) {
         return (double) em.createQuery("Select sum(totalPay) from Loan l WHERE l.username =:userName " +

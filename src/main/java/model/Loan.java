@@ -31,6 +31,9 @@ public class Loan extends BaseEntity {
     @Column
     private double userContribution;
 
+    @Column(name = "id_number")
+    private  Long idNumber;
+
 
     public String getStatus() {
         return status;
@@ -95,6 +98,14 @@ public class Loan extends BaseEntity {
 
     public void setUserContribution(double userContribution) {
         this.userContribution = userContribution;
+    }
+
+    public Long getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(Long idNumber) {
+        this.idNumber = idNumber;
     }
 
     @Override

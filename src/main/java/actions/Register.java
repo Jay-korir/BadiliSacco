@@ -68,6 +68,7 @@ public class Register extends HttpServlet {
         contribution.setType("Daily/monthly");
         System.out.println(contribution);
         loan.setUsername(members.getUsername());
+        loan.setIdNumber(members.getIdNumber());
         loan.setUserContribution(contribution.getAmount());
         loan.setLoanAmount(10);
         loan.setPeriod(1);
@@ -79,6 +80,14 @@ public class Register extends HttpServlet {
             userBean.register(members);
             contributionBean.add(contribution);
             loanBean.add(loan);
+            contribution.setUsername(members.getUsername());
+            contribution.setMonth("January");
+            contribution.setAmount(1);
+            contribution.setIdNumber(members.getIdNumber());
+            contribution.setType("payLoan");
+            System.out.println(contribution);
+            contributionBean.add(contribution);
+            System.out.println(contribution);
             resp.sendRedirect("./login.jsp");
         } catch (Exception e) {
             servletCtx.setAttribute("registerError", e.getMessage());

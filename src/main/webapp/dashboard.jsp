@@ -100,11 +100,11 @@
               <span class="menu-title">Loans</span>
             </a>
 
-            <a class="nav-link" href="#ui-basic">
+            <a class="nav-link" href="./reports.jsp">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-              <span class="menu-title">Expenses</span>
+              <span class="menu-title">Reports</span>
             </a>
           <a class="nav-link" href="#ui-basic">
               <span class="menu-icon">
@@ -166,7 +166,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.totalReceivables()-contributionView.getPaidLoan()}</h3>
+                        <h3 class="mb-0">${loanView.totalReceivables()-contributionView.getPaidLoan()-contributionView.getPenalty()}</h3>
                         <p class="text-success ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>
@@ -186,7 +186,7 @@
                   <div class="row">
                     <div class="col-9">
                       <div class="d-flex align-items-center align-self-start">
-                        <h3 class="mb-0">${loanView.totalLoaned()-contributionView.getPaidLoan()}</h3>
+                        <h3 class="mb-0">${loanView.totalLoaned()-contributionView.getPaidLoan()-contributionView.getPenalty()}</h3>
                         <p class="text-danger ml-2 mb-0 font-weight-medium"></p>
                       </div>
                     </div>

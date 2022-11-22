@@ -14,7 +14,10 @@
 <label for="exampleInputUsername1">  Username</label>
   <input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value=${username}>
 </div>
-
+<div class="form-group">
+           <label>Id Number</label>
+           <input type="text" name= "idNumber" class="form-control p_input">
+         </div>
 <div class="form-group">
   <label for="exampleInputPassword1">Amount Loaned</label>
   <input type="text" name="loanAmount" class="form-control" id="exampleInputPassword1" placeholder="Amount">

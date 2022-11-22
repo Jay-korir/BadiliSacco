@@ -9,6 +9,8 @@ public interface LoanBeanI {
 
     List<Loan> list() throws Exception;
 
+    List<Loan> loanReport(String status);
+
     void update(Loan loan) throws Exception;
 
     void decline(Loan loan) throws Exception;

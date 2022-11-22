@@ -81,6 +81,11 @@ public class ContributionBean implements ContributionBeanI {
                  .setParameter("userName",username)
                  .getResultList();
      }
+     public List<Contribution> contributionReport(String type) {
+         return em.createQuery("FROM Contribution c WHERE c.type =:Type", Contribution.class)
+                 .setParameter("Type",type)
+                 .getResultList();
+     }
 
      public Contribution getContribution(Long id) {
          return em.createQuery("FROM Contribution s WHERE s.id =:Id", Contribution.class)
@@ -103,11 +108,6 @@ public class ContributionBean implements ContributionBeanI {
                  .setParameter("pwd","Daily/monthly")
                  .getResultList();
      }
-//     public List<Enrollment> getEnrollmentsByTrainees() {
-//         List<Enrollment> enrollments = entityManager.createQuery("SELECT new Enrollment(e.trainee, count(e.trainee)) FROM Enrollment e group by e.trainee", Enrollment.class)
-//                 .getResultList();
-//         return enrollments;
-//     }
 
 
     public double totalUserContribution(String username) {
@@ -125,6 +125,21 @@ public class ContributionBean implements ContributionBeanI {
      public double payLoan() {
          return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.type =:Type" )
                  .setParameter("Type", "payLoan")
+                 .getSingleResult();
+     }
+     public double payUserLoan(String username) {
+         return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName   " +
+                         "and c.type =:Type" )
+                 .setParameter("userName",username)
+                 .setParameter("Type", "payLoan")
+                 .getSingleResult();
+     }
+
+     public double payPenalty(String username) {
+         return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.username =:userName   " +
+                         "and c.type =:Type" )
+                 .setParameter("userName",username)
+                 .setParameter("Type", "penalty")
                  .getSingleResult();
      }
     public void groupBy(){

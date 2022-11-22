@@ -28,11 +28,13 @@
                           <tr>
 
                             <th> Loaner username </th>
+                            <th> loan id </th>
                             <th> loaned amount </th>
                             <th> interest amount</th>
                             <th> total pay </th>
                             <th> payment period(months)</th>
                             <th> status </th>
+                            <th>action </th>
 
                           </tr>
                         </thead>
@@ -42,11 +44,13 @@
                        <c:forEach items ="${loanView.list}" var = "loan">
                        <tr>
                                <td>${loan.username}</td>
+                               <td>${loan.id}</td>
                                <td>${loan.loanAmount}</td>
                                <td>${loan.interest}</td>
                                <td>${loan.totalPay}</td>
                                <td>${loan.period}</td>
                                <td> ${loan.status}</a>
+                               <td><a href="./updateLoan.jsp?id=${loan.id}">Edit</a>
 
 
                            </tr>

@@ -13,33 +13,47 @@ import static actions.LogIn.loggedUser;
 @Named("contributionView")
 public class ContributionView implements Serializable {
     @EJB
-  private   ContributionBeanI contributionBean;
+    private ContributionBeanI contributionBean;
 
-    public List<Contribution> getList(){
+    public List<Contribution> getList() {
         return contributionBean.list();
 
     }
-    public double getMyContribution(String username){
-       return contributionBean.totalUserContribution(username);
+
+    public List<Contribution> getContributionReport(String type) {
+        return contributionBean.contributionReport(type);
+
     }
-    public double getTotalContri(){
+
+    public double getMyContribution(String username) {
+        return contributionBean.totalUserContribution(username);
+    }
+
+    public double getTotalContri() {
         return contributionBean.getTotalContribution();
     }
-    public  Contribution getMyContribution(Long id){
+
+    public Contribution getMyContribution(Long id) {
         return contributionBean.getContribution(id);
     }
-    public List<Contribution> getUserContribution(String username){
+
+    public List<Contribution> getUserContribution(String username) {
         return contributionBean.getListUser(username);
 
     }
 
-    public double getPenalty(){
+    public double getPenalty() {
 
         return contributionBean.payPenalty();
 
     }
-    public double getPaidLoan(){
+
+    public double getPaidLoan() {
         return contributionBean.payLoan();
     }
 
+
+    public double getUserPaidLoan(String username) {
+        return contributionBean.payUserLoan(username);
+    }
 }

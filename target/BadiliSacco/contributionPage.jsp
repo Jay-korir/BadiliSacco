@@ -39,7 +39,7 @@
                             <th> Contribution month </th>
                             <th> Contribution type </th>
                             <th> Contributed amount</th>
-                            <th> id </th>
+                            <th> transaction id </th>
                             <th>date</th>
                             <th>action </th>
                           </tr>

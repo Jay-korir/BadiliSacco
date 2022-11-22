@@ -22,7 +22,13 @@ public interface ContributionBeanI {
 
     List<Contribution> getListUser(String username);
 
+    List<Contribution> contributionReport(String type);
+
     List<Contribution> userContribution(String username);
+
+    double payUserLoan(String username);
+
+    double payPenalty(String username);
 
     void groupBy();
 
