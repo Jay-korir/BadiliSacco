@@ -1,7 +1,6 @@
 package service;
 
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,12 +18,13 @@ public class Reg extends Entity {
     static ResultSet resultSet;
     private static final String tableName = "Login";
 
-    private static final Map<String, Object> entitiesMap = new HashMap<String , Object>(){{
+    private static final Map<String, Object> entitiesMap = new HashMap<String, Object>() {{
         put("Id", null);
         put("Username", "");
         put("Password", "");
 
-    }};;
+    }};
+    ;
 
     public Reg() throws SQLException {
         super(entitiesMap, tableName);
@@ -62,17 +62,14 @@ public class Reg extends Entity {
     }
 
 
-
-
-
     public static List<Reg> displayAll() throws SQLException {
         List<Reg> studentList = new ArrayList<>();
         resultSet = getLoginDB().fetchAll();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Reg login = new Reg();
             login.setId(resultSet.getInt("id"));
             login.setUsername(resultSet.getString("username"));
-            login.setPassword(resultSet.getString("password")) ;
+            login.setPassword(resultSet.getString("password"));
             studentList.add(login);
         }
         return studentList;

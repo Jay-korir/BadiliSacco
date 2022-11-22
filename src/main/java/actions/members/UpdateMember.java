@@ -81,7 +81,6 @@ public class UpdateMember extends HttpServlet {
         }
 
 
-
         System.out.println(members);
         try {
             membersBean.add(members);

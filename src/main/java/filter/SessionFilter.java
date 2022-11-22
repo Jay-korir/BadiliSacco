@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
-public class SessionFilter  implements Filter {
+public class SessionFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -17,14 +17,14 @@ public class SessionFilter  implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("Printing from session Remote address: " + request.getRemoteAddr());
 
-        HttpServletRequest httpServletRequest = (HttpServletRequest)  request;
-        HttpServletResponse httpServletResponse = (HttpServletResponse)  response;
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         HttpSession session = httpServletRequest.getSession(); //returns existing session or creates if not existing
 
         String reqPath = httpServletRequest.getServletPath();
 
-        System.out.println("Request path: "+ reqPath);
-        System.out.println("\n\nNew session: "+ session.isNew());
+        System.out.println("Request path: " + reqPath);
+        System.out.println("\n\nNew session: " + session.isNew());
 
         if (reqPath == null) {
             session.invalidate();

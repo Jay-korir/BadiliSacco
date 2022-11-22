@@ -27,8 +27,6 @@ public class MembersBean implements MembersBeanI {
     }
 
 
-
-
     public void update(Members members) {
 
     }
@@ -38,9 +36,10 @@ public class MembersBean implements MembersBeanI {
         em.remove(em.find(Members.class, memberId));
 
     }
+
     public Members getMember(Long id) {
         return em.createQuery("FROM Members s WHERE s.id =:Id", Members.class)
-                .setParameter("Id",id)
+                .setParameter("Id", id)
                 .getResultList().get(0);
     }
 

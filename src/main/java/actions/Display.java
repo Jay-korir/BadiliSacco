@@ -30,7 +30,7 @@ public class Display extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        httpSession  = req.getSession();
+        httpSession = req.getSession();
         if (httpSession == null || httpSession.getId() == null)
             resp.sendRedirect("/");
         PrintWriter write = resp.getWriter();
@@ -39,20 +39,20 @@ public class Display extends HttpServlet {
     }
 
 
-    public String Welcome(){
+    public String Welcome() {
         return "<!DOCTYPE html>"
                 + "<html> "
                 + "<style>"
-                +" h4 {text-align: center;}"
+                + " h4 {text-align: center;}"
                 + "h6 {text-align: center;}"
-                +"</style>"
+                + "</style>"
                 + "<head>"
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Css/table.css\"/>"
                 + "</head>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: auto;\">"
                 // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
-                +"<h4>WELCOME TO BADILI SACCO </h4>"
-                +"<h6> Jipange uzeeni </h6>"
+                + "<h4>WELCOME TO BADILI SACCO </h4>"
+                + "<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
                 // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
                 + "<h2> Welcome: " + httpSession.getAttribute("username")
@@ -63,13 +63,13 @@ public class Display extends HttpServlet {
                 + "<br/>"
                 + "<br/>Logout <a href='./logout'>Logout</a><br/>"
                 //  +" <a href='./logout</a><br/>n'>L"
-                +"</form>"
+                + "</form>"
                 + "</body>"
                 + "</html>";
     }
 
-    public static String membersList(List<Members> members){
-        if(members == null)
+    public static String membersList(List<Members> members) {
+        if (members == null)
             members = new ArrayList<Members>();
         String membersList = "<table >" +
                 "<tr>" +
@@ -88,8 +88,7 @@ public class Display extends HttpServlet {
                     + "<td>" + member.getEmail() + "</td>"
 
 
-
-                    + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
+                    + "<td><a href=\"./delete?id=" + member.getId() + "\">Delete</a>  |" +
                     " <a href=\"./edit?id=" + member.getId() + "\">Edit</a>   |" +
                     " <a href=\"./contribution?id=" + member.getId() + "\">Contribution</a></td>"
                     + "</tr>";

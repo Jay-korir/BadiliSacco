@@ -35,7 +35,7 @@ public class UpdateLoan extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Loan loan= new Loan();
+        Loan loan = new Loan();
         System.out.println("===================");
         try {
             BeanUtils.populate(loan, req.getParameterMap());
@@ -46,14 +46,12 @@ public class UpdateLoan extends HttpServlet {
         System.out.println(loan);
 
 
-
         try {
             loanBean.update(loan);
             resp.sendRedirect("./loanPage.jsp");
         } catch (Exception e) {
-            servletCtx.setAttribute("addError",e.getMessage());
+            servletCtx.setAttribute("addError", e.getMessage());
         }
-
 
 
     }

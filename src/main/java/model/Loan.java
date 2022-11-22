@@ -32,7 +32,7 @@ public class Loan extends BaseEntity {
     private double userContribution;
 
     @Column(name = "id_number")
-    private  Long idNumber;
+    private Long idNumber;
 
 
     public String getStatus() {

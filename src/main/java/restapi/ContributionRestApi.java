@@ -22,12 +22,12 @@ public class ContributionRestApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response add(Contribution contribution){
+    public Response add(Contribution contribution) {
         try {
             contributionBean.add(contribution);
-            return  Response.status(Response.Status.OK).entity(new ResponseWrapper()).build();
+            return Response.status(Response.Status.OK).entity(new ResponseWrapper()).build();
         } catch (Exception e) {
-            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(new ResponseWrapper(false, e.getMessage())).build();
         }
     }
@@ -36,7 +36,7 @@ public class ContributionRestApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response list(@PathParam("id") Long id,
-                         @PathParam("badili")  String nameOfCompany) {
+                         @PathParam("badili") String nameOfCompany) {
         System.out.println("========The contribution id is " + id);
         System.out.println("======sacco name " + nameOfCompany);
         return Response.status(Response.Status.OK).entity(contributionBean.list()).build();

@@ -2,6 +2,7 @@ package bean;
 
 
 import model.Members;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -57,6 +58,29 @@ public class UserBean implements UserBeanI {
             throw new Exception("Invalid username or password");
 
         return members.get(0);
+
+    }
+
+    public boolean authMd5(String md5Hash) {
+
+        if (md5Hash == null)
+            return false;
+
+        List<Members> auths = em.createQuery("FROM Members m", Members.class)
+                .getResultList();
+
+        if (auths == null || auths.isEmpty())
+            return false;
+
+        boolean authenticated = false;
+        for (Members members : auths) {
+            if (DigestUtils.md5Hex(members.getUsername() + " SALT=CH10 " + members.getPassword()).equals(md5Hash)) {
+                authenticated = true;
+                break;
+            }
+        }
+
+        return authenticated;
 
     }
 }

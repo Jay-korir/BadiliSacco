@@ -19,35 +19,36 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco", "root", "");
             return true;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw e;
         }
     }
-/*
-    @Override
-    public String createSelectWithWhereClauseQuery() {
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
-        stringBuilder.append(t.getTableName()).append("WHERE ").append("");
-        return stringBuilder.toString();
-    }
 
-    @Override
-    public String createSelectOneQuery() {
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
-        stringBuilder.append(t.getTableName()).append(" WHERE ").append("id = ").append(t.getEntitiesMap().get("id"));
-        System.out.println(stringBuilder.toString());
-        return stringBuilder.toString();
-    }
+    /*
+        @Override
+        public String createSelectWithWhereClauseQuery() {
+            StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
+            stringBuilder.append(t.getTableName()).append("WHERE ").append("");
+            return stringBuilder.toString();
+        }
 
-    public String createSelectQuery() {
-        System.out.println("============");
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
-        stringBuilder.append(this.t.getTableName());
-        return stringBuilder.toString();
-    }
+        @Override
+        public String createSelectOneQuery() {
+            StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
+            stringBuilder.append(t.getTableName()).append(" WHERE ").append("id = ").append(t.getEntitiesMap().get("id"));
+            System.out.println(stringBuilder.toString());
+            return stringBuilder.toString();
+        }
+
+        public String createSelectQuery() {
+            System.out.println("============");
+            StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
+            stringBuilder.append(this.t.getTableName());
+            return stringBuilder.toString();
+        }
 
 
- */
+     */
     @Override
     public String createInsertQuery() {
         StringBuilder stringBuilder = new StringBuilder("INSERT INTO "); // insert into
@@ -55,8 +56,7 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
         stringBuilder.append("(");
         // (id, name, registrationNumber, idNumber) or (id, patientNumber)
         boolean isFirstColumn = true;
-        for (String key : t.getEntitiesMap().keySet())
-        {
+        for (String key : t.getEntitiesMap().keySet()) {
             if (!isFirstColumn)
                 stringBuilder.append(",");
             stringBuilder.append("`").append(key).append("`");
@@ -65,7 +65,7 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
         stringBuilder.append(")").append("values").append("(");
 
         isFirstColumn = true;
-        for (Object object: t.getEntitiesMap().values()){
+        for (Object object : t.getEntitiesMap().values()) {
             if (!isFirstColumn)
                 stringBuilder.append(",");
             if (object != null)
@@ -84,7 +84,7 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
         StringBuilder updateQuery = new StringBuilder("UPDATE ");
         updateQuery.append(t.getTableName()).append(" SET ");
         boolean isFirst = true;
-        for (Map.Entry<String, Object> entry: entryMap.entrySet()){
+        for (Map.Entry<String, Object> entry : entryMap.entrySet()) {
             if (!isFirst)
                 updateQuery.append(",");
             updateQuery.append(entry.getKey()).append("=").append("\"").append(entry.getValue()).append("\"");
@@ -103,7 +103,7 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
             statement.execute(query);
             System.out.println("Executed Successfully. ");
             return true;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Failed to execute");
             return false;
         }
@@ -112,14 +112,14 @@ public class MYSQLSACCO<T extends Entity> implements IMYSQLDB<T> {
     @Override
     public void save() {
         String insertQuery = this.createInsertQuery();
-        System.out.println("Insert query>>>: " +insertQuery);
+        System.out.println("Insert query>>>: " + insertQuery);
         this.executeQuery(insertQuery);
     }
 
     @Override
     public ResultSet fetchAll() throws SQLException {
-       /// String selectQuery = this.createSelectQuery();
-       // resultSet = this.executeReadQuery(selectQuery);
+        /// String selectQuery = this.createSelectQuery();
+        // resultSet = this.executeReadQuery(selectQuery);
         return resultSet;
     }
 

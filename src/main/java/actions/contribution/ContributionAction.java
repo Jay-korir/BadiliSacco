@@ -40,7 +40,7 @@ public class ContributionAction extends HttpServlet {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-      }
+        }
 //        System.out.println("==group By ===");
 //        contributionBean.groupBy();
 //        System.out.println("++order by ===");
@@ -60,11 +60,9 @@ public class ContributionAction extends HttpServlet {
             contributionBean.add(contribution);
             res.sendRedirect("./contributionPage.jsp");
         } catch (Exception e) {
-            servletCtx.setAttribute("addError",e.getMessage());
-           res.sendRedirect("./addContribution.jsp");
+            servletCtx.setAttribute("addError", e.getMessage());
+            res.sendRedirect("./addContribution.jsp");
         }
-
-
 
 
     }

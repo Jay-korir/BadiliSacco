@@ -27,7 +27,8 @@ public class LogIn extends HttpServlet {
 
     ServletContext sCtx = null;
 
-    public static  String loggedUser;
+    public static String loggedUser;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -58,7 +59,7 @@ public class LogIn extends HttpServlet {
 
 
             System.out.println("====" + members.getUserType());
-                 loggedUser= members.getUserType();
+            loggedUser = members.getUserType();
             if (members.getUserType().equals("admin"))
                 res.sendRedirect("./dashboard.jsp");
 

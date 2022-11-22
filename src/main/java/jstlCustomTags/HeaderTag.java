@@ -9,7 +9,7 @@ public class HeaderTag extends SimpleTagSupport {
 
     public void doTag() throws JspException, IOException {
         JspWriter out = getJspContext().getOut();
-        out.println( "<!DOCTYPE html>\n" +
+        out.println("<!DOCTYPE html>\n" +
                 " <html>\n" +
                 "      <head>\n" +
                 "      <!-- Required meta tags -->\n" +

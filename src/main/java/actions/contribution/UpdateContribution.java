@@ -53,14 +53,12 @@ public class UpdateContribution extends HttpServlet {
         System.out.println(contribution);
 
 
-
         try {
             contributionBean.update(contribution);
             resp.sendRedirect("./contributionPage.jsp");
         } catch (Exception e) {
-            servletCtx.setAttribute("addError",e.getMessage());
+            servletCtx.setAttribute("addError", e.getMessage());
         }
-
 
 
     }

@@ -3,7 +3,7 @@ package eventListeners;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
-public class SessionHttpBinding  implements HttpSessionBindingListener {
+public class SessionHttpBinding implements HttpSessionBindingListener {
 
     @Override
     public void valueBound(HttpSessionBindingEvent event) {

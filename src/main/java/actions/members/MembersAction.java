@@ -24,7 +24,6 @@ public class MembersAction extends HttpServlet {
     ServletContext servletCtx = null;
 
 
-
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
@@ -51,7 +50,7 @@ public class MembersAction extends HttpServlet {
             membersBean.add(member);
             resp.sendRedirect("./membersPage.jsp");
         } catch (Exception e) {
-            servletCtx.setAttribute("addError",e.getMessage());
+            servletCtx.setAttribute("addError", e.getMessage());
             resp.sendRedirect("./addMembers.jsp");
         }
 

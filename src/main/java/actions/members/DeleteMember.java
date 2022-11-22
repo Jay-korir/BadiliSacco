@@ -27,6 +27,7 @@ public class DeleteMember extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @SuppressWarnings("unchecked")
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -41,7 +42,6 @@ public class DeleteMember extends HttpServlet {
         }
         res.sendRedirect("./membersPage.jsp");
     }
-
 
 
 }

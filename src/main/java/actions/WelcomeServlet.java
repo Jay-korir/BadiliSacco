@@ -41,12 +41,12 @@ public class WelcomeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        httpSession  = req.getSession();
+        httpSession = req.getSession();
         PrintWriter write = resp.getWriter();
         write.print(this.Welcome());
 
 
-        List<Members> members1= new ArrayList<Members>();
+        List<Members> members1 = new ArrayList<Members>();
 
         try {
 
@@ -54,7 +54,7 @@ public class WelcomeServlet extends HttpServlet {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("select * from members");
-            while (resultSet.next()){
+            while (resultSet.next()) {
 
                 Members members2 = new Members();
                 members2.setFirstname(resultSet.getString("firstname"));
@@ -75,23 +75,20 @@ public class WelcomeServlet extends HttpServlet {
     }
 
 
-
-
-
-    public String Welcome(){
+    public String Welcome() {
         return "<!DOCTYPE html>"
                 + "<html> "
                 + "<style>"
-                +" h4 {text-align: center;}"
+                + " h4 {text-align: center;}"
                 + "h6 {text-align: center;}"
-                +"</style>"
+                + "</style>"
                 + "<head>"
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"./Css/table.css\"/>"
                 + "</head>"
                 + "<body bgcolor=\"Lightskyblue\" style=\"margin: auto; width: auto;\">"
                 // + "<h1>" + getServletContext().getAttribute("applicationLabel") + "</h1>"
-                +"<h4>WELCOME TO BADILI SACCO </h4>"
-                +"<h6> Jipange uzeeni </h6>"
+                + "<h4>WELCOME TO BADILI SACCO </h4>"
+                + "<h6> Jipange uzeeni </h6>"
                 + "<form action=\"./welcome\" method=\"post\">"
                 // + "<h1>" + getServletContext().getInitParameter("applicationLabel") + "</h1>"
                 //+ "<h2> Welcome: " + httpSession.getAttribute("username")
@@ -102,12 +99,12 @@ public class WelcomeServlet extends HttpServlet {
                 + "<br/>"
                 + "<br/>Logout <a href='./logout'>Logout</a><br/>"
                 //  +" <a href='./logout</a><br/>n'>L"
-                +"</form>"
+                + "</form>"
                 + "</body>"
                 + "</html>";
     }
 
-    public static String membersList(Members membersFilter){
+    public static String membersList(Members membersFilter) {
 
         String membersList = "<table >" +
                 "<tr>" +
@@ -124,7 +121,7 @@ public class WelcomeServlet extends HttpServlet {
                     + "<td>" + member.getUsername() + "</td>"
                     + "<td>" + member.getEmail() + "</td>"
                     + "<td>" + member.getPhone() + "</td>"
-                    + "<td><a href=\"./delete?id=" + member.getId() +"\">Delete</a>  |" +
+                    + "<td><a href=\"./delete?id=" + member.getId() + "\">Delete</a>  |" +
                     " <a href=\"./edit?id=" + member.getId() + "\">Edit</a> |" +
 
                     " <a href=\"./contribution?id=" + member.getId() + "\">Contribution</a></td>" +
@@ -134,8 +131,8 @@ public class WelcomeServlet extends HttpServlet {
         return membersList;
     }
 
-    public  List<Members> fetch(){
-        List<Members> members1= new ArrayList<Members>();
+    public List<Members> fetch() {
+        List<Members> members1 = new ArrayList<Members>();
 
         try {
 
@@ -143,7 +140,7 @@ public class WelcomeServlet extends HttpServlet {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("select * from members");
-            while (resultSet.next()){
+            while (resultSet.next()) {
 
                 Members members2 = new Members();
                 members2.setFirstname(resultSet.getString("firstname"));

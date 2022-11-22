@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named("memberView")
-public class MembersView  implements Serializable {
+public class MembersView implements Serializable {
 
     @EJB
     private MembersBeanI membersBean;
@@ -17,7 +17,8 @@ public class MembersView  implements Serializable {
     public List<Members> getList() throws Exception {
         return membersBean.list();
     }
-    public  Members editMember(Long id) throws Exception {
+
+    public Members editMember(Long id) throws Exception {
         return membersBean.getMember(id);
     }
 }

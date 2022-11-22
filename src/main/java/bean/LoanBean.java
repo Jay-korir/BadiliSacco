@@ -29,7 +29,7 @@ public class LoanBean implements LoanBeanI {
     @PersistenceContext
     EntityManager em;
 
-Loan loan = new Loan();
+    Loan loan = new Loan();
 
     public void add(Loan loan) throws Exception {
         if (loan == null || StringUtils.isBlank(loan.getUsername()))
@@ -58,17 +58,14 @@ Loan loan = new Loan();
         System.out.println("myTotalPay=====" + myTotalPay);
 
 
-
         System.out.println("====loanbean====" + loan);
 
 
         if (loggedUser.equals("admin")) {
             loan.setStatus("Approved");
+        } else if (loggedUser.equals("user")) {
+            loan.setStatus("pending");
         }
-        else if (loggedUser.equals("user")){
-            loan.setStatus("pending");}
-
-
 
 
         if (loanApplied <= (100000)) {
@@ -103,13 +100,9 @@ Loan loan = new Loan();
         loan.setTotalPay(myTotalPay);
         System.out.println("myTotalPay=====" + myTotalPay);
 
-          loan.setStatus("Approved");
+        loan.setStatus("Approved");
 
         System.out.println("====loanbean====" + loan);
-
-
-
-
 
 
         if (loanApplied <= (100000)) {
@@ -117,36 +110,39 @@ Loan loan = new Loan();
             em.merge(loan);
         }
     }
+
     public double totalUserLoan(String username) {
         return (double) em.createQuery("Select sum(loanAmount) from Loan l WHERE l.username =:userName  " +
                         "and l.status =:Status")
                 .setParameter("userName", username)
-                .setParameter("Status","Approved")
+                .setParameter("Status", "Approved")
                 .getSingleResult();
     }
+
     public List<Loan> loanReport(String status) {
         return em.createQuery("FROM Loan l WHERE l.status =:Type", Loan.class)
-                .setParameter("Type",status)
+                .setParameter("Type", status)
                 .getResultList();
     }
+
     public double totalPay(String username) {
         return (double) em.createQuery("Select sum(totalPay) from Loan l WHERE l.username =:userName " +
                         "and l.status =:Status")
                 .setParameter("userName", username)
-                .setParameter("Status","Approved")
+                .setParameter("Status", "Approved")
                 .getSingleResult();
     }
 
     public double getTotalLoansPay() {
 
         return (double) em.createQuery("select sum(totalPay) from Loan l WHERE l.status =: Status")
-                .setParameter("Status","Approved")
+                .setParameter("Status", "Approved")
                 .getSingleResult();
     }
 
     public double getTotalLoan() {
         return (double) em.createQuery("select sum(loanAmount) from Loan l WHERE l.status =: Status")
-                .setParameter("Status","Approved")
+                .setParameter("Status", "Approved")
                 .getSingleResult();
     }
 
@@ -155,9 +151,8 @@ Loan loan = new Loan();
     }
 
     public List<Loan> unApprovedList() {
-        return em.createQuery("From Loan l where l.status =: Status").setParameter("Status","pending").getResultList();
+        return em.createQuery("From Loan l where l.status =: Status").setParameter("Status", "pending").getResultList();
     }
-
 
 
     public void decline(Loan loan) {
@@ -166,7 +161,7 @@ Loan loan = new Loan();
 
     public Loan getLoan(Long id) {
         return em.createQuery("FROM Loan s WHERE s.id =:Id", Loan.class)
-                .setParameter("Id",id)
+                .setParameter("Id", id)
                 .getResultList().get(0);
     }
 

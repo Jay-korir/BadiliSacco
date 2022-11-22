@@ -1,8 +1,6 @@
 package actions.contribution;
 
 
-
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -38,11 +36,11 @@ public class CreatePdf extends HttpServlet {
         servletCtx = config.getServletContext();
 
     }
+
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
 
         response.setContentType("application/pdf");
 
@@ -64,73 +62,70 @@ public class CreatePdf extends HttpServlet {
                     "Please fill the form and submit it to the sacco premises as soon as possible\n"));
             document.setHtmlStyleClass(HTML);
 
-           document.getHtmlStyleClass();
-           document.add(new Paragraph(document.getHtmlStyleClass()));
+            document.getHtmlStyleClass();
+            document.add(new Paragraph(document.getHtmlStyleClass()));
 
             System.out.println(document.getHtmlStyleClass());
 
 
-
-
             document.close();
 
-        }
-        catch (DocumentException de) {
+        } catch (DocumentException de) {
             throw new IOException(de.getMessage());
         }
         response.sendRedirect("./userDashboard.jsp");
 
     }
+
     public static final String HTML =
             "    BASIC INFORMATION\n" +
-            "     First Name:............\n" +
+                    "     First Name:............\n" +
 
-            "     Last Name:---------------\n" +
+                    "     Last Name:---------------\n" +
 
-            "     Username:----------------\n" +
+                    "     Username:----------------\n" +
 
-            "     Email:----------------\n" +
-            "     ID Number:----------------\n" +
+                    "     Email:----------------\n" +
+                    "     ID Number:----------------\n" +
 
-            "    Contact Number:------------------\n" +
+                    "    Contact Number:------------------\n" +
 
-              "     Signature:------------Date--------------\n"+
-                    "\n"+
-            "     WORK INFORMATION\n" +
-            "     Current Occupation:------------\n" +
+                    "     Signature:------------Date--------------\n" +
+                    "\n" +
+                    "     WORK INFORMATION\n" +
+                    "     Current Occupation:------------\n" +
 
-            "     Employer Name:--------------\n" +
+                    "     Employer Name:--------------\n" +
 
-            "     Employer Address:--------------\n" +
+                    "     Employer Address:--------------\n" +
 
-            "     Loan Type:-----------------\n" +
+                    "     Loan Type:-----------------\n" +
 
-            "   Loan Amount:--------------(ksHs)\n" +
+                    "   Loan Amount:--------------(ksHs)\n" +
 
-            "     Length of Loan:--------(months)\n" +
+                    "     Length of Loan:--------(months)\n" +
 
-            "    Marital Status:--------------\n" +
+                    "    Marital Status:--------------\n" +
 
-                    "\n"+
+                    "\n" +
 
-            "     COSIGNER\n" +
+                    "     COSIGNER\n" +
 
-            "     Name of Cosigner/Guarantor:------------ \n" +
-            "     Cosigner Occupation:------------\n" +
-            "     Cosigner IDNumber:------------\n" +
-            "     Comments:----------\n" +
-             "     Signature:------------Date--------------\n" +
-            "\n" +
-               " Official use only\n" +
+                    "     Name of Cosigner/Guarantor:------------ \n" +
+                    "     Cosigner Occupation:------------\n" +
+                    "     Cosigner IDNumber:------------\n" +
+                    "     Comments:----------\n" +
+                    "     Signature:------------Date--------------\n" +
+                    "\n" +
+                    " Official use only\n" +
                     "\n" +
                     " Sacco Finance representative\n" +
                     "     Name:------------\n" +
 
                     "     Recommendation:----------\n" +
-                    "     Signature:------------Date--------------\n"
-    ;
+                    "     Signature:------------Date--------------\n";
 
-    }
+}
 
 
 

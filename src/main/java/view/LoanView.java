@@ -45,8 +45,7 @@ public class LoanView implements Serializable {
         }
         if (contributionBean.payPenalty(username) > 0) {
             pay = loanBean.totalPay(username) - contributionBean.payPenalty(username);
-        }
-        else {
+        } else {
             pay = loanBean.totalPay(username) - 0;
         }
         return pay;

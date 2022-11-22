@@ -20,19 +20,19 @@ public class ContributionSoap {
 
     @Path("/add")
     @POST
-    public Response add(Contribution contribution){
+    public Response add(Contribution contribution) {
         try {
             contributionBean.add(contribution);
-            return  Response.status(Response.Status.OK).entity(new ResponseWrapper()).build();
+            return Response.status(Response.Status.OK).entity(new ResponseWrapper()).build();
         } catch (Exception e) {
-            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(new ResponseWrapper(false, e.getMessage())).build();
         }
     }
 
     @Path("/list")
     @GET
-    public Response list( ) {
+    public Response list() {
 
         System.out.println("==============");
         System.out.println(contributionBean.list());

@@ -67,10 +67,10 @@ public class LoanAction extends HttpServlet {
 
         try {
             loanBean.add(loan);
-            if (loggedUser.equals("user")){
+            if (loggedUser.equals("user")) {
                 resp.sendRedirect("./loan_up.jsp");
-            }else
-            resp.sendRedirect("./loanPage.jsp");
+            } else
+                resp.sendRedirect("./loanPage.jsp");
         } catch (Exception e) {
             servletCtx.setAttribute("loanError", e.getMessage());
             resp.sendRedirect("./loan.jsp");

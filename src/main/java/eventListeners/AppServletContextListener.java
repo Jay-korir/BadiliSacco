@@ -23,8 +23,8 @@ public class AppServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
 
         ServletContext servletContext = sce.getServletContext();
-        servletContext.setAttribute("applicationLabel","BADILI SACCO");
-            }
+        servletContext.setAttribute("applicationLabel", "BADILI SACCO");
+    }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

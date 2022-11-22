@@ -51,10 +51,9 @@ public class ContributionActionMember extends HttpServlet {
             contributionBean.add(contribution);
             res.sendRedirect("./userDashboard.jsp");
         } catch (Exception e) {
-            servletCtx.setAttribute("addError",e.getMessage());
+            servletCtx.setAttribute("addError", e.getMessage());
             res.sendRedirect("./memberContribution.jsp");
         }
-
 
 
     }

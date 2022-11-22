@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "reports")
-public class Reports extends BaseEntity{
+public class Reports extends BaseEntity {
 
     @Formula("(select username(m.username) from Members m)")
     private Members members;

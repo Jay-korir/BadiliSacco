@@ -32,10 +32,11 @@ public class Members extends BaseEntity {
     private String userType = "user";
 
     @Column(name = "id_number")
-    private  Long idNumber;
+    private Long idNumber;
 
 
-
+    @Transient
+    private String bearerToken;
 
 
     public String getFirstname() {
@@ -108,6 +109,14 @@ public class Members extends BaseEntity {
 
     public void setIdNumber(Long idNumber) {
         this.idNumber = idNumber;
+    }
+
+    public String getBearerToken() {
+        return bearerToken;
+    }
+
+    public void setBearerToken(String bearerToken) {
+        this.bearerToken = bearerToken;
     }
 
     @Override
