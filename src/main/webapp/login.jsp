@@ -8,11 +8,11 @@
     <form action="./login" method="post">
     <div class="form-group">
        <label ><b>Username</b></label>
-        <input type="text" name= "username" class="form-control p_input" required placeholder="Enter Username">
+        <input type="text" maxlength="10" name= "username" class="form-control p_input" required placeholder="Enter Username">
         </div>
          <div class="form-group">
           <label ><b>Password</b></label>
-           <input type="pass" name= "password" class="form-control p_input" required placeholder="Enter Password">
+           <input type="pass" maxlength="4" name= "password" class="form-control p_input" required placeholder="Enter Password">
            </div>
       <div class="form-group d-flex align-items-center justify-content-between">
         <div class="form-check">

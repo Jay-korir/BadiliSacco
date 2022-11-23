@@ -1,5 +1,6 @@
 package actions.contribution;
 
+import actions.Mail;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -53,17 +54,16 @@ public class ContributionPdf  extends HttpServlet {
         }
         /* Define the SQL query */
         ResultSet query_set = null;
-        String type = request.getParameter("type");
         try {
 
-            query_set = stmt.executeQuery("SELECT id,username,amount,month,time_created FROM contributions where type =" + type);
+            query_set = stmt.executeQuery("SELECT id,username,amount,month,type,time_created FROM contributions");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         /* Step-2: Initialize PDF documents - logical objects */
         Document my_pdf_report = new Document();
         try {
-            PdfWriter.getInstance(my_pdf_report, Files.newOutputStream(Paths.get("C:/Users/MR MAN/Desktop/JavaPdf/contribution.pdf")));
+            PdfWriter.getInstance(my_pdf_report, Files.newOutputStream(Paths.get("C:/Users/MR MAN/Desktop/JavaPdf/contributions.pdf")));
         } catch (DocumentException e) {
             throw new RuntimeException(e);
         }
@@ -75,7 +75,7 @@ public class ContributionPdf  extends HttpServlet {
         paragraph.setAlignment(5);
 
         //we have four columns in our table
-        PdfPTable my_report_table = new PdfPTable(5);
+        PdfPTable my_report_table = new PdfPTable(6);
         //create a cell object
         PdfPCell table_cell;
 
@@ -85,45 +85,53 @@ public class ContributionPdf  extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            String dept_id = null;
+            String contri_id = null;
             try {
-                dept_id = query_set.getString("id");
+                contri_id = query_set.getString("id");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table_cell = new PdfPCell(new Phrase(dept_id));
+            table_cell = new PdfPCell(new Phrase(contri_id));
             my_report_table.addCell(table_cell);
-            String dept_name = null;
+            String user_name = null;
             try {
-                dept_name = query_set.getString("username");
+                user_name = query_set.getString("username");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table_cell = new PdfPCell(new Phrase(dept_name));
+            table_cell = new PdfPCell(new Phrase(user_name));
             my_report_table.addCell(table_cell);
-            String manager_id = null;
+            String amount_id = null;
             try {
-                manager_id = query_set.getString("amount");
+                amount_id = query_set.getString("amount");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table_cell = new PdfPCell(new Phrase(manager_id));
+            table_cell = new PdfPCell(new Phrase(amount_id));
             my_report_table.addCell(table_cell);
-            String location_id = null;
+            String month_id = null;
             try {
-                location_id = query_set.getString("month");
+                month_id = query_set.getString("month");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table_cell = new PdfPCell(new Phrase(location_id));
+            table_cell = new PdfPCell(new Phrase(amount_id));
             my_report_table.addCell(table_cell);
-            String phone = null;
+            String type_id = null;
             try {
-                phone = query_set.getString("time_created");
+                type_id = query_set.getString("type");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table_cell = new PdfPCell(new Phrase(phone));
+            table_cell = new PdfPCell(new Phrase(type_id));
+            my_report_table.addCell(table_cell);
+            String date = null;
+            try {
+                date = query_set.getString("time_created");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            table_cell = new PdfPCell(new Phrase(date));
             my_report_table.addCell(table_cell);
         }
         /* Attach report table to PDF */
@@ -158,129 +166,145 @@ public class ContributionPdf  extends HttpServlet {
         }
 
     }
-}
-//
-//    @SuppressWarnings("unchecked")
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        /* Create Connection objects */
-//        Connection conn = null;
-//        try {
-//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco", "root", "");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Statement stmt = null;
-//        try {
-//            stmt = conn.createStatement();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        /* Define the SQL query */
-//        ResultSet query_set = null;
-//        try {
-//            query_set = stmt.executeQuery("SELECT id,firstname,lastname,email,phone FROM members");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        /* Step-2: Initialize PDF documents - logical objects */
-//        Document my_pdf_report = new Document();
-//        try {
-//            PdfWriter.getInstance(my_pdf_report, Files.newOutputStream(Paths.get("C:/Users/MR MAN/Desktop/JavaPdf/members.pdf")));
-//        } catch (DocumentException e) {
-//            throw new RuntimeException(e);
-//        }
-//        my_pdf_report.open();
-//        Font bold = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-//        Paragraph paragraph = new Paragraph("Report for Current members List");
-//        paragraph.setFont(bold);
-//        paragraph.setSpacingAfter(8);
-//        paragraph.setAlignment(5);
-//
-//        //we have four columns in our table
-//        PdfPTable my_report_table = new PdfPTable(5);
-//        //create a cell object
-//        PdfPCell table_cell;
-//
-//        while (true) {
-//            try {
-//                if (!query_set.next()) break;
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            String dept_id = null;
-//            try {
-//                dept_id = query_set.getString("id");
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            table_cell = new PdfPCell(new Phrase(dept_id));
-//            my_report_table.addCell(table_cell);
-//            String dept_name = null;
-//            try {
-//                dept_name = query_set.getString("firstname");
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            table_cell = new PdfPCell(new Phrase(dept_name));
-//            my_report_table.addCell(table_cell);
-//            String manager_id = null;
-//            try {
-//                manager_id = query_set.getString("lastname");
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            table_cell = new PdfPCell(new Phrase(manager_id));
-//            my_report_table.addCell(table_cell);
-//            String location_id = null;
-//            try {
-//                location_id = query_set.getString("email");
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            table_cell = new PdfPCell(new Phrase(location_id));
-//            my_report_table.addCell(table_cell);
-//            String phone = null;
-//            try {
-//                phone = query_set.getString("phone");
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            table_cell = new PdfPCell(new Phrase(phone));
-//            my_report_table.addCell(table_cell);
-//        }
-//        /* Attach report table to PDF */
-//        try {
-//            my_pdf_report.add(paragraph);
-//        } catch (DocumentException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        try {
-//            my_pdf_report.add(my_report_table);
-//        } catch (DocumentException e) {
-//            throw new RuntimeException(e);
-//        }
-//        my_pdf_report.close();
-//
-//        /* Close all DB related objects */
-//        try {
-//            query_set.close();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        try {
-//            stmt.close();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        try {
-//            conn.close();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        response.sendRedirect("./reports.jsp");
-//
-//    }
-//}
+
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /* Create Connection objects */
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacco", "root", "");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        /* Define the SQL query */
+        ResultSet query_set = null;
+        String type = request.getParameter("type");
+        try {
+            query_set = stmt.executeQuery("SELECT id,username,amount,month,type,time_created FROM contributions ");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        /* Step-2: Initialize PDF documents - logical objects */
+        Document my_pdf_report = new Document();
+        String resultMessage = "";
+
+
+        try {
+            PdfWriter.getInstance(my_pdf_report, Files.newOutputStream(Paths.get("C:/Users/MR MAN/Desktop/JavaPdf/contributions.pdf")));
+            resultMessage = "The report was sent successfully";
+        } catch (DocumentException e) {
+            resultMessage = "There were an error: " + e.getMessage();
+        } finally {
+            request.setAttribute("Message", resultMessage);
+        }
+            my_pdf_report.open();
+            Font bold = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+            Paragraph paragraph = new Paragraph("Report for Current contributions List");
+            paragraph.setFont(bold);
+            paragraph.setSpacingAfter(8);
+            paragraph.setAlignment(5);
+
+            //we have four columns in our table
+            PdfPTable my_report_table = new PdfPTable(6);
+            //create a cell object
+            PdfPCell table_cell;
+
+            while (true) {
+                try {
+                    if (!query_set.next()) break;
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                String contri_id = null;
+                try {
+                    contri_id = query_set.getString("id");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(contri_id));
+                my_report_table.addCell(table_cell);
+                String user_name = null;
+                try {
+                    user_name = query_set.getString("username");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(user_name));
+                my_report_table.addCell(table_cell);
+                String amount_id = null;
+                try {
+                    amount_id = query_set.getString("amount");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(amount_id));
+                my_report_table.addCell(table_cell);
+                String month_id = null;
+                try {
+                    month_id = query_set.getString("month");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(amount_id));
+                my_report_table.addCell(table_cell);
+                String type_id = null;
+                try {
+                    type_id = query_set.getString("type");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(type_id));
+                my_report_table.addCell(table_cell);
+                String date = null;
+                try {
+                    date = query_set.getString("time_created");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                table_cell = new PdfPCell(new Phrase(date));
+                my_report_table.addCell(table_cell);
+            }
+            /* Attach report table to PDF */
+            try {
+                my_pdf_report.add(paragraph);
+            } catch (DocumentException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                my_pdf_report.add(my_report_table);
+            } catch (DocumentException e) {
+                throw new RuntimeException(e);
+            }
+            my_pdf_report.close();
+
+            /* Close all DB related objects */
+            try {
+                query_set.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            response.sendRedirect("./reports.jsp");
+
+        }
+    }
+
 

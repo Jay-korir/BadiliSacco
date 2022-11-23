@@ -14,6 +14,8 @@
 
 <style>  </style>
 <h1>${applicationScope.applicationLabel}</h1>
+<h2>print reports</h2>
+ <a href="./contributionReport"  > <button type="submit" class="btn btn-primary mr-2">Go</button> </a>
       <h2>Contribution reports</h2>
 <form action="./contributionReport.jsp" method="post">
    <div class="form-group">

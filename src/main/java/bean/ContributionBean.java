@@ -127,6 +127,8 @@ public class ContributionBean implements ContributionBeanI {
                 .getSingleResult();
     }
 
+
+
     public double payPenalty() {
         return (double) em.createQuery("Select sum(amount) from Contribution c WHERE c.type =:Type")
                 .setParameter("Type", "penalty")

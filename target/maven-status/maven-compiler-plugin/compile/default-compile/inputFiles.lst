@@ -3,7 +3,6 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\Display.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\DeclineLoan.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\MembersAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\restapi\AuthApi.java
-C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\ContributionPdf.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\SessionListener.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\utilities\DatabaseConnection.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\eventListeners\MySessionAttributeListener.java
@@ -18,6 +17,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\rest\ResponseWrapper.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LandPage.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\Delete.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\restapi\LoanRestApi.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\ContributionPdf.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\soap\ContributionSoap.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\bean\MembersBeanI.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\service\MYSQLSACCO.java
@@ -29,6 +29,7 @@ C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\bean\UserBeanI.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\LogIn.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\restapi\ContributionRestApi.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\contribution\CreatePdf.java
+C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\members\MembersPdf.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\actions\loan\LoanAction.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\bean\ContributionBeanI.java
 C:\Users\MR MAN\javaEe\BadiliSacco\src\main\java\model\Reports.java

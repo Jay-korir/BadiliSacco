@@ -14,11 +14,11 @@
   <div class="card-body">
       <div class="form-group">
 <label for="exampleInputUsername1"> Contributor Username</label>
-<input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value=${username}>
+<input type="text" maxlength="10" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value=${username}>
   </div>
    <div class="form-group">
   <label for="exampleInputUsername1"> Contributor Id</label>
-  <input type="text" name="idNumber" class="form-control" id="exampleInputUsername1" placeholder="idNumber">
+  <input type="text" maxlength="8" name="idNumber" class="form-control" id="exampleInputUsername1" placeholder="idNumber">
     </div>
           <div class="form-group">
      <label for="exampleInputEmail1">Contribution Month</label>
@@ -54,7 +54,7 @@
      </div>
   <div class="form-group">
 <label for="exampleInputPassword1">Amount contribution</label>
-<input type="text" name="amount" class="form-control" id="exampleInputPassword1" placeholder="Amount">
+<input type="number" max="6" name="amount" class="form-control" id="exampleInputPassword1" placeholder="Amount">
    </div>
 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 

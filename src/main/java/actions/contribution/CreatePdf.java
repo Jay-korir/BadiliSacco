@@ -8,15 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 
-import com.itextpdf.html2pdf.HtmlConverter;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.pdfa.PdfADocument;
+ ;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 
 import com.itextpdf.text.pdf.PdfWriter;
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlDocument;
+
 
 import java.io.*;
 

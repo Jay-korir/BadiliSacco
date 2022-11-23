@@ -2,10 +2,12 @@ eventListeners\MySessionAttributeListener.class
 service\Delete.class
 actions\loan\DeclineLoan.class
 actions\WelcomeServlet.class
+actions\contribution\ContributionPdf.class
 bean\LoanBeanI.class
 service\IMYSQLDB.class
 bean\ContributionBean.class
 model\Contribution.class
+actions\members\MembersPdf.class
 rest\RestApiFilter.class
 actions\DashBoard.class
 restapi\ContributionRestApi.class
@@ -62,7 +64,6 @@ restapi\AuthApi.class
 eventListeners\SessionHttpBinding.class
 jstlCustomTags\HeaderTag.class
 utilities\DatabaseConnection.class
-actions\ContributionPdf.class
 rest\ResponseWrapper.class
 restapi\AuthSoapApi.class
 actions\contribution\ContributionAction.class

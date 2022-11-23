@@ -12,19 +12,19 @@
 
         <div class="form-group">
 <label for="exampleInputUsername1">  Username</label>
-  <input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value=${username}>
+  <input type="text" maxlength="10" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" value=${username}>
 </div>
 <div class="form-group">
            <label>Id Number</label>
-           <input type="text" name= "idNumber" class="form-control p_input">
+           <input type="text" maxlength="8" name= "idNumber" class="form-control p_input">
          </div>
 <div class="form-group">
   <label for="exampleInputPassword1">Amount Loaned</label>
-  <input type="text" name="loanAmount" class="form-control" id="exampleInputPassword1" placeholder="Amount">
+  <input type="number"  max="6" name="loanAmount" class="form-control" id="exampleInputPassword1" placeholder="Amount">
 </div>
 <div class="form-group">
   <label for="exampleInputEmail1">Payment period</label>
-  <input type="number" name="period" class="form-control" id="exampleInputName" placeholder="period in months">
+  <input type="number"  max="2"name="period" class="form-control" id="exampleInputName" placeholder="period in months">
 </div>
       <div class="form-group">
 <label for="exampleInputUsername1">Purpose </label>

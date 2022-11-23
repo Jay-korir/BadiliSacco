@@ -6,35 +6,35 @@
 <form action= "./register" method = "post">
   <div class="form-group">
     <label>First Name</label>
-    <input type="text" name= "firstname" class="form-control p_input">
+    <input type="text" maxlength="10" name= "firstname" class="form-control p_input">
   </div>
   <div class="form-group">
     <label>Last Name</label>
-    <input type="text" name= "lastname" class="form-control p_input">
+    <input type="text" maxlength="10" name= "lastname" class="form-control p_input">
   </div>
   <div class="form-group">
     <label>Username</label>
-    <input type="text" name= "username" class="form-control p_input">
+    <input type="text" maxlength="10" name= "username" class="form-control p_input">
   </div>
 <div class="form-group">
            <label>Id Number</label>
-           <input type="text" name= "idNumber" class="form-control p_input">
+           <input type="text"maxlength="8" name= "idNumber" class="form-control p_input">
          </div>
    <div class="form-group">
       <label>Email</label>
-      <input type="email" name= "email" class="form-control p_input">
+      <input type="email" maxlength="20"name= "email" class="form-control p_input">
     </div>
   <div class="form-group">
      <label>Phone</label>
-    <input type="tel" name= "phone"class="form-control p_input">
+    <input type="tel"maxlength="10" name= "phone"class="form-control p_input">
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" name= "password"class="form-control p_input">
+    <input type="password"maxlength="4" name= "password"class="form-control p_input">
   </div>
   <div class="form-group">
     <label> Confirm Password</label>
-    <input type="password" name= "confirmPassword" class="form-control p_input">
+    <input type="password" maxlength="4" name= "confirmPassword" class="form-control p_input">
 </div>
 <div class="form-group d-flex align-items-center justify-content-between">
     <div class="form-check">

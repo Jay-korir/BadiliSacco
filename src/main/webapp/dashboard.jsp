@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<@ page import = "javax.inject.Inject" %>
+
 <%@ taglib prefix="cht" uri="WEB-INF/tlds/header.tld" %>
 <cht:Header></cht:Header>
 
@@ -222,6 +222,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
               <div class="card">
