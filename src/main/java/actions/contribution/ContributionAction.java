@@ -6,6 +6,8 @@ import model.Contribution;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
+import javax.ejb.Schedules;
 import javax.ejb.SessionBean;
 import javax.mail.Session;
 import javax.servlet.ServletConfig;
@@ -70,7 +72,13 @@ public class ContributionAction extends HttpServlet {
 
 
     }
-
+    @Schedules({
+//            @Schedule(dayOfMonth="23"),
+            @Schedule(dayOfWeek="wednesday", hour="10",minute = "50")
+    })
+    public void doPeriodicCleanup() throws Exception { contributionBean.getTotalContribution();
+        System.out.println("======loan as at 10:40==" +contributionBean.getTotalContribution());
+    }
 
 }
 

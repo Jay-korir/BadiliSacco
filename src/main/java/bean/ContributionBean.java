@@ -15,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
@@ -33,7 +34,7 @@ public class ContributionBean implements ContributionBeanI {
             throw new Exception("month required");
         if (contribution == null || StringUtils.isBlank(contribution.getType()))
             throw new Exception("type required");
-        if (contribution == null || contribution.getAmount() == 0)
+        if (contribution == null || contribution.getAmount() <= 0)
             throw new Exception("amount required");
 
 
@@ -77,10 +78,18 @@ public class ContributionBean implements ContributionBeanI {
     }
 
     public List<Contribution> getListUser(String username) {
-        return em.createQuery("FROM Contribution c WHERE c.username =:userName", Contribution.class)
+        List<Contribution> contributionList =   em.createQuery("FROM Contribution c WHERE c.username =:userName", Contribution.class)
                 .setParameter("userName", username)
                 .getResultList();
+        if(contributionList.size() > 0){
+            return contributionList;
+        }
+        else {
+            return Collections.emptyList();
+        }
     }
+
+
 
     public List<Contribution> contributionReport(String type) {
         return em.createQuery("FROM Contribution c WHERE c.type =:Type", Contribution.class)

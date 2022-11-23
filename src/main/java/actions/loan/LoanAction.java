@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import javax.ejb.EJB;
 ;
 import javax.ejb.Schedule;
+import javax.ejb.Schedules;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -80,7 +81,16 @@ public class LoanAction extends HttpServlet {
 
     }
 
-    //@Schedule(0 12 * * ?)
+//    //@Schedule(0 12 * * ?)
+//    @Schedule(cron = "0 12 * * ?")
+//
+//    public void scheduleTaskUsingCronExpression() {
+//
+//        long now = System.currentTimeMillis() / 1000;
+//        System.out.println(
+//                "schedule tasks using cron jobs - " + now);
+//    }
+
     public double totalUserContribution() {
         return contributionBean.totalUserContribution(loan.getUsername()) + loan.getLoanAmount();
 

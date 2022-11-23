@@ -34,6 +34,8 @@ public class UserBean implements UserBeanI {
 
         if (members.getPhone() == null)
             throw new Exception("phone is required");
+        if(!(members.getPassword()==members.getConfirmPassword()))
+            throw new Exception("password and confirm password");
 
         return em.merge(members);
 

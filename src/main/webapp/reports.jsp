@@ -50,4 +50,8 @@
 </div>
 <button type="submit" class="btn btn-primary mr-2">Go</button>
 </form>
+</br>
+<h2>members reports</h2>
+ <a href="./membersReport"  > <button type="submit" class="btn btn-primary mr-2">Go</button> </a>
+
 

@@ -32,6 +32,7 @@ public class EmailSending extends HttpServlet {
         System.out.println("----port" + port);
     }
 
+
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         // reads form fields

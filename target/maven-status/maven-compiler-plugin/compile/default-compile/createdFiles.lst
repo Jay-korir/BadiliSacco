@@ -62,6 +62,7 @@ restapi\AuthApi.class
 eventListeners\SessionHttpBinding.class
 jstlCustomTags\HeaderTag.class
 utilities\DatabaseConnection.class
+actions\ContributionPdf.class
 rest\ResponseWrapper.class
 restapi\AuthSoapApi.class
 actions\contribution\ContributionAction.class
